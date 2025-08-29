@@ -30,6 +30,7 @@ interface Project {
 
 export interface TechProject extends Project {
 	url: string;
+	sourceUrl?: string;
 	techologies: TechnologyName[]
 }
 
@@ -42,6 +43,7 @@ export const techProjects: TechProject[] = [
 		description:
 			"I developed a website for a youth-driven non-profit supporting upcoming local musicians, serving as an information hub for attendees, sponsors, and new volunteers. Content is managed through dedicated admin pages, with role-based access for creating and editing site content seamlessly.",
 		url: "https://knnkt.dk",
+		sourceUrl: "https://github.com/mattismoel/konnekt",
 		techologies: ["react", "javascript", "tailwindcss", "golang", "sqlite", "aws", "docker"],
 		imageSrcs: [
 			{ src: KonnektHome, alt: "Front page" },
@@ -55,6 +57,7 @@ export const techProjects: TechProject[] = [
 		description: "My first commercial website for my sistes' band PRISMA. Initially dabbled with a fully server-rendered Golang + HTMX application. I shifted gears however, for a more modern and maintainable stack - in the process learning new technologies and their respective values and tradeoffs.",
 		techologies: ["svelte-kit", "pocketbase", "tailwindcss", "docker", "aws"],
 		url: "https://prismatheband.com",
+		sourceUrl: "https://github.com/mattismoel/prisma-website",
 		imageSrcs: [
 			{ src: PrismaHome, alt: "Front page" },
 			{ src: PrismaContact, alt: "Contact page" },
