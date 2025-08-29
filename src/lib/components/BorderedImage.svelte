@@ -5,21 +5,22 @@
     HTMLAttributes<HTMLDivElement>;
 
   const { src, alt, ...rest }: Props = $props();
-
-  const baseClasses =
-    "absolute block h-full w-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 object-cover";
 </script>
 
-<div
-  {...rest}
-  class={["relative flex items-center justify-center", rest.class]}
->
+<div {...rest} class={["relative isolate shrink-0 h-full w-auto", rest.class]}>
   <img
     {src}
     {alt}
     {...rest}
-    class={[baseClasses, "mix-blend-screen brightness-175", rest.class]}
+    class={[
+      "-z-10 absolute top-0 left-0 mix-blend-screen brightness-175 h-full w-full object-cover",
+      rest.class,
+    ]}
   />
-
-  <img {src} {alt} class={[baseClasses, "p-[1px]", rest.class]} />
+  <img
+    aria-hidden="true"
+    {src}
+    {alt}
+    class={["p-[1px] h-full w-full object-cover", rest.class]}
+  />
 </div>

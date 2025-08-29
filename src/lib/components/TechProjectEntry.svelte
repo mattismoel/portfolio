@@ -6,7 +6,7 @@
     type TechnologyName,
   } from "$lib/technology";
   import Icon from "@iconify/svelte";
-  import Gallery from "./Gallery.svelte";
+  import SlideshowGallery from "./SlideshowGallery.svelte";
 
   type Props = {
     project: TechProject;
@@ -20,7 +20,7 @@
   role="presentation"
 >
   <div class="flex flex-col gap-4 md:flex-row md:justify-between">
-    <div>
+    <div class="flex flex-col">
       <a
         href={project.url}
         title={project.title}
@@ -33,18 +33,29 @@
       <span>{project.finishDate?.getFullYear()}</span>
     </div>
 
-    <div class="hidden @2xl:block">
+    <div class="hidden @2xl:flex flex-col items-end gap-2">
       {@render techList(project.techologies)}
     </div>
   </div>
+
   <p>{project.description}</p>
+  {#if project.sourceUrl}
+    <a
+      href={project.sourceUrl}
+      target="__blank"
+      class="flex items-center gap-2 hover:underline hover:text-heading w-fit"
+    >
+      Source Code
+      <Icon icon="fa7-solid:external-link" class="text-text/50" />
+    </a>
+  {/if}
 
   <div class="flex flex-col gap-4 @2xl:hidden">
     <span class="text-xs text-center">Built with</span>
     {@render techList(project.techologies)}
   </div>
 
-  <Gallery imgsSrcs={project.imageSrcs} />
+  <SlideshowGallery imgsSrcs={project.imageSrcs} />
 </div>
 
 {#snippet techIcon(technology: Technology)}

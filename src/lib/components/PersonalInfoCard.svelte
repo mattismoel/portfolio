@@ -14,10 +14,9 @@
 </script>
 
 <div class="flex">
-  <BorderedImage
-    src={info.pictureUrl}
-    class="h-28 md:h-32 aspect-square rounded-full"
-  />
+  <div class="h-28 md:h-32">
+    <BorderedImage src={info.pictureUrl} class="aspect-square rounded-full" />
+  </div>
   <div class="flex w-full flex-col items-end gap-4">
     <div class="flex flex-col items-end">
       <span class="text-heading">{info.firstName} {info.lastName}</span>
