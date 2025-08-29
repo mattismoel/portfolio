@@ -23,7 +23,7 @@ import { DATE_FORMAT } from "./time";
 
 interface Project {
 	title: string;
-	description: string;
+	description?: string;
 	finishDate: Date | null;
 	imageSrcs: { src: string, alt: string }[]
 }
