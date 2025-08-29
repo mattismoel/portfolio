@@ -136,6 +136,6 @@ export const sortProjectsByFinishDate = <T extends Project>(projects: T[]): T[] 
 			if (!a.finishDate && !b.finishDate) return 0;
 			if (!a.finishDate) return -1;
 			if (!b.finishDate) return 1;
-			return b.finishDate.getDate() - a.finishDate.getDate();
+			return b.finishDate.getTime() - a.finishDate.getTime();
 		})
 }
