@@ -4,7 +4,12 @@ import KonnektHome from "$lib/assets/projects/konnekt/konnekt-1.png"
 import KonnektArtists from "$lib/assets/projects/konnekt/konnekt-2.png"
 import KonnektAdmin from "$lib/assets/projects/konnekt/konnekt-3.png"
 
+import AmatorRed from "$lib/assets/projects/amator-red.png"
+import AmatorBlue from "$lib/assets/projects/amator-blue.png"
+import AmatorBlack from "$lib/assets/projects/amator-black.png"
+
 import KulturensDoegnGB1 from "$lib/assets/projects/konnekt/kulturens-doegn/green-blue-1.png"
+import KulturensDoegnGB2 from "$lib/assets/projects/konnekt/kulturens-doegn/green-blue-2.png"
 
 import PostenMay2025 from "$lib/assets/projects/konnekt/posten-020525.png"
 import StormsAugust from "$lib/assets/projects/konnekt/storms-290825.png"
@@ -77,8 +82,8 @@ export const techProjects: TechProject[] = [
 		]
 	},
 	{
-		title: "Abryx Font",
-		description: "I designed a pixel for the Villains of The Night game. It is a 7pt pixel font making it quite small, but still very legible on lower pixel art resolutions.",
+		title: "Abryx Typeface",
+		description: "I designed a pixel typeface for the Villains of The Night game. It is a 7pt pixel font making it quite small, but still very legible on lower pixel art resolutions.",
 		finishDate: parse("10/10/2021", DATE_FORMAT, new Date()),
 		techologies: ["aseprite"],
 		url: "https://mattismoel.itch.io/abryx-font",
@@ -90,16 +95,27 @@ export const techProjects: TechProject[] = [
 
 export const graphicsProjects: GraphicsProject[] = [
 	{
+		title: "Event Poster",
+		description: "I designed the poster for a concert event at my school. It is digitally hand-drawn in linocut-style, and given post-processing for a paper bleed effect.",
+		finishDate: parse("22/03/2024", DATE_FORMAT, new Date()),
+		imageSrcs: [
+			{ src: AmatorBlue, alt: "Blue poster" },
+			{ src: AmatorRed, alt: "Red poster" },
+			{ src: AmatorBlack, alt: "Black poster" },
+		]
+	},
+	{
 		title: "Event Poster (Kulturens Døgn)",
-		description: "I designed the poster for a local event in Odense 'Kulturens Døgn' in partnership with Konnekt.",
+		description: "I designed the poster for a local event by Konnekt in partnership with Kulturens Døgn. The design is dual-purposed, as it serves as an advertisement of the event for a general audience, as well as an open-invite call to local musicians to sign up for playing at the event.",
 		finishDate: parse("28/03/2025", DATE_FORMAT, new Date()),
 		imageSrcs: [
 			{ src: KulturensDoegnGB1, alt: "Green and blue, variation 1" },
+			{ src: KulturensDoegnGB2, alt: "Green and blue, variation 2" },
 		]
 	},
 	{
 		title: "Event Poster (Konnekt)",
-		description: "I designed the poster for Konnekt's first official show, consisting of a selection of local hard rock bands.",
+		description: "I designed the poster for Konnekt's first official show, consisting of a selection of local hard rock bands. All lettering is hand digitally drawn, displaying the headliner in yellow.",
 		finishDate: parse("11/04/2025", DATE_FORMAT, new Date()),
 		imageSrcs: [
 			{ src: PostenMay2025, alt: "Poster" },
@@ -107,7 +123,6 @@ export const graphicsProjects: GraphicsProject[] = [
 	},
 	{
 		title: "Event Poster (Konnekt)",
-		description: "I designed the poste for one of Konnekt's outdoor autumn event.",
 		finishDate: parse("13/08/2025", DATE_FORMAT, new Date()),
 		imageSrcs: [
 			{ src: StormsAugust, alt: "Poster" },
