@@ -21,7 +21,7 @@
     <div class="flex flex-col items-end">
       <span class="text-heading">{info.firstName} {info.lastName}</span>
       <span class="text-text/75">
-        {info.address.city}, {info.address.countryCode}
+        {info.address.city}, {info.address.country}
       </span>
       <span class="text-text/75">{age} years old</span>
     </div>

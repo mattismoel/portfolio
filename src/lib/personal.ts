@@ -17,13 +17,13 @@ export type Social = {
 
 export type Address = {
 	city: string;
-	countryCode: string;
+	country: string;
 }
 
 export const info: PersonalInformation = {
 	firstName: "Mattis",
 	lastName: "Møl Kristensen",
-	address: { city: "Odense", countryCode: "DK" },
+	address: { city: "Odense", country: "Denmark" },
 	birthday: parse("31/12/2004", "dd/MM/yyyy", new Date()),
 	pictureUrl: MeImage,
 };
