@@ -8,7 +8,6 @@
 
   const navEntries = new Map<string, string>([
     ["/", "Home"],
-    ["/projects", "Projects"],
     ["/contact", "Contact"],
   ]);
 </script>
