@@ -49,7 +49,7 @@ export const techProjects: TechProject[] = [
 			"I developed a website for a youth-driven non-profit supporting upcoming local musicians, serving as an information hub for attendees, sponsors, and new volunteers. Content is managed through dedicated admin pages, with role-based access for creating and editing site content seamlessly.",
 		url: "https://knnkt.dk",
 		sourceUrl: "https://github.com/mattismoel/konnekt",
-		techologies: ["react", "javascript", "tailwindcss", "golang", "sqlite", "aws", "docker"],
+		techologies: ["react", "typescript", "tailwindcss", "golang", "sqlite", "aws", "docker"],
 		imageSrcs: [
 			{ src: KonnektHome, alt: "Front page" },
 			{ src: KonnektArtists, alt: "Artists page" },

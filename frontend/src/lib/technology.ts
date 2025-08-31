@@ -8,7 +8,7 @@ export type TechnologyName =
 	| "docker"
 	| "tailwindcss"
 	| "pocketbase"
-	| "javascript"
+	| "typescript"
 	| "aws"
 	| "unity"
 	| "c-sharp"
@@ -61,10 +61,10 @@ export const technologyMap: Record<TechnologyName, Technology> = {
 		url: "https://tailwindcss.com",
 		iconName: "simple-icons:tailwindcss"
 	},
-	"javascript": {
-		name: "JavaScript",
-		url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
-		iconName: "fa7-brands:js"
+	"typescript": {
+		name: "TypeScript",
+		url: "https://www.typescriptlang.org/",
+		iconName: "simple-icons:typescript"
 	},
 	"pocketbase": {
 		name: "PocketBase",
