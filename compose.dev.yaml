@@ -12,7 +12,7 @@ services:
     restart: unless-stopped
   frontend:
     build:
+      context: ./frontend
       dockerfile: Dockerfile.dev
     volumes:
-      - .:/app
-      # - ./node_modules:/usr/src/app/
+      - ./frontend:/app

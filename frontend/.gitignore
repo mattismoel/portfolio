@@ -1,0 +1,6 @@
+.svelte-kit/
+.vite/
+build/
+node_modules/
+
+.env*
