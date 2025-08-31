@@ -49,7 +49,7 @@
     <TabSelector
       {tabs}
       onSelect={(newTab) =>
-        (selectedTab = isValidTabName(newTab) ? newTab : "Design")}
+        (selectedTab = isValidTabName(newTab) ? newTab : "Graphic Design")}
       selected={selectedTab}
     />
 
