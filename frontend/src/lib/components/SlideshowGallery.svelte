@@ -26,7 +26,7 @@
 	let scrollIdx = $derived.by(() => {
 		if (!el) return 0;
 		const ratio = scrollLeft / el.scrollWidth;
-		return Math.floor(ratio * imgsSrcs.length);
+		return Math.round(ratio * imgsSrcs.length);
 	});
 
 	const previewImage = (idx: number) => {
@@ -48,7 +48,7 @@
 	};
 </script>
 
-<div class="relative flex flex-col gap-4">
+<div class="relative flex flex-col gap-8">
 	<GalleryButton
 		disabled={scrollIdx === 0}
 		class="hidden cursor-pointer absolute top-1/2 left-0 -translate-x-16 -translate-y-1/2 transition-opacity md:block"
@@ -78,7 +78,9 @@
 			/>
 		{/each}
 	</div>
-	{@render dots(imgsSrcs.length, scrollIdx)}
+	{#if imgsSrcs.length > 1}
+		{@render dots(imgsSrcs.length, scrollIdx)}
+	{/if}
 </div>
 
 <ImagePreview
@@ -88,11 +90,11 @@
 />
 
 {#snippet dots(amount: number, activeIdx: number)}
-	<div class="w-full flex gap-1.5 justify-center">
+	<div class="w-full flex items-center min-h-2 gap-1.5 justify-center">
 		{#each { length: amount } as _, i}
 			<div
 				class:active={i === activeIdx}
-				class="h-2 aspect-square bg-text/50 rounded-full [.active]:bg-heading"
+				class="h-1.5 w-1.5 bg-zinc-800 rounded-full transition-[width,margin] [.active]:bg-heading [.active]:w-4 [.active]:mx-1 [.active]:first:ml-0 [.active]:last:mr-0 ease-out"
 			></div>
 		{/each}
 	</div>
