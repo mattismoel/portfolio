@@ -10,7 +10,7 @@ on:
     paths:
     - 'frontend/**'
   push:
-    branches: [ "main", "dev" ]
+    branches: [ "main" ]
     paths:
     - 'frontend/**'
 
