@@ -5,6 +5,10 @@ env:
   PACKAGE_NAME: frontend
 
 on:
+  pull_request:
+    branches: [ "main" ]
+    paths:
+    - 'frontend/**'
   push:
     branches: [ "main", "dev" ]
     paths:
