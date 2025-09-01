@@ -1,12 +1,15 @@
 <script lang="ts">
-	import type { HTMLImgAttributes } from "svelte/elements";
 	import BorderedImage from "./BorderedImage.svelte";
 	import Icon from "@iconify/svelte";
 	import GalleryButton from "./GalleryButton.svelte";
 	import ImagePreview from "./ImagePreview.svelte";
+	import type { HTMLImgAttributes } from "svelte/elements";
 
 	type Props = {
-		imgsSrcs: { src: string; alt: string }[];
+		imgsSrcs: {
+			src: HTMLImgAttributes["src"];
+			alt: string;
+		}[];
 	};
 
 	const { imgsSrcs }: Props = $props();
@@ -73,6 +76,7 @@
 			<BorderedImage
 				{src}
 				{alt}
+				loading="lazy"
 				onclick={() => previewImage(i)}
 				class="snap-center shrink-0 w-full aspect-video rounded-sm brightness-100 hover:brightness-110 transition-[filter] cursor-pointer"
 			/>
