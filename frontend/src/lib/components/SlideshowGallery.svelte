@@ -68,7 +68,7 @@
 	</GalleryButton>
 
 	<div
-		class="flex gap-4 overflow-x-scroll snap-x snap-mandatory"
+		class="flex gap-4 overflow-x-scroll snap-x snap-mandatory scrollbar-none"
 		bind:this={el}
 		onscroll={(e) => (scrollLeft = e.currentTarget.scrollLeft)}
 	>
