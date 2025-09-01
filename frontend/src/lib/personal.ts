@@ -1,4 +1,5 @@
-import MeImage from "$lib/assets/me.jpg";
+import MeImage from "./assets/me.jpg";
+import type { HTMLImgAttributes } from "svelte/elements"
 import { parse } from "date-fns";
 
 export type PersonalInformation = {
@@ -6,7 +7,7 @@ export type PersonalInformation = {
 	lastName: string;
 	address: Address;
 	birthday: Date;
-	pictureUrl: string;
+	pictureUrl: HTMLImgAttributes["src"];
 }
 
 export type Social = {

@@ -25,12 +25,13 @@ import VOTNLeaderboard from "$lib/assets/projects/villains-of-the-night/votn-lea
 import AbryxOverview from "$lib/assets/projects/abryx/abryx-overview.png"
 
 import { DATE_FORMAT } from "./time";
+import type { HTMLImgAttributes } from "svelte/elements";
 
 interface Project {
 	title: string;
 	description?: string;
 	finishDate: Date | null;
-	imageSrcs: { src: string, alt: string }[]
+	imageSrcs: { src: HTMLImgAttributes["src"], alt: string }[]
 }
 
 export interface TechProject extends Project {
