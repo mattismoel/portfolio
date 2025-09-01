@@ -76,7 +76,9 @@
 	<ul class="flex flex-wrap items-center gap-6 justify-center">
 		{#each technologies as techName}
 			{@const technology = technologyMap[techName]}
-			{@render techIcon(technology)}
+			<li>
+				{@render techIcon(technology)}
+			</li>
 		{/each}
 	</ul>
 {/snippet}

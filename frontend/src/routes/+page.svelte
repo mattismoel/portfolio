@@ -26,6 +26,11 @@
 	let graphicPs = $derived(sortProjectsByFinishDate(graphicsProjects));
 </script>
 
+<svelte:head>
+	<title>Mattis Møl Kristensen | Home page</title>
+	<meta name="description" content="The home page of Mattis Møl Kristensen" />
+</svelte:head>
+
 <main class="min-h-svh px-auto py-32 flex flex-col gap-20">
 	<section class="flex flex-col gap-16">
 		<PersonalInfoCard {info} {socials} />
