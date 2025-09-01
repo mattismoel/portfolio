@@ -47,7 +47,7 @@ export const techProjects: TechProject[] = [
 		title: "Konnekt Website",
 		finishDate: parse("30/06/2025", DATE_FORMAT, new Date()),
 		description:
-			"I developed a website for a youth-driven non-profit supporting upcoming local musicians, serving as an information hub for attendees, sponsors, and new volunteers. Content is managed through dedicated admin pages, with role-based access for creating and editing site content seamlessly.",
+			"Website for a youth-driven non-profit supporting upcoming local musicians. Has admin pages with role-based access for managing site content seamlessly.",
 		url: "https://knnkt.dk",
 		sourceUrl: "https://github.com/mattismoel/konnekt",
 		techologies: ["react", "typescript", "tailwindcss", "golang", "sqlite", "aws", "docker"],
@@ -60,7 +60,7 @@ export const techProjects: TechProject[] = [
 	{
 		title: "PRISMA Website",
 		finishDate: parse("16/05/2024", DATE_FORMAT, new Date()),
-		description: "My first commercial website for my sistes' band PRISMA. Initially dabbled with a fully server-rendered Golang + HTMX application. I shifted gears however, for a more modern and maintainable stack - in the process learning new technologies and their respective values and tradeoffs.",
+		description: "Website for the Danish band PRISMA, serving as an overview of upcoming show dates and band news and more.",
 		techologies: ["svelte-kit", "pocketbase", "tailwindcss", "docker", "aws"],
 		url: "https://prismatheband.com",
 		sourceUrl: "https://github.com/mattismoel/prisma-website",
@@ -72,7 +72,7 @@ export const techProjects: TechProject[] = [
 	},
 	{
 		title: "Villains of The Night (Game)",
-		description: "I made a video game for my sisters' band PRISMA's release of their single 'Villains of The Night' about escaping from the cops. It gained quite a lot of traction on national radio, where many radio hosts and artists placed their scores on the leaderboard.",
+		description: "Video game for PRISMA's song 'Villains of The Night'. Played nationwide by radio hosts and artists, each competing for best scores.",
 		finishDate: parse("09/09/2021", DATE_FORMAT, new Date()),
 		techologies: ["unity", "c-sharp"],
 		url: "https://prismamusic.itch.io/votn",
@@ -84,7 +84,7 @@ export const techProjects: TechProject[] = [
 	},
 	{
 		title: "Abryx Typeface",
-		description: "I designed a pixel typeface for the Villains of The Night game. It is a 7pt pixel font making it quite small, but still very legible on lower pixel art resolutions.",
+		description: "A 7pt pixel typeface made for the Villains of The Night game. Made for low-resolution pixel games while preserving great legibility.",
 		finishDate: parse("10/10/2021", DATE_FORMAT, new Date()),
 		techologies: ["aseprite"],
 		url: "https://mattismoel.itch.io/abryx-font",
