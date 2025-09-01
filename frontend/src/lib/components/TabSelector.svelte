@@ -20,7 +20,7 @@
 	{#each tabs as tab}
 		<button
 			class:active={selected === tab}
-			class="w-full py-1 cursor-pointer [.active]:cursor-default not-[.active]:hover:text-heading not-[.active]:hover:underline [.active]:font-bold [.active]:text-zinc-950 transition-colors duration-300"
+			class="w-full py-3 sm:py-2 sm:text-sm cursor-pointer [.active]:cursor-default not-[.active]:hover:text-heading not-[.active]:hover:underline [.active]:font-bold [.active]:text-zinc-950 transition-colors duration-300"
 			onclick={() => onSelect(tab)}>{tab}</button
 		>
 	{/each}
