@@ -1,6 +1,57 @@
 services:
-  frontend:
-    image: ghcr.io/mattismoel/portfolio/frontend:latest
+  # GENERAL SERVICES.
+  caddy:
+    image: caddy:latest
     restart: unless-stopped
     ports:
-    - 3000:3000
+      - 80:80
+      - 443:443
+      - 443:443/udp
+    volumes:
+      - caddy_data:/data
+      - caddy_config:/config
+    configs:
+      - source: caddyfile
+        target: /etc/caddy/Caddyfile
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    volumes:
+      - ./backend/pb/pb_data:/pb/pb_data
+      - ./backend/pb/pb_migrations:/pb/pb_migrations
+
+  frontend-dev:
+    profiles: [dev]
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    ports:
+      - 5173:5173
+    develop:
+      watch:
+        - path: ./frontend
+          target: /app
+          action: sync
+          ignore:
+            - node_modules/
+            - .svelte-kit/
+            - build/
+    depends_on:
+      - backend
+      - caddy
+
+  frontend-prod:
+    profiles: [prod]
+    image: ${IMAGE}:${BRANCH}
+    restart: unless-stopped
+
+volumes:
+  caddy_data:
+  caddy_config:
+  pb_data:
+
+configs:
+  caddyfile:
+    file: ${CADDYFILE_PATH}
