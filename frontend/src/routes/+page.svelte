@@ -1,14 +1,9 @@
 <script lang="ts">
 	import PersonalInfoCard from "$lib/components/PersonalInfoCard.svelte";
 	import { info, socials } from "$lib/personal";
-	import {
-		techProjects,
-		sortProjectsByFinishDate,
-		graphicsProjects,
-	} from "$lib/project";
 	import TechProjectList from "$lib/components/TechProjectList.svelte";
-	import GraphicProjectList from "$lib/components/GraphicProjectList.svelte";
 	import TabSelector from "$lib/components/TabSelector.svelte";
+    import { listTechProjects } from "$lib/project.remote";
 
 	const tabNames = ["Tech", "Graphic Design"] as const;
 	type TabType = (typeof tabNames)[number];
@@ -21,9 +16,6 @@
 		if (!validTab) return false;
 		return true;
 	};
-
-	let techPs = $derived(sortProjectsByFinishDate(techProjects));
-	let graphicPs = $derived(sortProjectsByFinishDate(graphicsProjects));
 </script>
 
 <svelte:head>
@@ -39,7 +31,7 @@
 				Hi! My name is {info.firstName}.
 			</span>
 			<br /><br />
-			I am an aspiring software developer from Odense, Denmark. This is a personal
+			I am an aspiring software developer based in Copenhagen, Denmark. This is a personal
 			hub for all my projects - both finished, and in progress.
 			<br /><br />
 			Look around, and please do peek into the projects, and let me know if you find
@@ -58,10 +50,13 @@
 			selected={selectedTab}
 		/>
 
+    {#await listTechProjects() then techProjects}
 		{#if selectedTab === "Tech"}
-			<TechProjectList projects={techPs} />
+			<TechProjectList projects={techProjects} />
 		{:else if selectedTab === "Graphic Design"}
-			<GraphicProjectList projects={graphicPs} />
+        Hello
+			<!-- <GraphicProjectList projects={graphicPs} /> -->
 		{/if}
+{/await}
 	</section>
 </main>

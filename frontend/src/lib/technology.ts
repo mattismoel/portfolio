@@ -1,89 +1,31 @@
-import type { Component } from "svelte"
+import z from "zod"
+import { pbBaseFields } from "./pocketbase"
 
-export type TechnologyName =
-	| "svelte-kit"
-	| "react"
-	| "golang"
-	| "sqlite"
-	| "docker"
-	| "tailwindcss"
-	| "pocketbase"
-	| "typescript"
-	| "aws"
-	| "unity"
-	| "c-sharp"
-	| "aseprite"
+export const iconMap = new Map<string, string>([
+  ["Golang", "icon-[simple-icons--golang]"],
+  ["SveltKit", "icon-[simple-icons--svelte]"],
+  ["TypeScript", "icon-[simple-icons--typescript]"],
+  ["SQLite", "icon-[simple-icons--sqlite]"],
+  ["PocketBase", "icon-[simple-icons--pocketbase]"],
+  ["React", "icon-[simple-icons--react]"],
+  ["TailwindCSS", "icon-[simple-icons--tailwindcss]"],
+  ["AWS", "icon-[simple-icons--aws]"],
+  ["Docker", "icon-[simple-icons--docker]"],
+  ["Aseprite", "icon-[simple-icons--aseprite]"],
+  ["Unity", "icon-[simple-icons--unity]"],
+  ["C-Sharp", "icon-[simple-icons--c-sharp]"],
+])
 
-export type Technology = {
-	name: string;
-	url: string;
-} & ({
-	iconName: string;
-	Icon?: null
-} | {
-	iconName?: null;
-	Icon: Component
+export const technologySchema = z.object({
+  ...pbBaseFields.shape,
+  name: z.string().nonempty(),
+  href: z.url().nonempty(),
 })
 
-export const technologyMap: Record<TechnologyName, Technology> = {
-	"svelte-kit": {
-		name: "SvelteKit",
-		url: "https://svelte.dev/",
-		iconName: "simple-icons:svelte"
-	},
-	"react": {
-		name: "React",
-		url: "https://react.dev",
-		iconName: "fa7-brands:react"
-	},
-	"golang": {
-		name: "Golang",
-		url: "https://go.dev",
-		iconName: "fa7-brands:golang"
-	},
-	"sqlite": {
-		name: "SQLite",
-		url: "https://sqlite.org",
-		iconName: "simple-icons:sqlite"
-	},
-	"docker": {
-		name: "Docker",
-		url: "https://docs.docker.com",
-		iconName: "fa7-brands:docker"
-	},
-	"aws": {
-		name: "AWS",
-		url: "https://aws.amazon.com",
-		iconName: "fa7-brands:aws"
-	},
-	"tailwindcss": {
-		name: "TailwindCSS",
-		url: "https://tailwindcss.com",
-		iconName: "simple-icons:tailwindcss"
-	},
-	"typescript": {
-		name: "TypeScript",
-		url: "https://www.typescriptlang.org/",
-		iconName: "simple-icons:typescript"
-	},
-	"pocketbase": {
-		name: "PocketBase",
-		url: "https://pocketbase.io/",
-		iconName: "simple-icons:pocketbase",
-	},
-	"unity": {
-		name: "Unity",
-		url: "https://unity.com/",
-		iconName: "fa7-brands:unity"
-	},
-	"c-sharp": {
-		name: "C#",
-		url: "https://learn.microsoft.com/en-us/dotnet/csharp/",
-		iconName: "devicon-plain:csharp"
-	},
-	"aseprite": {
-		name: "Aseprite",
-		url: "https://www.aseprite.org/",
-		iconName: "simple-icons:aseprite"
-	}
-};
+export const pbTechnologySchema = z.object({
+  ...pbBaseFields.shape,
+  name: z.string().nonempty(),
+  href: z.url().nonempty(),
+})
+
+export type Technology = z.infer<typeof technologySchema>
