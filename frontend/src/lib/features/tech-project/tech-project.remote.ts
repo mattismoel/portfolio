@@ -18,6 +18,16 @@ export const listTechProjects = query(async () => {
   return records.map(record => mapPBTechProject(record))
 })
 
+export const getTechProject = query(idSchema, async (id) => {
+  const pb = getLocalsPocketBase()
+
+  const record = await pb.collection("tech_projects").getOne<PBTechProject>(id, {
+    expand: createExpandString(TECH_PROJECT_EXPAND_PROPERTIES)
+  })
+
+  return mapPBTechProject(record)
+})
+
 const baseTechProjectFormSchema = z.object({
   title: z.string().nonempty(),
   description: z.string().nonempty(),
