@@ -1,0 +1,35 @@
+import { form, query } from "$app/server"
+import { createExpandString, getLocalsPocketBase } from "$lib/pocketbase"
+import z from "zod"
+import { mapPBTechProject, type PBTechProject } from "./tech-project"
+import { idSchema } from "$lib/base"
+
+const TECH_PROJECT_EXPAND_PROPERTIES = ["images", "technologies"]
+
+export const listTechProjects = query(async () => {
+  const pb = getLocalsPocketBase()
+
+  const records = await pb.collection("tech_projects").getFullList<PBTechProject>({
+    expand: createExpandString(TECH_PROJECT_EXPAND_PROPERTIES)
+  })
+
+  console.log(records)
+
+  return records.map(record => mapPBTechProject(record))
+})
+
+const createTechProjectFormSchema = z.object({
+  title: z.string().nonempty(),
+  description: z.string().nonempty(),
+  finishYear: z.number().positive(),
+  images: idSchema.array().min(1),
+  href: z.url().optional(),
+  sourceHref: z.url().optional(),
+  technologies: idSchema.array().min(1)
+})
+
+export const createTechProject = form(createTechProjectFormSchema, async (data) => {
+  const pb = getLocalsPocketBase()
+
+  await pb.collection("tech_projects").create(data)
+})

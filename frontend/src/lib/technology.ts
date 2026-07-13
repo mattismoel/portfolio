@@ -2,18 +2,18 @@ import z from "zod"
 import { pbBaseFields } from "./pocketbase"
 
 export const iconMap = new Map<string, string>([
-  ["Golang", "icon-[simple-icons--golang]"],
-  ["SveltKit", "icon-[simple-icons--svelte]"],
+  ["Golang", "icon-[simple-icons--go]"],
+  ["SvelteKit", "icon-[simple-icons--svelte]"],
   ["TypeScript", "icon-[simple-icons--typescript]"],
   ["SQLite", "icon-[simple-icons--sqlite]"],
   ["PocketBase", "icon-[simple-icons--pocketbase]"],
   ["React", "icon-[simple-icons--react]"],
   ["TailwindCSS", "icon-[simple-icons--tailwindcss]"],
-  ["AWS", "icon-[simple-icons--aws]"],
+  ["AWS", "icon-[simple-icons--amazon]"],
   ["Docker", "icon-[simple-icons--docker]"],
   ["Aseprite", "icon-[simple-icons--aseprite]"],
   ["Unity", "icon-[simple-icons--unity]"],
-  ["C-Sharp", "icon-[simple-icons--c-sharp]"],
+  ["C#", "icon-[bxl--c-sharp]"],
 ])
 
 export const technologySchema = z.object({
@@ -29,3 +29,8 @@ export const pbTechnologySchema = z.object({
 })
 
 export type Technology = z.infer<typeof technologySchema>
+export type PBTechnology = z.infer<typeof pbTechnologySchema>
+
+export const mapPBTechnology = (record: PBTechnology): Technology => {
+  return technologySchema.parse(record)
+}
