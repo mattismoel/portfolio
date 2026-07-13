@@ -9,7 +9,10 @@
 @theme {
   --color-background: var(--color-zinc-950);
   --color-primary: var(--color-zinc-100);
+
   --color-text: var(--color-zinc-400);
+  --color-text-light: var(--color-zinc-100);
+
   --color-heading: var(--color-zinc-100);
   --font-mono: "IBM Plex Mono", sans-serif;
 }

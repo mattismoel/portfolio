@@ -15,7 +15,7 @@
 
 <form {...rest}>
 	<header class="mb-6">
-		<h1 class="font-bold text-2xl mb-4">{title}</h1>
+		<h1 class="font-bold text-text-light text-2xl mb-4">{title}</h1>
 		{#if description !== undefined}
 			<p>{description}</p>
 		{/if}
