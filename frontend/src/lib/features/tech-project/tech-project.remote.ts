@@ -18,7 +18,7 @@ export const listTechProjects = query(async () => {
   return records.map(record => mapPBTechProject(record))
 })
 
-const createTechProjectFormSchema = z.object({
+const baseTechProjectFormSchema = z.object({
   title: z.string().nonempty(),
   description: z.string().nonempty(),
   finishYear: z.number().positive(),
@@ -28,8 +28,21 @@ const createTechProjectFormSchema = z.object({
   technologies: idSchema.array().min(1)
 })
 
+const createTechProjectFormSchema = baseTechProjectFormSchema
+
+const updateTechProjectFormSchema = z.object({
+  projectId: idSchema,
+  ...baseTechProjectFormSchema.shape,
+})
+
 export const createTechProject = form(createTechProjectFormSchema, async (data) => {
   const pb = getLocalsPocketBase()
 
   await pb.collection("tech_projects").create(data)
+})
+
+export const updateTechProject = form(updateTechProjectFormSchema, async ({ projectId, ...data }) => {
+  const pb = getLocalsPocketBase()
+
+  pb.collection("tech_projects").update(projectId, data)
 })
