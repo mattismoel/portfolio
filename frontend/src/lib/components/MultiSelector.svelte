@@ -23,7 +23,16 @@
 			selected = selected.filter((v) => v !== value);
 		}
 	};
+
+	let mouseDown = $state(false);
+
+	const handleMouseEnterPill = (value: string) => {
+		if (!mouseDown) return;
+		toggle(value);
+	};
 </script>
+
+<svelte:window onmousedown={() => (mouseDown = true)} onmouseup={() => (mouseDown = false)} />
 
 <select multiple hidden {...rest}>
 	{#each options as { value, name }}
@@ -37,7 +46,8 @@
 		<li>
 			<button
 				type="button"
-				onclick={() => toggle(value)}
+				onmouseenter={() => handleMouseEnterPill(value)}
+				onmousedown={() => toggle(value)}
 				class={[
 					'flex gap-2 items-center border border-primary/10 px-2 py-1',
 					isSelected ? 'bg-primary/10 font-medium' : 'bg-background'
