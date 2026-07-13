@@ -1,5 +1,8 @@
 <script lang="ts">
 	import Button from '$lib/components/Button.svelte';
+	import Form from '$lib/components/Form.svelte';
+	import FormField from '$lib/components/FormField.svelte';
+	import FormSection from '$lib/components/FormSection.svelte';
 	import Input from '$lib/components/Input.svelte';
 	import MultiSelector from '$lib/components/MultiSelector.svelte';
 	import SlideshowGallery from '$lib/components/SlideshowGallery.svelte';
@@ -16,7 +19,10 @@
 
 <main class="pt-32 px-8">
 	<div class="grid gap-16">
-		<form
+		<Form
+			title="Project Images"
+			description="Choose a project image and give it a short and clear description, and upload it."
+			uploadBtnText="Upload"
 			enctype="multipart/form-data"
 			{...uploadImage.enhance(async (form) => {
 				if (await form.submit()) {
@@ -33,44 +39,68 @@
 				}
 			})}
 		>
-			<h2>Images</h2>
-			<div class="grid">
-				<input {...uploadImage.fields.file.as('file')} />
-				<Input {...uploadImage.fields.description.as('text')} placeholder="Description" />
+			<FormSection title="Upload Image">
+				<FormField issues={uploadImage.fields.file.issues()}>
+					<input {...uploadImage.fields.file.as('file')} />
+				</FormField>
+				<FormField issues={uploadImage.fields.description.issues()}>
+					<Input {...uploadImage.fields.description.as('text')} placeholder="Description" />
+				</FormField>
 				<SlideshowGallery
 					imgsSrcs={images.map(({ src, description }) => ({ src, alt: description }))}
 				/>
-				<Button>Upload</Button>
-			</div>
-		</form>
+			</FormSection>
+		</Form>
 
-		<form {...createTechProject} class="flex flex-col">
-			<h1 class="font-bold text-2xl mb-8">Create Project</h1>
+		<Form
+			title="Create Project"
+			uploadBtnText="Create Project"
+			{...createTechProject}
+			class="flex flex-col"
+		>
+			<FormSection title="General">
+				<div class="flex gap-2">
+					<FormField issues={fields.title.issues()} class="w-full">
+						<Input {...fields.title.as('text')} placeholder="Title" class="w-full" />
+					</FormField>
+					<FormField issues={fields.finishYear.issues()}>
+						<Input {...fields.finishYear.as('number')} placeholder="Finished Year" />
+					</FormField>
+				</div>
 
-			<fieldset class="mb-8 grid gap-2">
-				<Input {...fields.title.as('text')} placeholder="Title" />
-				<Input {...fields.description.as('text')} placeholder="Description" />
-				<Input {...fields.href.as('url')} placeholder="URL" />
-				<Input {...fields.sourceHref.as('url')} placeholder="Source URL" />
-				<Input {...fields.finishYear.as('number')} placeholder="Finished Year" />
+				<FormField issues={fields.description.issues()}>
+					<Input {...fields.description.as('text')} placeholder="Description" />
+				</FormField>
+
+				<div class="grid grid-cols-2 gap-2">
+					<FormField issues={fields.href.issues()}>
+						<Input {...fields.href.as('url')} placeholder="URL" />
+					</FormField>
+					<FormField issues={fields.sourceHref.issues()}>
+						<Input {...fields.sourceHref.as('url')} placeholder="Source URL" />
+					</FormField>
+				</div>
+
 				<input {...fields.images.as('select multiple')} hidden />
-			</fieldset>
+			</FormSection>
 
-			<section class="mb-8">
-				<h2 class="mb-4">Technologies</h2>
+			<FormSection
+				title="Technologies"
+				description="Select the technologies used for creating this project."
+			>
 				{#await listTechnologies() then technologies}
-					<MultiSelector
-						{...fields.technologies.as('select multiple')}
-						options={technologies.map(({ id, name }) => ({
-							name,
-							value: id,
-							icon: iconMap.get(name)
-						}))}
-					/>
+					<FormField issues={fields.technologies.issues()}>
+						<MultiSelector
+							{...fields.technologies.as('select multiple')}
+							options={technologies.map(({ id, name }) => ({
+								name,
+								value: id,
+								icon: iconMap.get(name)
+							}))}
+						/>
+					</FormField>
 				{/await}
-			</section>
-
-			<Button>Create Project</Button>
-		</form>
+			</FormSection>
+		</Form>
 	</div>
 </main>
