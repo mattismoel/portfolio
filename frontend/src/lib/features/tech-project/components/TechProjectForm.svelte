@@ -13,12 +13,14 @@
 	import type { createTechProject, updateTechProject } from '../tech-project.remote';
 
 	type CreateProps = {
+		variant: 'create';
 		form: typeof createTechProject;
 	};
 
 	type UpdateProps = {
+		variant: 'update';
 		form: typeof updateTechProject;
-		techProject: TechProject;
+		project: TechProject;
 	};
 
 	type Props = CreateProps | UpdateProps;
@@ -26,6 +28,19 @@
 	let props: Props = $props();
 
 	let images = $state<Image[]>([]);
+
+	$effect(() => {
+		if (props.variant === 'create') return;
+
+		props.form.fields.set({
+			...props.project,
+			projectId: props.project.id,
+			images: props.project.images.map((i) => i.id),
+			technologies: props.project.technologies.map((t) => t.id)
+		});
+
+		images = [...props.project.images];
+	});
 </script>
 
 <Form
