@@ -1,15 +1,15 @@
 <script lang="ts">
-	import PersonalInfoCard from "$lib/components/PersonalInfoCard.svelte";
-	import { info, socials } from "$lib/personal";
-	import TechProjectList from "$lib/components/TechProjectList.svelte";
-	import TabSelector from "$lib/components/TabSelector.svelte";
-    import { listTechProjects } from "$lib/project.remote";
+	import PersonalInfoCard from '$lib/components/PersonalInfoCard.svelte';
+	import { info, socials } from '$lib/personal';
+	import TechProjectList from '$lib/components/TechProjectList.svelte';
+	import TabSelector from '$lib/components/TabSelector.svelte';
+	import { listTechProjects } from '$lib/features/tech-project/tech-project.remote';
 
-	const tabNames = ["Tech", "Graphic Design"] as const;
+	const tabNames = ['Tech', 'Graphic Design'] as const;
 	type TabType = (typeof tabNames)[number];
 
-	const tabs: TabType[] = ["Tech", "Graphic Design"];
-	let selectedTab = $state<TabType>("Tech");
+	const tabs: TabType[] = ['Tech', 'Graphic Design'];
+	let selectedTab = $state<TabType>('Tech');
 
 	const isValidTabName = (tabName: string): tabName is TabType => {
 		const validTab = tabNames.find((n) => n === tabName);
@@ -31,11 +31,10 @@
 				Hi! My name is {info.firstName}.
 			</span>
 			<br /><br />
-			I am an aspiring software developer based in Copenhagen, Denmark. This is a personal
-			hub for all my projects - both finished, and in progress.
+			I am an aspiring software developer based in Copenhagen, Denmark. This is a personal hub for all
+			my projects - both finished, and in progress.
 			<br /><br />
-			Look around, and please do peek into the projects, and let me know if you find
-			something of interest!
+			Look around, and please do peek into the projects, and let me know if you find something of interest!
 		</p>
 	</section>
 	<section class="flex flex-1 flex-col gap-8">
@@ -45,18 +44,17 @@
 
 		<TabSelector
 			{tabs}
-			onSelect={(newTab) =>
-				(selectedTab = isValidTabName(newTab) ? newTab : "Graphic Design")}
+			onSelect={(newTab) => (selectedTab = isValidTabName(newTab) ? newTab : 'Graphic Design')}
 			selected={selectedTab}
 		/>
 
-    {#await listTechProjects() then techProjects}
-		{#if selectedTab === "Tech"}
-			<TechProjectList projects={techProjects} />
-		{:else if selectedTab === "Graphic Design"}
-        Hello
-			<!-- <GraphicProjectList projects={graphicPs} /> -->
-		{/if}
-{/await}
+		{#await listTechProjects() then techProjects}
+			{#if selectedTab === 'Tech'}
+				<TechProjectList projects={techProjects} />
+			{:else if selectedTab === 'Graphic Design'}
+				Hello
+				<!-- <GraphicProjectList projects={graphicPs} /> -->
+			{/if}
+		{/await}
 	</section>
 </main>
