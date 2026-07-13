@@ -13,5 +13,5 @@ export const login = form(loginSchema, async ({ email, password }) => {
 
   await pb.collection("_superusers").authWithPassword(email, password)
 
-  redirect(301, "/projects")
+  redirect(301, "/admin/tech-projects")
 })
