@@ -14,9 +14,7 @@ services:
         target: /etc/caddy/Caddyfile
 
   backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
+    image: ghcr.io/mattismoel/portfolio/backend:main
     volumes:
       - ./backend/pb/pb_data:/pb/pb_data
       - ./backend/pb/pb_migrations:/pb/pb_migrations
