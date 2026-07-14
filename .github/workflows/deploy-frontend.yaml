@@ -44,5 +44,5 @@ jobs:
             PUBLIC_POCKETBASE_URL=${{ secrets.PUBLIC_POCKETBASE_URL }}
             POCKETBASE_URL=${{ secrets.POCKETBASE_URL }}
           tags: |
-            ${{ env.REGISTRY }}/${{ github.actor }}/${{ github.event.repository.name }}/${{ env.PACKAGE_NAME }}:latest
+            ${{ env.REGISTRY }}/${{ github.actor }}/${{ github.event.repository.name }}/${{ env.PACKAGE_NAME }}:${{ github.ref_name }}
             ${{ env.REGISTRY }}/${{ github.actor }}/${{ github.event.repository.name }}/${{ env.PACKAGE_NAME }}:${{ github.sha }}

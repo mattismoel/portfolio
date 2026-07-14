@@ -20,7 +20,7 @@ services:
       - ./backend/pb/pb_migrations:/pb/pb_migrations
 
   frontend:
-    image: ${IMAGE}:${BRANCH}
+    image: ghcr.io/mattismoel/portfolio/frontend:main
     restart: unless-stopped
     environment:
       - PUBLIC_POCKETBASE_URL=$PUBLIC_POCKETBASE_URL
@@ -33,4 +33,4 @@ volumes:
 
 configs:
   caddyfile:
-    file: ${CADDYFILE_PATH}
+    file: ./Caddyfile.dev
