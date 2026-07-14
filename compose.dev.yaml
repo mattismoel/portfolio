@@ -22,8 +22,7 @@ services:
       - ./backend/pb/pb_data:/pb/pb_data
       - ./backend/pb/pb_migrations:/pb/pb_migrations
 
-  frontend-dev:
-    profiles: [dev]
+  frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile.dev
@@ -41,14 +40,6 @@ services:
     depends_on:
       - backend
       - caddy
-
-  frontend-prod:
-    profiles: [prod]
-    image: ${IMAGE}:${BRANCH}
-    restart: unless-stopped
-    environment:
-      - PUBLIC_POCKETBASE_URL=$PUBLIC_POCKETBASE_URL
-      - POCKETBASE_URL=$POCKETBASE_URL
 
 volumes:
   caddy_data:

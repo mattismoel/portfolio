@@ -1,0 +1,38 @@
+services:
+  caddy:
+    image: caddy:latest
+    restart: unless-stopped
+    ports:
+      - 80:80
+      - 443:443
+      - 443:443/udp
+    volumes:
+      - caddy_data:/data
+      - caddy_config:/config
+    configs:
+      - source: caddyfile
+        target: /etc/caddy/Caddyfile
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    volumes:
+      - ./backend/pb/pb_data:/pb/pb_data
+      - ./backend/pb/pb_migrations:/pb/pb_migrations
+
+  frontend:
+    image: ${IMAGE}:${BRANCH}
+    restart: unless-stopped
+    environment:
+      - PUBLIC_POCKETBASE_URL=$PUBLIC_POCKETBASE_URL
+      - POCKETBASE_URL=$POCKETBASE_URL
+
+volumes:
+  caddy_data:
+  caddy_config:
+  pb_data:
+
+configs:
+  caddyfile:
+    file: ${CADDYFILE_PATH}
