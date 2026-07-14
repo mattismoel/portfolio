@@ -33,4 +33,4 @@ volumes:
 
 configs:
   caddyfile:
-    file: ./Caddyfile.dev
+    file: ./Caddyfile

@@ -1,0 +1,11 @@
+www.mattismoel.dev {
+	redir https://mattismoel.dev{url}
+}
+
+mattismoel.dev {
+	reverse_proxy frontend:5173
+}
+
+api.mattismoel.dev {
+	reverse_proxy backend:8080
+}
