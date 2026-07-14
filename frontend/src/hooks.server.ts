@@ -1,10 +1,10 @@
-import { POCKETBASE_URL } from "$env/static/private"
+import { env } from "$env/dynamic/private"
 import PocketBase from "pocketbase"
 
 import type { Handle } from "@sveltejs/kit";
 
 export const handle: Handle = async ({ event, resolve }) => {
-  event.locals.pocketbase = new PocketBase(POCKETBASE_URL)
+  event.locals.pocketbase = new PocketBase(env.POCKETBASE_URL)
   event.locals.pocketbase.authStore.loadFromCookie(event.request.headers.get("cookie") || "")
 
   try {
