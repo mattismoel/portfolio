@@ -7,6 +7,7 @@
 	let { children } = $props();
 	const navEntries = new Map<string, string>([
 		['/', 'Home'],
+		['/experience', 'Experience'],
 		['/contact', 'Contact']
 	]);
 </script>
