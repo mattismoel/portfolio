@@ -42,11 +42,7 @@
 		<!--   "Well, what have you been up to?", you ask... -->
 		<!-- </h1> -->
 
-		<TabSelector
-			{tabs}
-			onSelect={(newTab) => (selectedTab = isValidTabName(newTab) ? newTab : 'Graphic Design')}
-			selected={selectedTab}
-		/>
+		<TabSelector bind:selected={selectedTab} tabs={tabs.map((t) => ({ name: t, value: t }))} />
 
 		{#await listTechProjects() then techProjects}
 			{#if selectedTab === 'Tech'}
