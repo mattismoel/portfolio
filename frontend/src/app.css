@@ -6,6 +6,13 @@
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
 
+:root {
+  --max-content-width: 50em;
+  --content-padding: 2rem;
+
+  --content-width: min(var(--max-content-width), 100% - (var(--content-padding) * 2));
+}
+
 @theme {
   --color-background: var(--color-zinc-950);
   --color-primary: var(--color-zinc-100);
@@ -17,8 +24,9 @@
   --font-mono: "IBM Plex Mono", sans-serif;
 }
 
-@utility px-auto {
-  @apply px-6 sm:px-16 md:px-32 lg:px-48 xl:px-92;
+@utility mx-responsive {
+  width: var(--content-width);
+  margin-inline: auto;
 }
 
 @utility scrollbar-none {
