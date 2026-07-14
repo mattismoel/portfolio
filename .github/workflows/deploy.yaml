@@ -6,13 +6,13 @@ env:
 
 on:
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
     paths:
-    - 'frontend/**'
+      - "frontend/**"
   push:
-    branches: [ "main" ]
+    branches: ["main"]
     paths:
-    - 'frontend/**'
+      - "frontend/**"
 
 jobs:
   publish-webserver:
@@ -26,7 +26,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-
       - name: Log into registry ${{ env.REGISTRY }}
         uses: docker/login-action@v3
         with:
@@ -39,6 +38,9 @@ jobs:
         with:
           context: ./frontend
           push: true
+          build-args: |
+            PUBLIC_POCKETBASE_URL=${{ secrets.PUBLIC_POCKETBASE_URL }}
+            POCKETBASE_URL=${{ secrets.POCKETBASE_URL }}
           tags: |
             ${{ env.REGISTRY }}/${{ github.actor }}/${{ github.event.repository.name }}/${{ env.PACKAGE_NAME }}:latest
             ${{ env.REGISTRY }}/${{ github.actor }}/${{ github.event.repository.name }}/${{ env.PACKAGE_NAME }}:${{ github.sha }}
