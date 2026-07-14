@@ -1,23 +1,38 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 
+@plugin "@iconify/tailwind4";
+
 @import "tailwindcss";
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
 
-@theme {
-	--color-text: var(--color-zinc-400); 
-	--color-heading: var(--color-zinc-100); 
-	--font-mono: "IBM Plex Mono", sans-serif;
+:root {
+  --max-content-width: 50em;
+  --content-padding: 2rem;
+
+  --content-width: min(var(--max-content-width), 100% - (var(--content-padding) * 2));
 }
 
-@utility px-auto {
-	@apply px-6 sm:px-16 md:px-32 lg:px-48 xl:px-92;
+@theme {
+  --color-background: var(--color-zinc-950);
+  --color-primary: var(--color-zinc-100);
+
+  --color-text: var(--color-zinc-400);
+  --color-text-light: var(--color-zinc-100);
+
+  --color-heading: var(--color-zinc-100);
+  --font-mono: "IBM Plex Mono", sans-serif;
+}
+
+@utility mx-responsive {
+  width: var(--content-width);
+  margin-inline: auto;
 }
 
 @utility scrollbar-none {
-	@apply [scrollbar-width:none] [&::-webkit-scrollbar]:hidden;
+  @apply [scrollbar-width:none] [&::-webkit-scrollbar]:hidden;
 }
 
 body:has(.dialog.open) {
-	overflow: hidden;
+  overflow: hidden;
 }
