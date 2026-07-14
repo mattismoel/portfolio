@@ -1,12 +1,7 @@
-import { idSchema } from "$lib/base"
+import { baseFields } from "$lib/base"
 import { createFileUrl, pbBaseFields, pbIdSchema } from "$lib/pocketbase"
 import z from "zod"
 
-const baseFields = z.object({
-  id: idSchema,
-  created: z.coerce.date(),
-  updated: z.coerce.date()
-})
 
 export const imageSchema = z.object({
   ...baseFields.shape,
