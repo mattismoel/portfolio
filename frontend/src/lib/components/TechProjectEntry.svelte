@@ -1,8 +1,8 @@
 <script lang="ts">
-	import type { TechProject } from "$lib/project";
-	import Icon from "@iconify/svelte";
-	import SlideshowGallery from "./SlideshowGallery.svelte";
-    import { iconMap, type Technology } from "$lib/technology";
+	import type { TechProject } from '$lib/project';
+	import Icon from '@iconify/svelte';
+	import SlideshowGallery from './SlideshowGallery.svelte';
+	import { iconMap, type Technology } from '$lib/technology';
 
 	type Props = {
 		project: TechProject;
@@ -11,10 +11,7 @@
 	let { project }: Props = $props();
 </script>
 
-<div
-	class="@container flex flex-col gap-12 py-16 first:pt-0 last:pb-0"
-	role="presentation"
->
+<div class="@container flex flex-col gap-12 py-16 first:pt-0 last:pb-0" role="presentation">
 	<div class="flex flex-col gap-4 md:flex-row md:justify-between">
 		<div class="flex flex-col">
 			<a
@@ -25,7 +22,7 @@
 			>
 				<h2>{project.title}</h2>
 
-        <span class="icon-[boxicons--arrow-out-up-right-square] text-text/50"></span>
+				<span class="icon-[boxicons--arrow-out-up-right-square] text-text/50"></span>
 			</a>
 			<span>{project.finishDate?.getFullYear()}</span>
 		</div>
@@ -52,17 +49,53 @@
 		{@render techList(project.technologies)}
 	</div>
 
-	<SlideshowGallery imgsSrcs={project.images.map(img => ({src: img.src, alt: img.description}))} />
+	{#if project.href}
+		{@render sitePreview(project)}
+	{/if}
+
+	<div>
+		<h2>Images</h2>
+		<SlideshowGallery
+			imgsSrcs={project.images.map((img) => ({ src: img.src, alt: img.description }))}
+		/>
+	</div>
 </div>
 
+{#snippet sitePreview(project: TechProject)}
+	<a
+		title={project.title}
+		href={project.href}
+		target="_blank"
+		class="relative group outline-0 aspect-video rounded-xl outline-text/5 overflow-hidden hover:shadow-2xl hover:outline-8 transition-[outline-width]"
+	>
+		<iframe
+			title={project.title}
+			src={project.href}
+			class="w-full h-full group-hover:brightness-40 zoom-40 pointer-events-none transition-[filter]"
+			scrolling="no"
+		>
+		</iframe>
+
+		<span
+			class="opacity-0 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex gap-2 items-center font-bold group-hover:opacity-100 transition-opacity"
+		>
+			<span class="icon-[boxicons--arrow-out-up-right-square]"></span>
+			Visit site
+		</span>
+	</a>
+{/snippet}
 
 {#snippet techList(technologies: Technology[])}
 	<ul class="flex flex-wrap items-center gap-6 justify-center">
 		{#each technologies as technology}
-      {@const icon = iconMap.get(technology.name)}
+			{@const icon = iconMap.get(technology.name)}
 			<li>
-	<a href={technology.href} title={technology.name} class={["group text-text/50 hover:text-text size-6", icon]}>
-	</a>
+				<a
+					href={technology.href}
+					title={technology.name}
+					class={['group text-text/50 hover:text-text size-6', icon]}
+				>
+				</a>
 			</li>
 		{/each}
 	</ul>
