@@ -46,6 +46,9 @@ services:
     profiles: [prod]
     image: ${IMAGE}:${BRANCH}
     restart: unless-stopped
+    environment:
+      - PUBLIC_POCKETBASE_URL=$PUBLIC_POCKETBASE_URL
+      - POCKETBASE_URL=$POCKETBASE_URL
 
 volumes:
   caddy_data:
