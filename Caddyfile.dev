@@ -1,6 +1,6 @@
 localhost:443 {
 	tls internal
-	reverse_proxy frontend-dev:5173
+	reverse_proxy frontend:5173
 }
 
 api.localhost:443 {

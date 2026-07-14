@@ -1,1 +1,1 @@
-docker compose --profile dev up --watch
+docker compose -f compose.dev.yaml up --watch
