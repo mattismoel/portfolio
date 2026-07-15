@@ -9,6 +9,10 @@ FROM base AS builder
 COPY --from=install /app/node_modules node_modules
 COPY --from=install /app/package*.json ./
 COPY . .
+
+ENV PUBLIC_POCKETBASE_URL=$PUBLIC_POCKETBASE_URL
+ENV POCKETBASE_URL=https://backend:8080
+
 RUN npm run build
 RUN npm ci --omit dev
 
@@ -18,8 +22,6 @@ COPY --from=builder /app/node_modules node_modules
 COPY --from=builder /app/package.json .
 
 ENV NODE_ENV="production"
-# ENV HOST="127.0.0.1"
-# ENV PORT=3000
 
 EXPOSE 3000
 
