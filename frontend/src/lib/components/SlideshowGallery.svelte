@@ -63,6 +63,7 @@
 
 <div class="relative grid">
 	<GalleryButton
+		direction="left"
 		disabled={scrollIdx === 0}
 		class="cursor-pointer absolute top-1/2 left-0 translate-x-4 z-100 sm:-translate-x-16 -translate-y-1/2 transition-opacity"
 		onclick={() => scrollInDirection(-1)}
@@ -70,6 +71,7 @@
 		<Icon icon="fa7-solid:chevron-left" />
 	</GalleryButton>
 	<GalleryButton
+		direction="right"
 		disabled={scrollIdx === imgsSrcs.length - 1}
 		class="absolute top-1/2 -translate-y-1/2 right-0 -translate-x-4 z-100 sm:translate-x-16 transition-opacity"
 		onclick={() => scrollInDirection(1)}
@@ -78,7 +80,7 @@
 	</GalleryButton>
 
 	<div
-		class="flex gap-4 overflow-x-scroll snap-x snap-mandatory scrollbar-none mb-2"
+		class="flex gap-4 overflow-x-scroll snap-x snap-mandatory scrollbar-none mb-8"
 		bind:this={el}
 		onscroll={(e) => (scrollLeft = e.currentTarget.scrollLeft)}
 	>
@@ -94,11 +96,11 @@
 	</div>
 
 	{#if imgsSrcs.length > 1}
-		<ul class="grid grid-cols-6 mb-4">
+		<ul class="grid grid-cols-6 mb-4 gap-4">
 			{#each imgsSrcs as { src, alt }, i}
 				<li>
 					<button type="button" onclick={() => scrollTo(i)}>
-						<img
+						<BorderedImage
 							{src}
 							{alt}
 							class={['aspect-video h-12', i === scrollIdx ? 'brightness-100' : 'brightness-50']}

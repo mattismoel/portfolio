@@ -1,15 +1,27 @@
 <script lang="ts">
-  import type { HTMLButtonAttributes } from "svelte/elements";
+	import type { HTMLButtonAttributes } from 'svelte/elements';
 
-  let { children, ...rest }: HTMLButtonAttributes = $props();
+	type Props = HTMLButtonAttributes & {
+		direction: 'left' | 'right';
+	};
+
+	let { children, direction, ...rest }: Props = $props();
 </script>
 
 <button
-  {...rest}
-  class={[
-    "px-3 py-2 bg-zinc-950 border border-zinc-900 rounded-sm hover:border-zinc-800 hover:bg-zinc-900 cursor-pointer disabled:opacity-0 disabled:cursor-default",
-    rest.class,
-  ]}
+	{...rest}
+	class={[
+		'group aspect-square rounded-full px-3 py-2 bg-primary text-background cursor-pointer hover:scale-110 disabled:opacity-0 disabled:cursor-default transition-[opacity,scale]',
+		rest.class
+	]}
 >
-  {@render children?.()}
+	<div
+		class={[
+			'transition-transform',
+			direction === 'left' && 'group-hover:-translate-x-1',
+			direction === 'right' && 'group-hover:translate-x-1'
+		]}
+	>
+		{@render children?.()}
+	</div>
 </button>
