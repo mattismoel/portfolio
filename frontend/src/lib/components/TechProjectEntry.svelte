@@ -49,7 +49,7 @@
 		{@render techList(project.technologies)}
 	</div>
 
-	{#if project.href}
+	{#if project.href && project.usePreview}
 		{@render sitePreview(project)}
 	{/if}
 
