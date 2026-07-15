@@ -71,7 +71,7 @@
 		<iframe
 			title={project.title}
 			src={project.href}
-			class="w-full h-full group-hover:brightness-40 zoom-40 pointer-events-none transition-[filter]"
+			class="absolute inset-0 w-[250%] h-[250%] scale-[0.4] origin-top-left group-hover:brightness-40 pointer-events-none transition-[filter]"
 			scrolling="no"
 		>
 		</iframe>
