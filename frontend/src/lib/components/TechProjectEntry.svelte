@@ -3,6 +3,8 @@
 	import SlideshowGallery from './SlideshowGallery.svelte';
 	import { iconMap, type Technology } from '$lib/technology';
 	import type { TechProject } from '$lib/features/tech-project/tech-project';
+	import BorderedImage from './BorderedImage.svelte';
+	import GridGallery from './GridGallery.svelte';
 
 	type Props = {
 		project: TechProject;
@@ -11,8 +13,8 @@
 	let { project }: Props = $props();
 </script>
 
-<div class="@container flex flex-col gap-12 py-16 first:pt-0 last:pb-0" role="presentation">
-	<div class="flex flex-col gap-4 md:flex-row md:justify-between">
+<div class="@container grid py-16 first:pt-0 last:pb-0" role="presentation">
+	<div class="flex flex-col gap-4 md:flex-row md:justify-between mb-8">
 		<div class="flex flex-col">
 			<a
 				href={project.href}
@@ -32,12 +34,13 @@
 		</div>
 	</div>
 
-	<p class="leading-relaxed">{project.description}</p>
+	<p class="leading-relaxed mb-8">{project.description}</p>
+
 	{#if project.sourceHref}
 		<a
 			href={project.sourceHref}
 			target="__blank"
-			class="flex items-center gap-2 hover:underline hover:text-heading w-fit"
+			class="flex items-center gap-2 hover:underline hover:text-heading w-fit mb-8"
 		>
 			Source Code
 			<Icon icon="fa7-solid:external-link" class="text-text/50" />
@@ -49,15 +52,20 @@
 		{@render techList(project.technologies)}
 	</div>
 
-	{#if project.href && project.usePreview}
-		{@render sitePreview(project)}
-	{/if}
+	<div class="grid gap-8">
+		{#if project.href && project.usePreview}
+			{@render sitePreview(project)}
+		{/if}
 
-	<div>
-		<h2>Images</h2>
-		<SlideshowGallery
-			imgsSrcs={project.images.map((img) => ({ src: img.src, alt: img.description }))}
-		/>
+		<div>
+			{#if project.usePreview}
+				<GridGallery srcs={project.images.map((img) => ({ src: img.src, alt: img.description }))} />
+			{:else}
+				<SlideshowGallery
+					imgsSrcs={project.images.map((img) => ({ src: img.src, alt: img.description }))}
+				/>
+			{/if}
+		</div>
 	</div>
 </div>
 
@@ -66,7 +74,7 @@
 		title={project.title}
 		href={project.href}
 		target="_blank"
-		class="relative group outline-0 aspect-video rounded-xl outline-text/5 overflow-hidden hover:shadow-2xl hover:outline-8 transition-[outline-width]"
+		class="w-full relative group outline-0 aspect-video rounded-xl outline-text/5 overflow-hidden hover:shadow-2xl hover:outline-8 transition-[outline-width]"
 	>
 		<iframe
 			title={project.title}
