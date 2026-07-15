@@ -1,8 +1,8 @@
 <script lang="ts">
-	import type { TechProject } from '$lib/project';
 	import Icon from '@iconify/svelte';
 	import SlideshowGallery from './SlideshowGallery.svelte';
 	import { iconMap, type Technology } from '$lib/technology';
+	import type { TechProject } from '$lib/features/tech-project/tech-project';
 
 	type Props = {
 		project: TechProject;
@@ -24,7 +24,7 @@
 
 				<span class="icon-[boxicons--arrow-out-up-right-square] text-text/50"></span>
 			</a>
-			<span>{project.finishDate?.getFullYear()}</span>
+			<span>{project.finishYear}</span>
 		</div>
 
 		<div class="hidden @2xl:flex flex-col items-end gap-2">
@@ -49,7 +49,7 @@
 		{@render techList(project.technologies)}
 	</div>
 
-	{#if project.href}
+	{#if project.href && project.usePreview}
 		{@render sitePreview(project)}
 	{/if}
 
@@ -71,7 +71,7 @@
 		<iframe
 			title={project.title}
 			src={project.href}
-			class="w-full h-full group-hover:brightness-40 zoom-40 pointer-events-none transition-[filter]"
+			class="absolute inset-0 w-[250%] h-[250%] scale-[0.4] origin-top-left group-hover:brightness-40 pointer-events-none transition-[filter]"
 			scrolling="no"
 		>
 		</iframe>
