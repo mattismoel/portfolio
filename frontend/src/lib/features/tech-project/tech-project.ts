@@ -5,13 +5,13 @@ import { createFileUrl, pbIdSchema } from "$lib/pocketbase"
 
 const techProjectSchema = projectSchema.extend({
   href: z.url().optional(),
-  sourceHref: z.url().optional(),
+  sourceHref: z.union([z.url(), z.undefined()]),
   technologies: technologySchema.array().min(1)
 })
 
 const pbTechProjectSchema = pbProjectSchema.extend({
   href: z.url().optional(),
-  sourceHref: z.url().optional(),
+  sourceHref: z.union([z.url(), z.undefined()]),
   technologies: pbIdSchema.array(),
   expand: z.object({
     images: pbImageSchema.array(),
