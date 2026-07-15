@@ -1,5 +1,5 @@
 import { getRequestEvent } from "$app/server"
-import { env } from "$env/dynamic/public"
+import { PUBLIC_POCKETBASE_URL } from "$env/static/public"
 import z from "zod"
 
 export const pbIdSchema = z.string().nonempty()
@@ -20,5 +20,5 @@ export const createExpandString = (properties: string[]) => {
 }
 
 export const createFileUrl = (collectionIdOrName: string, id: string, fileName: string) => {
-  return `${env.PUBLIC_POCKETBASE_URL}/api/files/${collectionIdOrName}/${id}/${fileName}`
+  return `${PUBLIC_POCKETBASE_URL}/api/files/${collectionIdOrName}/${id}/${fileName}`
 }
