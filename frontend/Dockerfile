@@ -10,8 +10,8 @@ COPY --from=install /app/node_modules node_modules
 COPY --from=install /app/package*.json ./
 COPY . .
 
-ENV PUBLIC_POCKETBASE_URL=$PUBLIC_POCKETBASE_URL
-ENV POCKETBASE_URL=https://backend:8080
+ENV PUBLIC_POCKETBASE_URL=https://api.mattismoel.dev
+ENV POCKETBASE_URL=http://backend:8080
 
 RUN npm run build
 RUN npm ci --omit dev
