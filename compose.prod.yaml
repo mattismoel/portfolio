@@ -16,8 +16,8 @@ services:
   backend:
     image: ghcr.io/mattismoel/portfolio/backend:main
     volumes:
-      - ./backend/pb/pb_data:/pb/pb_data
-      - ./backend/pb/pb_migrations:/pb/pb_migrations
+      - pb_data:/pb/pb_data
+      - pb_migrations:/pb/pb_migrations
 
   frontend:
     image: ghcr.io/mattismoel/portfolio/frontend:main
@@ -30,6 +30,7 @@ volumes:
   caddy_data:
   caddy_config:
   pb_data:
+  pb_migrations:
 
 configs:
   caddyfile:
