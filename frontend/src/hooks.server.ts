@@ -1,9 +1,11 @@
 import { env } from "$env/dynamic/private"
+import { env as publicEnv } from "$env/dynamic/public"
 import PocketBase from "pocketbase"
 
 import type { Handle } from "@sveltejs/kit";
 
 export const handle: Handle = async ({ event, resolve }) => {
+  console.log("PB PRIVATE", env.POCKETBASE_URL, "PB PUBLIC", publicEnv.PUBLIC_POCKETBASE_URL)
   event.locals.pocketbase = new PocketBase(env.POCKETBASE_URL)
   event.locals.pocketbase.authStore.loadFromCookie(event.request.headers.get("cookie") || "")
 
