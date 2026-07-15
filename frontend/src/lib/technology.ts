@@ -3,6 +3,7 @@ import { pbBaseFields } from "./pocketbase"
 
 export const iconMap = new Map<string, string>([
   ["Golang", "icon-[simple-icons--go]"],
+  ["Caddy", "icon-[simple-icons--caddy]"],
   ["SvelteKit", "icon-[simple-icons--svelte]"],
   ["TypeScript", "icon-[simple-icons--typescript]"],
   ["SQLite", "icon-[simple-icons--sqlite]"],
