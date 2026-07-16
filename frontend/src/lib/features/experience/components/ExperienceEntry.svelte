@@ -1,5 +1,12 @@
 <script lang="ts">
-	import type { Experience } from '../experience';
+	import type { Experience, ExperienceType } from '../experience';
+
+	const experienceMap = new Map<ExperienceType, { title: string; icon: string }>([
+		['workplace', { title: 'Workplace', icon: 'icon-[boxicons--briefcase-alt-2]' }],
+		['education', { title: 'Education', icon: 'icon-[boxicons--backpack]' }],
+		['volunteer', { title: 'Volunteer', icon: 'icon-[boxicons--people-diversity]' }],
+		['project', { title: 'Project', icon: 'icon-[boxicons--brush]' }]
+	]);
 
 	type Props = {
 		experience: Experience;
@@ -16,7 +23,7 @@
 		return `${from} - ${to}`;
 	};
 
-	let expandable = $derived(points !== null && points?.length > 0);
+	let expandable = $derived(points && points?.length > 0);
 	let expanded = $state(false);
 </script>
 
@@ -25,84 +32,79 @@
 		disabled={!expandable}
 		type="button"
 		onclick={() => (expanded = !expanded)}
-		class={['relative w-full text-left flex justify-between', expandable && 'cursor-pointer']}
+		class={['relative w-full text-left grid', expandable && 'cursor-pointer']}
 	>
-		<div class="">
-			<div class="not-last:mb-6">
-				<h2
-					class={[
-						'font-medium transition-colors mb-2',
-						expandable && 'group-hover:text-text-light'
-					]}
-				>
-					{name}
-				</h2>
+		{@render header(name, location, type)}
 
-				<div class="text-xs">
-					<p class="flex gap-2 items-center mb-2">
-						<span class="icon-[boxicons--location]"></span>{location}
-					</p>
-					<p>{description}</p>
-				</div>
-			</div>
+		<p class="text-xs not-last:mb-4">{description}</p>
 
-			{#if points && points.length > 0}
-				<div
-					class={[
-						'grid transition-[grid-template-rows,margin-bottom]',
-						expanded ? 'grid-rows-[1fr] mb-4' : 'grid-rows-[0fr] mb-0'
-					]}
-				>
-					<div class="overflow-hidden">
-						<p class="mb-2 text-xs font-bold">Key Takeaways</p>
-						<ul class="list-disc list-inside text-xs">
-							{#each points as point}
-								<li>{point}</li>
-							{/each}
-						</ul>
-					</div>
-				</div>
-			{/if}
-
-			{#if points && points.length > 0}
-				<span class="flex items-center gap-2">
-					<span
-						class={['icon-[boxicons--chevron-down] transition-transform', expanded && 'rotate-180']}
-					>
-					</span>
-					<span class="text-xs group-hover:text-text-light transition-colors">
-						{#if expanded}
-							Show Less
-						{:else}
-							View More
-						{/if}
-					</span>
-				</span>
-			{/if}
-		</div>
-
-		<span
-			class="absolute top-0 right-0 text-xs bg-zinc-800 h-fit w-fit py-1 px-3 rounded-full flex"
-		>
-			<span class="flex items-center gap-2">
-				{#if type === 'workplace'}
-					<span class="icon-[boxicons--briefcase-alt-2]"></span>
-					Workplace
-				{:else if type === 'education'}
-					<span class="icon-[boxicons--backpack]"></span>
-					Education
-				{:else if type === 'volunteer'}
-					<span class="icon-[boxicons--people-diversity]"></span>
-					Volunteer
-				{:else if type === 'project'}
-					<span class="icon-[boxicons--brush]"></span>
-					Project
-				{/if}
-			</span>
-
-			<span>,&nbsp;</span>
-
-			{formatYears(fromYear, toYear)}
-		</span>
+		{#if points && points.length > 0}
+			{@render takeaways(points)}
+		{/if}
 	</button>
 </li>
+
+{#snippet header(name: string, location: string, type: ExperienceType)}
+	<header class="mb-4 @container">
+		<div class="flex justify-between flex-col @md:flex-row gap-2">
+			<div>
+				<h1>{name}</h1>
+				<p class="text-xs flex items-center gap-2">
+					<span class="icon-[boxicons--location]"></span>{location}
+				</p>
+			</div>
+
+			{@render typeBadge(type)}
+		</div>
+	</header>
+{/snippet}
+
+{#snippet takeaways(points: string[])}
+	<div class="@container">
+		<div
+			class={[
+				'grid transition-[grid-template-rows,margin-bottom]',
+				expanded ? 'grid-rows-[1fr] mb-4' : 'grid-rows-[0fr] mb-0'
+			]}
+		>
+			<div class="overflow-hidden">
+				<p class="mb-2 text-xs font-bold">Key Takeaways</p>
+				<ul class="list-disc list-inside text-xs">
+					{#each points as point}
+						<li>{point}</li>
+					{/each}
+				</ul>
+			</div>
+		</div>
+
+		<span class="flex items-center gap-2 justify-center @md:justify-start">
+			<span
+				class={['icon-[boxicons--chevron-down] transition-transform', expanded && 'rotate-180']}
+			>
+			</span>
+
+			<span class="text-xs group-hover:text-text-light transition-colors">
+				{#if expanded}
+					Show Less
+				{:else}
+					View More
+				{/if}
+			</span>
+		</span>
+	</div>
+{/snippet}
+
+{#snippet typeBadge(type: ExperienceType)}
+	{@const { title, icon } = experienceMap.get(type)!}
+
+	<span class="whitespace-nowrap text-xs bg-zinc-800 h-fit w-fit py-1 px-3 rounded-full flex">
+		<span class="flex items-center gap-2">
+			<span class={icon}></span>
+			{title}
+		</span>
+
+		<span>,&nbsp;</span>
+
+		{formatYears(fromYear, toYear)}
+	</span>
+{/snippet}
