@@ -11,17 +11,26 @@
 <button
 	{...rest}
 	class={[
-		'group aspect-square rounded-full px-3 py-2 bg-primary text-background cursor-pointer hover:scale-110 disabled:opacity-0 disabled:cursor-default transition-[opacity,scale]',
+		'group rounded-full flex items-center gap-4 py-2 px-5 justify-center bg-background border border-zinc-800 text-text-light cursor-pointer transition-colors w-full sm:w-fit',
+		'disabled:text-text/50 disabled:cursor-default disabled:border-transparent',
 		rest.class
 	]}
 >
-	<div
+	{#if direction === 'right'}
+		Next
+	{/if}
+	<span
 		class={[
-			'transition-transform',
-			direction === 'left' && 'group-hover:-translate-x-1',
-			direction === 'right' && 'group-hover:translate-x-1'
+			'transition-transform size-4 group-disabled:group-hover:translate-x-0',
+			direction === 'left' &&
+				'group-disabled:icon-[boxicons--arrow-big-left] icon-[boxicons--arrow-big-left-filled] group-hover:-translate-x-1',
+			direction === 'right' &&
+				'group-disabled:icon-[boxicons--arrow-big-right] icon-[boxicons--arrow-big-right-filled] group-hover:translate-x-1'
 		]}
 	>
-		{@render children?.()}
-	</div>
+	</span>
+
+	{#if direction === 'left'}
+		Previous
+	{/if}
 </button>
