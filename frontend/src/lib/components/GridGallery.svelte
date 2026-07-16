@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { HTMLImgAttributes } from "svelte/elements";
-	import ImagePreview from "./ImagePreview.svelte";
-	import BorderedImage from "./BorderedImage.svelte";
+	import type { HTMLImgAttributes } from 'svelte/elements';
+	import ImagePreview from './ImagePreview.svelte';
+	import BorderedImage from './BorderedImage.svelte';
 
 	type Props = {
 		srcs: HTMLImgAttributes[];
@@ -19,25 +19,23 @@
 	};
 </script>
 
-<div
-	class={[
-		"grid @lg:grid-cols-2 @2xl:grid-cols-2 @3xl:grid-cols-3 flex-wrap gap-4 min-h-16 justify-center",
-		rest.class,
-	]}
->
-	{#each srcs as { src, alt }, i}
-		<BorderedImage
-			{src}
-			{alt}
-			loading="lazy"
-			onclick={() => previewImage(i)}
-			class="hover:brightness-110 cursor-pointer w-fit"
-		/>
-	{/each}
+<div class="@container w-full">
+	<div
+		class={[
+			'grid @lg:grid-cols-2 @2xl:grid-cols-2 @3xl:grid-cols-3 flex-wrap gap-4 min-h-16 justify-center',
+			rest.class
+		]}
+	>
+		{#each srcs as { src, alt }, i}
+			<BorderedImage
+				{src}
+				{alt}
+				loading="lazy"
+				onclick={() => previewImage(i)}
+				class="hover:brightness-110 cursor-pointer w-fit"
+			/>
+		{/each}
+	</div>
 </div>
 
-<ImagePreview
-	imgProps={previewProps}
-	show={showPreview}
-	onclose={() => (showPreview = false)}
-/>
+<ImagePreview imgProps={previewProps} show={showPreview} onclose={() => (showPreview = false)} />
