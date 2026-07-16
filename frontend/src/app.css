@@ -8,7 +8,7 @@
 
 :root {
   --max-content-width: 50em;
-  --content-padding: 2rem;
+  --content-padding: 1rem;
 
   --content-width: min(var(--max-content-width), 100% - (var(--content-padding) * 2));
 }
