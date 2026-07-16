@@ -11,6 +11,7 @@
   --content-padding: 1rem;
 
   --content-width: min(var(--max-content-width), 100% - (var(--content-padding) * 2));
+
 }
 
 @theme {
@@ -22,6 +23,22 @@
 
   --color-heading: var(--color-zinc-100);
   --font-mono: "IBM Plex Mono", sans-serif;
+
+  --animate-lean: lean 2.5s ease-in-out infinite;
+
+  @keyframes lean {
+
+    0%,
+    100% {
+      transform: translateX(0px);
+      opacity: 100%;
+    }
+
+    90% {
+      opacity: 40%;
+      transform: translateX(16px);
+    }
+  }
 }
 
 @utility mx-responsive {
