@@ -47,7 +47,7 @@
 		</a>
 	{/if}
 
-	<div class="flex flex-col gap-4 @2xl:hidden">
+	<div class="flex flex-col gap-4 mb-8 @2xl:hidden">
 		<span class="text-xs text-center">Built with</span>
 		{@render techList(project.technologies)}
 	</div>
