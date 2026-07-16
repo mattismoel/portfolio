@@ -48,7 +48,7 @@
 	<header class="mb-8 sm:mb-4 @container">
 		<div class="flex justify-between flex-col @md:flex-row gap-4 sm:gap-2">
 			<div>
-				<h1 class="pointer-coarse:text-text-light">{name}</h1>
+				<h1 class="pointer-coarse:text-text-light font-bold sm:font-normal mb-2 sm:mb-1">{name}</h1>
 				<p class="sm:text-xs flex items-center gap-2">
 					<span class="icon-[boxicons--location]"></span>
 					{location}
@@ -69,7 +69,7 @@
 			]}
 		>
 			<div class="overflow-hidden sm:text-xs">
-				<p class="mb-2 sm:text-xs font-bold">Key Takeaways</p>
+				<p class="mb-2 sm:text-xs font-bold text-text-light">Key Takeaways</p>
 				<ul class="list-disc list-inside">
 					{#each points as point}
 						<li>{point}</li>
