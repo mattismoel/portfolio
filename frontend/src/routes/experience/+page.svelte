@@ -37,7 +37,7 @@
 	const large = new MediaQuery('min-width: 800px');
 </script>
 
-<main class="mx-responsive py-32">
+<main class="mx-responsive">
 	<header class="mb-8">
 		<h1 class="font-bold text-2xl mb-4 text-text-light">Previous Experience</h1>
 		<p>

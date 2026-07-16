@@ -25,7 +25,7 @@
 	<meta name="description" content="The home page of Mattis Møl Kristensen" />
 </svelte:head>
 
-<main class="min-h-svh mx-responsive py-32 flex flex-col gap-20">
+<main class="min-h-svh mx-responsive flex flex-col gap-20">
 	<section class="flex flex-col gap-16">
 		<PersonalInfoCard {info} {socials} />
 		<p class="leading-relaxed">
