@@ -16,7 +16,7 @@
 
 <Navbar entries={navEntries} />
 
-<div class="min-h-svh grid">
+<div class="min-h-svh grid py-16 sm:py-32">
 	{@render children?.()}
 </div>
 <Footer />
