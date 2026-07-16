@@ -22,7 +22,7 @@
 <div class="@container w-full">
 	<div
 		class={[
-			'grid @lg:grid-cols-2 @2xl:grid-cols-2 @3xl:grid-cols-3 flex-wrap gap-4 min-h-16 justify-center',
+			'grid @lg:grid-cols-2 @2xl:grid-cols-2 flex-wrap gap-4 min-h-16 justify-center',
 			rest.class
 		]}
 	>
