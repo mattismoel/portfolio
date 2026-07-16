@@ -8,7 +8,8 @@ export const listGraphicsProjects = query(async () => {
   const pb = getLocalsPocketBase()
 
   const records = await pb.collection("graphics_projects").getFullList<PBGraphicsProject>({
-    expand: createExpandString(EXPAND_PROPERTIES)
+    expand: createExpandString(EXPAND_PROPERTIES),
+    sort: "-finishYear"
   })
 
   return records.map(record => mapPBGraphicsProject(record))
