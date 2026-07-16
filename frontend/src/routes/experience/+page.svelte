@@ -38,7 +38,7 @@
 </script>
 
 <main class="mx-responsive">
-	<header class="mb-8">
+	<header class="mb-16">
 		<h1 class="font-bold text-2xl mb-4 text-text-light">Previous Experience</h1>
 		<p>
 			This is an overview of all of my previous experiences&nbsp;&mdash;&nbsp;both work and
