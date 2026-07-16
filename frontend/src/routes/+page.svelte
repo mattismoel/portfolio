@@ -7,10 +7,10 @@
 	import { listGraphicsProjects } from '$lib/features/graphics-project/graphics-project.remote';
 	import GraphicProjectList from '$lib/components/GraphicProjectList.svelte';
 
-	const tabNames = ['Tech', 'Graphic Design'] as const;
+	const tabNames = ['Tech', 'Design'] as const;
 	type TabType = (typeof tabNames)[number];
 
-	const tabs: TabType[] = ['Tech', 'Graphic Design'];
+	const tabs: TabType[] = ['Tech', 'Design'];
 	let selectedTab = $state<TabType>('Tech');
 
 	const isValidTabName = (tabName: string): tabName is TabType => {
@@ -49,7 +49,7 @@
 		{#await Promise.all( [listTechProjects(), listGraphicsProjects()] ) then [techProjects, graphicsProjects]}
 			{#if selectedTab === 'Tech'}
 				<TechProjectList projects={techProjects} />
-			{:else if selectedTab === 'Graphic Design'}
+			{:else if selectedTab === 'Design'}
 				<GraphicProjectList projects={graphicsProjects} />
 			{/if}
 		{/await}
