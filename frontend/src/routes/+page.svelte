@@ -30,20 +30,18 @@
 		<PersonalInfoCard {info} {socials} />
 		<p class="leading-relaxed">
 			<span class="font-semibold text-heading">
-				Hi! My name is {info.firstName}.
+				Hi, I'm {info.firstName}
+				{info.lastName}.
 			</span>
 			<br /><br />
-			I am an aspiring software developer based in Copenhagen, Denmark. This is a personal hub for all
-			my projects - both finished, and in progress.
+			I am an aspiring software developer based in {info.address.city}, {info.address.country}. This
+			is a personal hub for all my projects and past experiences.
 			<br /><br />
-			Look around, and please do peek into the projects, and let me know if you find something of interest!
+			Look around, take a peek into the projects, and let me know if you find something interesting!
 		</p>
 	</section>
-	<section class="flex flex-1 flex-col gap-8">
-		<!-- <h1 class="text-2xl mb-10 font-bold text-heading" id="projects"> -->
-		<!--   "Well, what have you been up to?", you ask... -->
-		<!-- </h1> -->
 
+	<section class="flex flex-1 flex-col gap-8">
 		<TabSelector bind:selected={selectedTab} tabs={tabs.map((t) => ({ name: t, value: t }))} />
 
 		{#await Promise.all( [listTechProjects(), listGraphicsProjects()] ) then [techProjects, graphicsProjects]}
