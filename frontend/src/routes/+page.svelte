@@ -4,6 +4,8 @@
 	import TechProjectList from '$lib/components/TechProjectList.svelte';
 	import TabSelector from '$lib/components/TabSelector.svelte';
 	import { listTechProjects } from '$lib/features/tech-project/tech-project.remote';
+	import { listGraphicsProjects } from '$lib/features/graphics-project/graphics-project.remote';
+	import GraphicProjectList from '$lib/components/GraphicProjectList.svelte';
 
 	const tabNames = ['Tech', 'Graphic Design'] as const;
 	type TabType = (typeof tabNames)[number];
@@ -44,12 +46,11 @@
 
 		<TabSelector bind:selected={selectedTab} tabs={tabs.map((t) => ({ name: t, value: t }))} />
 
-		{#await listTechProjects() then techProjects}
+		{#await Promise.all( [listTechProjects(), listGraphicsProjects()] ) then [techProjects, graphicsProjects]}
 			{#if selectedTab === 'Tech'}
 				<TechProjectList projects={techProjects} />
 			{:else if selectedTab === 'Graphic Design'}
-				Hello
-				<!-- <GraphicProjectList projects={graphicPs} /> -->
+				<GraphicProjectList projects={graphicsProjects} />
 			{/if}
 		{/await}
 	</section>

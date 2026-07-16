@@ -2,7 +2,6 @@ import { baseFields } from "$lib/base"
 import { createFileUrl, pbBaseFields, pbIdSchema } from "$lib/pocketbase"
 import z from "zod"
 
-
 export const imageSchema = z.object({
   ...baseFields.shape,
   src: z.string().nonempty(),
