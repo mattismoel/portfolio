@@ -13,7 +13,9 @@
 </script>
 
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>
+
 <Navbar entries={navEntries} />
+
 <div class="min-h-svh grid">
 	{@render children?.()}
 </div>
