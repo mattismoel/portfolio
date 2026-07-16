@@ -36,7 +36,7 @@
 	>
 		{@render header(name, location, type)}
 
-		<p class="text-xs not-last:mb-4">{description}</p>
+		<p class="sm:text-xs not-last:mb-4">{description}</p>
 
 		{#if points && points.length > 0}
 			{@render takeaways(points)}
@@ -45,12 +45,13 @@
 </li>
 
 {#snippet header(name: string, location: string, type: ExperienceType)}
-	<header class="mb-4 @container">
-		<div class="flex justify-between flex-col @md:flex-row gap-2">
+	<header class="mb-8 sm:mb-4 @container">
+		<div class="flex justify-between flex-col @md:flex-row gap-4 sm:gap-2">
 			<div>
-				<h1>{name}</h1>
-				<p class="text-xs flex items-center gap-2">
-					<span class="icon-[boxicons--location]"></span>{location}
+				<h1 class="pointer-coarse:text-text-light">{name}</h1>
+				<p class="sm:text-xs flex items-center gap-2">
+					<span class="icon-[boxicons--location]"></span>
+					{location}
 				</p>
 			</div>
 
@@ -64,12 +65,12 @@
 		<div
 			class={[
 				'grid transition-[grid-template-rows,margin-bottom]',
-				expanded ? 'grid-rows-[1fr] mb-4' : 'grid-rows-[0fr] mb-0'
+				expanded ? 'grid-rows-[1fr] mb-8' : 'grid-rows-[0fr] mb-0'
 			]}
 		>
-			<div class="overflow-hidden">
-				<p class="mb-2 text-xs font-bold">Key Takeaways</p>
-				<ul class="list-disc list-inside text-xs">
+			<div class="overflow-hidden sm:text-xs">
+				<p class="mb-2 sm:text-xs font-bold">Key Takeaways</p>
+				<ul class="list-disc list-inside">
 					{#each points as point}
 						<li>{point}</li>
 					{/each}
@@ -79,11 +80,16 @@
 
 		<span class="flex items-center gap-2 justify-center @md:justify-start">
 			<span
-				class={['icon-[boxicons--chevron-down] transition-transform', expanded && 'rotate-180']}
+				class={[
+					'size-6 icon-[boxicons--chevron-down] transition-transform',
+					expanded && 'rotate-180'
+				]}
 			>
 			</span>
 
-			<span class="text-xs group-hover:text-text-light transition-colors">
+			<span
+				class="relative sm:text-xs pointer-coarse:text-text-light group-hover:text-text-light transition-colors"
+			>
 				{#if expanded}
 					Show Less
 				{:else}
@@ -97,7 +103,7 @@
 {#snippet typeBadge(type: ExperienceType)}
 	{@const { title, icon } = experienceMap.get(type)!}
 
-	<span class="whitespace-nowrap text-xs bg-zinc-800 h-fit w-fit py-1 px-3 rounded-full flex">
+	<span class="whitespace-nowrap sm:text-xs bg-zinc-800 h-fit w-fit py-1 px-3 rounded-full flex">
 		<span class="flex items-center gap-2">
 			<span class={icon}></span>
 			{title}
