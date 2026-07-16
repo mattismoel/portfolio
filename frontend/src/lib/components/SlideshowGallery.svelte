@@ -61,19 +61,22 @@
 </script>
 
 <div class="grid">
-	<div class="flex justify-between mb-4">
-		<GalleryButton
-			direction="left"
-			disabled={scrollIdx === 0}
-			onclick={() => scrollInDirection(-1)}
-		/>
+	{#if imgsSrcs.length > 1}
+		<div class="flex justify-between mb-4">
+			<GalleryButton
+				direction="left"
+				disabled={scrollIdx === 0}
+				onclick={() => scrollInDirection(-1)}
+			/>
 
-		<GalleryButton
-			direction="right"
-			disabled={scrollIdx === imgsSrcs.length - 1}
-			onclick={() => scrollInDirection(1)}
-		/>
-	</div>
+			<GalleryButton
+				direction="right"
+				disabled={scrollIdx === imgsSrcs.length - 1}
+				onclick={() => scrollInDirection(1)}
+			/>
+		</div>
+	{/if}
+
 	<div
 		class="flex gap-4 overflow-x-scroll snap-x snap-mandatory scrollbar-none mb-4"
 		bind:this={el}
