@@ -1,8 +1,7 @@
 <script lang="ts">
-	import type { PersonalInformation, Social } from "$lib/personal";
-	import Icon from "@iconify/svelte";
-	import { differenceInYears } from "date-fns";
-	import BorderedImage from "./BorderedImage.svelte";
+	import type { PersonalInformation, Social } from '$lib/personal';
+	import { differenceInYears } from 'date-fns';
+	import BorderedImage from './BorderedImage.svelte';
 
 	type Props = {
 		info: PersonalInformation;
@@ -15,11 +14,7 @@
 
 <div class="flex">
 	<div class="h-28 md:h-32">
-		<BorderedImage
-			alt="Me"
-			src={info.pictureUrl}
-			class="aspect-square rounded-full"
-		/>
+		<BorderedImage alt="Me" src={info.pictureUrl} class="aspect-square rounded-full" />
 	</div>
 	<div class="flex w-full flex-col items-end gap-4">
 		<div class="flex flex-col items-end">
@@ -47,7 +42,7 @@
 			aria-label={social.name}
 			class="text-text/50 hover:text-text"
 		>
-			<Icon icon={social.iconName} width="20" />
+			<span class={['size-4', social.iconName]}></span>
 		</a>
 	</li>
 {/snippet}

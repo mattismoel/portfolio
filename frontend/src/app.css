@@ -24,7 +24,7 @@
   --color-heading: var(--color-zinc-100);
   --font-mono: "IBM Plex Mono", sans-serif;
 
-  --animate-lean: lean 2.5s ease-in-out infinite;
+  --animate-lean: lean 2.5s ease-in-out;
 
   @keyframes lean {
 

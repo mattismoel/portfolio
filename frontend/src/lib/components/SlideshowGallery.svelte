@@ -1,6 +1,5 @@
 <script lang="ts">
 	import BorderedImage from './BorderedImage.svelte';
-	import Icon from '@iconify/svelte';
 	import GalleryButton from './GalleryButton.svelte';
 	import ImagePreview from './ImagePreview.svelte';
 	import type { HTMLImgAttributes } from 'svelte/elements';
@@ -61,26 +60,22 @@
 	};
 </script>
 
-<div class="relative grid">
-	<GalleryButton
-		direction="left"
-		disabled={scrollIdx === 0}
-		class="cursor-pointer absolute top-1/2 left-0 translate-x-4 z-100 sm:-translate-x-16 -translate-y-1/2 transition-opacity"
-		onclick={() => scrollInDirection(-1)}
-	>
-		<Icon icon="fa7-solid:chevron-left" />
-	</GalleryButton>
-	<GalleryButton
-		direction="right"
-		disabled={scrollIdx === imgsSrcs.length - 1}
-		class="absolute top-1/2 -translate-y-1/2 right-0 -translate-x-4 z-100 sm:translate-x-16 transition-opacity"
-		onclick={() => scrollInDirection(1)}
-	>
-		<Icon icon="fa7-solid:chevron-right" />
-	</GalleryButton>
+<div class="grid">
+	<div class="flex justify-between mb-4">
+		<GalleryButton
+			direction="left"
+			disabled={scrollIdx === 0}
+			onclick={() => scrollInDirection(-1)}
+		/>
 
+		<GalleryButton
+			direction="right"
+			disabled={scrollIdx === imgsSrcs.length - 1}
+			onclick={() => scrollInDirection(1)}
+		/>
+	</div>
 	<div
-		class="flex gap-4 overflow-x-scroll snap-x snap-mandatory scrollbar-none mb-8"
+		class="flex gap-4 overflow-x-scroll snap-x snap-mandatory scrollbar-none mb-4"
 		bind:this={el}
 		onscroll={(e) => (scrollLeft = e.currentTarget.scrollLeft)}
 	>
@@ -96,7 +91,11 @@
 	</div>
 
 	{#if imgsSrcs.length > 1}
-		<ul class="grid grid-cols-6 mb-4 gap-4">
+		<div class="mb-8">
+			{@render dots(imgsSrcs.length, scrollIdx)}
+		</div>
+
+		<ul class="grid grid-cols-4 sm:grid-cols-6 mb-4 gap-4">
 			{#each imgsSrcs as { src, alt }, i}
 				<li>
 					<button type="button" onclick={() => scrollTo(i)}>
@@ -109,8 +108,6 @@
 				</li>
 			{/each}
 		</ul>
-
-		{@render dots(imgsSrcs.length, scrollIdx)}
 	{/if}
 </div>
 
