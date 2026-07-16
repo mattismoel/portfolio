@@ -33,11 +33,11 @@ export const socials: Social[] = [
   {
     name: "GitHub",
     url: "https://github.com/mattismoel",
-    iconName: "fa7-brands:github",
+    iconName: "icon-[simple-icons--github]",
   },
   {
     name: "Mail",
     url: "mailto:mattismoel@gmail.com",
-    iconName: "fa7-solid:envelope",
+    iconName: "icon-[boxicons--envelope-filled]",
   },
 ];
