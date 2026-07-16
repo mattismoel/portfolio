@@ -1,9 +1,7 @@
 <script lang="ts">
-	import Icon from '@iconify/svelte';
 	import SlideshowGallery from './SlideshowGallery.svelte';
 	import { iconMap, type Technology } from '$lib/technology';
 	import type { TechProject } from '$lib/features/tech-project/tech-project';
-	import BorderedImage from './BorderedImage.svelte';
 	import GridGallery from './GridGallery.svelte';
 
 	type Props = {
@@ -43,7 +41,7 @@
 			class="flex items-center gap-2 hover:underline hover:text-heading w-fit mb-8"
 		>
 			Source Code
-			<Icon icon="fa7-solid:external-link" class="text-text/50" />
+			<span class="icon-[boxicons--arrow-out-up-right-square] text-text/50"></span>
 		</a>
 	{/if}
 
