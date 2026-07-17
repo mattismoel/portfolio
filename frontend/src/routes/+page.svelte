@@ -4,20 +4,14 @@
 	import TechProjectList from '$lib/components/TechProjectList.svelte';
 	import TabSelector from '$lib/components/TabSelector.svelte';
 	import { listTechProjects } from '$lib/features/tech-project/tech-project.remote';
-	import { listGraphicsProjects } from '$lib/features/graphics-project/graphics-project.remote';
-	import GraphicProjectList from '$lib/components/GraphicProjectList.svelte';
+	import { listDesignProjects } from '$lib/features/design-project/design-project.remote';
+	import DesignProjectList from '$lib/components/DesignProjectList.svelte';
 
 	const tabNames = ['Tech', 'Design'] as const;
 	type TabType = (typeof tabNames)[number];
 
 	const tabs: TabType[] = ['Tech', 'Design'];
 	let selectedTab = $state<TabType>('Tech');
-
-	const isValidTabName = (tabName: string): tabName is TabType => {
-		const validTab = tabNames.find((n) => n === tabName);
-		if (!validTab) return false;
-		return true;
-	};
 </script>
 
 <svelte:head>
@@ -44,11 +38,11 @@
 	<section class="flex flex-1 flex-col gap-8">
 		<TabSelector bind:selected={selectedTab} tabs={tabs.map((t) => ({ name: t, value: t }))} />
 
-		{#await Promise.all( [listTechProjects(), listGraphicsProjects()] ) then [techProjects, graphicsProjects]}
+		{#await Promise.all( [listTechProjects(), listDesignProjects()] ) then [techProjects, designProjects]}
 			{#if selectedTab === 'Tech'}
 				<TechProjectList projects={techProjects} />
 			{:else if selectedTab === 'Design'}
-				<GraphicProjectList projects={graphicsProjects} />
+				<DesignProjectList projects={designProjects} />
 			{/if}
 		{/await}
 	</section>
