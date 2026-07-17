@@ -1,9 +1,9 @@
 <script lang="ts">
+	import type { DesignProject } from '$lib/features/design-project/design-project';
 	import GridGallery from './GridGallery.svelte';
-	import type { GraphicsProject } from '$lib/features/design-project/design-project';
 
 	type Props = {
-		project: GraphicsProject;
+		project: DesignProject;
 	};
 
 	const { project }: Props = $props();
