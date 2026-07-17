@@ -2,9 +2,17 @@ import z from "zod";
 import { pbImageSchema, pbProjectSchema, projectSchema } from "../project";
 import { createFileUrl } from "$lib/pocketbase";
 
-export const designProjectSchema = projectSchema
+const designProjectType = z.union([
+  z.literal("product"),
+  z.literal("graphics"),
+])
+
+export const designProjectSchema = projectSchema.extend({
+  types: designProjectType.array().min(1),
+})
 
 export const pbDesignProjectSchema = pbProjectSchema.extend({
+  types: designProjectType.array().min(1),
   expand: z.object({
     images: pbImageSchema.array()
   })
@@ -12,6 +20,7 @@ export const pbDesignProjectSchema = pbProjectSchema.extend({
 
 export type DesignProject = z.infer<typeof designProjectSchema>
 export type PBDesignProject = z.infer<typeof pbDesignProjectSchema>
+export type DesignProjectType = z.infer<typeof designProjectType>
 
 export const mapPBDesignProject = (record: PBDesignProject): DesignProject => {
   return designProjectSchema.parse({
