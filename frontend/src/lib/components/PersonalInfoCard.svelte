@@ -12,24 +12,27 @@
 	const age = $derived(differenceInYears(new Date(), info.birthday));
 </script>
 
-<div class="flex">
-	<div class="h-28 md:h-32">
-		<BorderedImage alt="Me" src={info.pictureUrl} class="aspect-square rounded-full" />
-	</div>
-	<div class="flex w-full flex-col items-end gap-4">
-		<div class="flex flex-col items-end">
-			<span class="text-heading">{info.firstName} {info.lastName}</span>
-			<span class="text-text/75">
-				{info.address.city}, {info.address.country}
-			</span>
-			<span class="text-text/75">{age} years old</span>
+<div class="@container">
+	<div class="grid gap-8 @sm:flex">
+		<div class="h-28 md:h-32 flex justify-center">
+			<BorderedImage alt="Me" src={info.pictureUrl} class="aspect-square rounded-full" />
 		</div>
 
-		<ul class="flex gap-4">
-			{#each socials as social}
-				{@render socialEntry(social)}
-			{/each}
-		</ul>
+		<div class="flex w-full flex-col items-center @sm:items-end gap-4">
+			<div class="flex flex-col items-center @sm:items-end">
+				<span class="text-heading">{info.firstName} {info.lastName}</span>
+				<span class="text-text/75">
+					{info.address.city}, {info.address.country}
+				</span>
+				<span class="text-text/75">{age} years old</span>
+			</div>
+
+			<ul class="flex gap-4">
+				{#each socials as social}
+					{@render socialEntry(social)}
+				{/each}
+			</ul>
+		</div>
 	</div>
 </div>
 
@@ -42,7 +45,7 @@
 			aria-label={social.name}
 			class="text-text/50 hover:text-text"
 		>
-			<span class={['size-4', social.iconName]}></span>
+			<span class={['size-5', social.iconName]}></span>
 		</a>
 	</li>
 {/snippet}
