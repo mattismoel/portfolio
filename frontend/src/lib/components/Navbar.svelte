@@ -7,16 +7,19 @@
 	};
 
 	const { entries }: Props = $props();
+
+	let scrolled = $derived(scrollY.current && scrollY.current > 0);
 </script>
 
 <nav
 	class={[
-		'bg-zinc-900 sm:bg-zinc-950 text-zinc-50 flex z-50 w-screen fixed bottom-0 transition-colors',
-		'border-t-transparent [.active]:border-t [.active]:border-t-zinc-800',
-		'sm:top-0 sm:bottom-auto sm:[.active]:border-t-0 sm:[.active]:border-b-zinc-800 sm:border-b sm:border-b-transparent',
-		"after:shadow-2xl after:shadow-zinc-950 after:content-[''] after:block after:h-full after:absolute after:top-0 after:right-0 after:w-screen after:pointer-events-none"
+		'bg-zinc-900 sm:bg-background text-zinc-50 flex z-50 w-screen fixed bottom-0 transition-colors',
+		'border-t-background [.active]:border-t [.active]:border-t-zinc-800',
+		'sm:top-0 sm:bottom-auto sm:[.active]:border-t-0 sm:[.active]:border-b-zinc-700 sm:border-b sm:border-b-background',
+		"after:shadow-2xl after:shadow-zinc-950 after:content-[''] after:block after:h-full after:absolute after:top-0 after:right-0 after:w-screen after:pointer-events-none",
+		'sm:[.active]:bg-zinc-900 [.active]:border-b-zinc-700'
 	]}
-	class:active={scrollY.current && scrollY.current > 0}
+	class:active={scrolled}
 >
 	<ul
 		style="grid-template-columns: repeat({entries.size}, 1fr)"
@@ -33,7 +36,7 @@
 	<li class="group" class:current={isCurrentPath}>
 		<a
 			href={path}
-			class="flex justify-center py-8 px-4 sm:py-4 sm:px-3 hover:bg-zinc-900 group-[.current]:underline group-[.current]:decoration-text"
+			class="flex justify-center py-8 px-4 sm:py-4 sm:px-5 hover:bg-zinc-900 group-[.current]:underline group-[.current]:decoration-text transition-colors duration-100"
 			>{name}</a
 		>
 	</li>
