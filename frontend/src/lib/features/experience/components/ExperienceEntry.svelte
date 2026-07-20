@@ -1,4 +1,5 @@
 <script lang="ts">
+	import IconContainer from '$lib/components/IconContainer.svelte';
 	import type { Experience, ExperienceType } from '../experience';
 
 	const experienceMap = new Map<ExperienceType, { title: string; icon: string }>([
@@ -49,10 +50,9 @@
 		<div class="flex justify-between flex-col @md:flex-row gap-4 sm:gap-2">
 			<div>
 				<h1 class="pointer-coarse:text-text-light font-bold sm:font-normal mb-2 sm:mb-1">{name}</h1>
-				<p class="sm:text-xs flex items-center gap-2">
-					<span class="icon-[boxicons--location]"></span>
+				<IconContainer icon="icon-[boxicons--location]" class="sm:text-xs">
 					{location}
-				</p>
+				</IconContainer>
 			</div>
 
 			{@render typeBadge(type)}
@@ -78,25 +78,17 @@
 			</div>
 		</div>
 
-		<span class="flex items-center gap-2 justify-center @md:justify-start">
-			<span
-				class={[
-					'size-6 icon-[boxicons--chevron-down] transition-transform',
-					expanded && 'rotate-180'
-				]}
-			>
-			</span>
-
-			<span
-				class="relative sm:text-xs pointer-coarse:text-text-light group-hover:text-text-light transition-colors"
-			>
-				{#if expanded}
-					Show Less
-				{:else}
-					View More
-				{/if}
-			</span>
-		</span>
+		<IconContainer
+			icon="icon-[boxicons--chevron-down]"
+			class="pointer-coarse:text-text-light group-hover:text-text-light transition-colors sm:text-xs justify-center @md:justify-start"
+			iconClass={['size-6 transition-transform', expanded && 'rotate-180']}
+		>
+			{#if expanded}
+				Show Less
+			{:else}
+				View More
+			{/if}
+		</IconContainer>
 	</div>
 {/snippet}
 
@@ -104,10 +96,9 @@
 	{@const { title, icon } = experienceMap.get(type)!}
 
 	<span class="whitespace-nowrap sm:text-xs bg-zinc-800 h-fit w-fit py-1 px-3 rounded-full flex">
-		<span class="flex items-center gap-2">
-			<span class={icon}></span>
+		<IconContainer {icon}>
 			{title}
-		</span>
+		</IconContainer>
 
 		<span>,&nbsp;</span>
 

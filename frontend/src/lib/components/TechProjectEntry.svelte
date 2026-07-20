@@ -3,6 +3,7 @@
 	import { iconMap, type Technology } from '$lib/technology';
 	import type { TechProject } from '$lib/features/tech-project/tech-project';
 	import GridGallery from './GridGallery.svelte';
+	import IconContainer from './IconContainer.svelte';
 
 	type Props = {
 		project: TechProject;
@@ -20,9 +21,13 @@
 				target="__blank"
 				class="text-heading font-semibold flex gap-2 items-baseline hover:underline"
 			>
-				<h2 class="font-bold mb-1">{project.title}</h2>
-
-				<span class="icon-[boxicons--arrow-out-up-right-square] text-text/50"></span>
+				<IconContainer
+					side="right"
+					iconClass="text-text"
+					icon="icon-[boxicons--arrow-out-up-right-square]"
+				>
+					<h2 class="font-bold mb-1">{project.title}</h2>
+				</IconContainer>
 			</a>
 			<span>{project.finishYear}</span>
 		</div>
@@ -40,8 +45,13 @@
 			target="__blank"
 			class="flex items-center gap-2 hover:underline hover:text-heading w-fit mb-8"
 		>
-			Source Code
-			<span class="icon-[boxicons--arrow-out-up-right-square] text-text/50"></span>
+			<IconContainer
+				side="right"
+				iconClass="text-text"
+				icon="icon-[boxicons--arrow-out-up-right-square]"
+			>
+				Source Code
+			</IconContainer>
 		</a>
 	{/if}
 
@@ -77,17 +87,18 @@
 		<iframe
 			title={project.title}
 			src={project.href}
-			class="absolute inset-0 w-[400%] h-[400%] scale-[0.25] sm:w-[250%] sm:h-[250%] sm:scale-[0.4] origin-top-left group-hover:brightness-40 pointer-events-none transition-[filter]"
+			class="absolute inset-0 w-[400%] h-[400%] scale-[0.25] sm:w-[250%] sm:h-[250%] sm:scale-[0.4] origin-top-left group-hover:brightness-30 pointer-events-none transition-[filter]"
 			scrolling="no"
 		>
 		</iframe>
 
-		<span
-			class="opacity-0 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex gap-2 items-center font-bold group-hover:opacity-100 transition-opacity"
+		<IconContainer
+			side="right"
+			icon="icon-[boxicons--arrow-out-up-right-square]"
+			class="text-text-light opacity-0 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex gap-2 items-center font-bold group-hover:opacity-100 transition-opacity underline"
 		>
-			<span class="icon-[boxicons--arrow-out-up-right-square]"></span>
 			Visit site
-		</span>
+		</IconContainer>
 	</a>
 {/snippet}
 

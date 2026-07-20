@@ -4,6 +4,7 @@
 		DesignProjectType
 	} from '$lib/features/design-project/design-project';
 	import GridGallery from './GridGallery.svelte';
+	import IconContainer from './IconContainer.svelte';
 
 	type Props = {
 		project: DesignProject;
@@ -36,11 +37,9 @@
 				class="text-xs px-4 py-1 bg-zinc-900 border border-zinc-800 rounded-full flex items-center gap-2"
 			>
 				{#if type === 'product'}
-					<span class="icon-[boxicons--compass-tool]"></span>
-					Product Design
+					<IconContainer icon="icon-[boxicons--compass-tool]">Product Design</IconContainer>
 				{:else if type === 'graphics'}
-					<span class="icon-[boxicons--pen-draw]"></span>
-					Graphics Design
+					<IconContainer icon="icon-[boxicons--pen-draw]">Graphics Design</IconContainer>
 				{/if}
 			</li>
 		{/each}
