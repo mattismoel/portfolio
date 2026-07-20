@@ -14,8 +14,8 @@
 </script>
 
 <div class="py-16 first:pt-0 last:pb-0">
-	<header class="mb-8 grid">
-		<h2 class="font-bold mb-1 text-heading">{project.title}</h2>
+	<header class="mb-8 flex flex-col items-center sm:items-start">
+		<h2 class="font-black sm:font-bold mb-1 text-heading text-xl sm:text-base">{project.title}</h2>
 		{#if project.finishYear}
 			<span class="mb-4">{project.finishYear}</span>
 		{/if}
@@ -24,7 +24,7 @@
 	</header>
 
 	{#if project.description}
-		<p class="leading-relaxed mb-8">{project.description}</p>
+		<p class="leading-relaxed mb-8 text-center sm:text-left">{project.description}</p>
 	{/if}
 
 	<GridGallery srcs={project.images} class="sm:min-h-80" />

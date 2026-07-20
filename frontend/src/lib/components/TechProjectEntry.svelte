@@ -14,7 +14,7 @@
 
 <div class="@container grid py-16 first:pt-0 last:pb-0" role="presentation">
 	<div class="flex flex-col gap-4 md:flex-row md:justify-between mb-8">
-		<div class="flex flex-col">
+		<div class="flex flex-col items-center sm:items-start">
 			<a
 				href={project.href}
 				title={project.title}
@@ -23,10 +23,15 @@
 			>
 				<IconContainer
 					side="right"
+					class="mb-4 sm:mb-1"
 					iconClass="text-text"
 					icon="icon-[boxicons--arrow-out-up-right-square]"
 				>
-					<h2 class="font-bold mb-1">{project.title}</h2>
+					<h2
+						class="line-clamp-1 font-black sm:font-bold text-xl text-center sm:text-left sm:text-base"
+					>
+						{project.title}
+					</h2>
 				</IconContainer>
 			</a>
 			<span>{project.finishYear}</span>
@@ -37,13 +42,13 @@
 		</div>
 	</div>
 
-	<p class="leading-relaxed mb-8">{project.description}</p>
+	<p class="leading-relaxed text-center mb-8 sm:text-left">{project.description}</p>
 
 	{#if project.sourceHref}
 		<a
 			href={project.sourceHref}
 			target="__blank"
-			class="flex items-center gap-2 hover:underline hover:text-heading w-fit mb-8"
+			class="flex justify-center underline hover:text-heading mb-8 sm:justify-start"
 		>
 			<IconContainer
 				side="right"
