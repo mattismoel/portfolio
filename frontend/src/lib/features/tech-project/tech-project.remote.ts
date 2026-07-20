@@ -14,8 +14,6 @@ export const listTechProjects = query(async () => {
     sort: "-finishYear"
   })
 
-  console.log(records)
-
   return records.map(record => mapPBTechProject(record))
 })
 
