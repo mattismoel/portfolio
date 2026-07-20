@@ -13,7 +13,7 @@
 
 @font-face {
   font-family: "JetBrains Mono";
-  src: url("JetBrainsMono[wght].ttf")
+  src: url("/JetBrainsMono[wght].ttf") format("truetype");
 }
 
 @theme {
