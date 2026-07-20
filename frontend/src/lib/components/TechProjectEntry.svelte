@@ -20,7 +20,7 @@
 				target="__blank"
 				class="text-heading font-semibold flex gap-2 items-baseline hover:underline"
 			>
-				<h2>{project.title}</h2>
+				<h2 class="font-bold mb-1">{project.title}</h2>
 
 				<span class="icon-[boxicons--arrow-out-up-right-square] text-text/50"></span>
 			</a>
