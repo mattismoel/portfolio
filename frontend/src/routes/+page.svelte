@@ -19,8 +19,8 @@
 	<meta name="description" content="The home page of Mattis Møl Kristensen" />
 </svelte:head>
 
-<main class="min-h-svh mx-responsive flex flex-col gap-20">
-	<section class="flex flex-col gap-16">
+<main class="min-h-svh mx-responsive grid gap-20">
+	<section class="grid gap-16">
 		<PersonalInfoCard {info} {socials} />
 		<p class="leading-relaxed">
 			<span class="font-semibold text-heading">
@@ -33,7 +33,7 @@
 		</p>
 	</section>
 
-	<section class="flex flex-1 flex-col gap-8">
+	<section class="grid flex-1 gap-8">
 		<TabSelector bind:selected={selectedTab} tabs={tabs.map((t) => ({ name: t, value: t }))} />
 
 		{#await Promise.all( [listTechProjects(), listDesignProjects()] ) then [techProjects, designProjects]}
