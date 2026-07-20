@@ -49,7 +49,7 @@
 			experience.toYear
 		)}
 
-		<p class="sm:text-xs not-last:mb-4">{experience.description}</p>
+		<p class="text-center sm:text-left sm:text-xs not-last:mb-6">{experience.description}</p>
 
 		{#if experience.points && experience.points.length > 0}
 			{@render takeaways(experience.points, expanded)}
@@ -65,9 +65,13 @@
 	toYear: number
 )}
 	<header class="mb-8 sm:mb-4 @container">
-		<div class="flex justify-between flex-col @md:flex-row gap-4 sm:gap-2">
-			<div>
-				<h1 class="pointer-coarse:text-text-light font-bold sm:font-normal mb-2 sm:mb-1">
+		<div
+			class="flex items-center justify-between flex-col @md:flex-row gap-4 sm:gap-2 @md:items-start"
+		>
+			<div class="flex flex-col items-center @md:items-start">
+				<h1
+					class="text-xl @md:text-base pointer-coarse:text-text-light font-black sm:font-base mb-2 sm:mb-1"
+				>
 					{title}
 				</h1>
 				<IconContainer icon="icon-[boxicons--location]" class="sm:text-xs">
