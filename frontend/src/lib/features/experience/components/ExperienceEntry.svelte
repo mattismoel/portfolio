@@ -19,8 +19,8 @@
 		experience: Experience;
 	};
 
-	let { experience }: Props = $props();
-	let { name, description, location, points, type, fromYear, toYear } = $derived(experience);
+	let props: Props = $props();
+	let { experience } = $derived(props);
 
 	const formatYears = (from: number, to: number) => {
 		if (from === to) {
@@ -30,7 +30,7 @@
 		return `${from} - ${to}`;
 	};
 
-	let expandable = $derived(points && points?.length > 0);
+	let expandable = $derived(experience.points && experience.points?.length > 0);
 	let expanded = $state(false);
 </script>
 
@@ -41,12 +41,18 @@
 		onclick={() => (expanded = !expanded)}
 		class={['relative w-full text-left grid', expandable && 'cursor-pointer']}
 	>
-		{@render header(name, location, type, fromYear, toYear)}
+		{@render header(
+			experience.name,
+			experience.location,
+			experience.type,
+			experience.fromYear,
+			experience.toYear
+		)}
 
-		<p class="sm:text-xs not-last:mb-4">{description}</p>
+		<p class="sm:text-xs not-last:mb-4">{experience.description}</p>
 
-		{#if points && points.length > 0}
-			{@render takeaways(points)}
+		{#if experience.points && experience.points.length > 0}
+			{@render takeaways(experience.points, expanded)}
 		{/if}
 	</button>
 </li>
@@ -74,7 +80,7 @@
 	</header>
 {/snippet}
 
-{#snippet takeaways(points: string[])}
+{#snippet takeaways(points: string[], expanded: boolean)}
 	<div class="@container">
 		<div
 			class={[
@@ -110,7 +116,7 @@
 	{@const { name, icon } = experienceTypes[type]}
 	{@const yearText = formatYears(fromYear, toYear)}
 
-	<Pill {icon} shade="lighter">
+	<Pill {icon} shade="lighter" class="w-fit">
 		<span>
 			{name}<span>,&nbsp;</span>{yearText}
 		</span>
