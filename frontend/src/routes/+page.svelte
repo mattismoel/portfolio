@@ -22,7 +22,8 @@
 <main class="min-h-svh mx-responsive grid gap-20">
 	<section class="grid gap-16">
 		<PersonalInfoCard {info} {socials} />
-		<p class="leading-relaxed">
+
+		<p class="leading-relaxed text-center sm:text-left">
 			<span class="font-semibold text-heading">
 				Hi, I'm {info.firstName}
 				{info.lastName}.
