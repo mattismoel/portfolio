@@ -10,7 +10,8 @@ export const listTechProjects = query(async () => {
   const pb = getLocalsPocketBase()
 
   const records = await pb.collection("tech_projects").getFullList<PBTechProject>({
-    expand: createExpandString(TECH_PROJECT_EXPAND_PROPERTIES)
+    expand: createExpandString(TECH_PROJECT_EXPAND_PROPERTIES),
+    sort: "-finishYear"
   })
 
   console.log(records)
