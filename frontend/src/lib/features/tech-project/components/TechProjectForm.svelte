@@ -43,7 +43,6 @@
 
 		editImageDescription.fields.imageId.set(props.project.images.at(0)?.id);
 
-		console.log('setting images initially');
 		images = [...props.project.images];
 	});
 
@@ -59,17 +58,13 @@
 		{...uploadImage.enhance(async (form) => {
 			if (await form.submit()) {
 				if (form.result?.image) {
-					console.log('uploaded', form.result.image.id);
 					props.form.fields.images.set([
 						...(props.form.fields.images.value() || []),
 						form.result.image.id
 					]);
 
-					console.log('setting images');
 					images = [...images, form.result.image];
 				}
-			} else {
-				console.error('Hey!');
 			}
 		})}
 	>

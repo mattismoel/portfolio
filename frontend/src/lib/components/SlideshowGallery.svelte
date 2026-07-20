@@ -34,12 +34,10 @@
 
 	const previewImage = (idx: number) => {
 		previewImgProps = imgsSrcs[idx];
-		console.log(previewImgProps);
 		showPreview = true;
 	};
 
 	const scrollInDirection = (direction: number) => {
-		console.log('hey!');
 		if (!el) return;
 		const nextIdx = scrollIdx + direction;
 
@@ -54,7 +52,6 @@
 			return;
 		}
 
-		console.log('prev', scrollIdx, 'new', idx);
 		let newScrollPos = idx * scrollSize;
 		el.scrollTo({ left: newScrollPos, behavior: 'smooth' });
 	};
