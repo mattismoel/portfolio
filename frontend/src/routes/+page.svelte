@@ -30,8 +30,6 @@
 			<br /><br />
 			I am an aspiring software developer based in {info.address.city}, {info.address.country}. This
 			is a personal hub for all my projects and past experiences.
-			<br /><br />
-			Look around, take a peek into the projects, and let me know if you find something interesting!
 		</p>
 	</section>
 
