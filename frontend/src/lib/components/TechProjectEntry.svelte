@@ -3,6 +3,7 @@
 	import { iconMap, type Technology } from '$lib/technology';
 	import type { TechProject } from '$lib/features/tech-project/tech-project';
 	import GridGallery from './GridGallery.svelte';
+	import IconContainer from './IconContainer.svelte';
 
 	type Props = {
 		project: TechProject;
@@ -13,16 +14,25 @@
 
 <div class="@container grid py-16 first:pt-0 last:pb-0" role="presentation">
 	<div class="flex flex-col gap-4 md:flex-row md:justify-between mb-8">
-		<div class="flex flex-col">
+		<div class="flex flex-col items-center sm:items-start">
 			<a
 				href={project.href}
 				title={project.title}
 				target="__blank"
 				class="text-heading font-semibold flex gap-2 items-baseline hover:underline"
 			>
-				<h2>{project.title}</h2>
-
-				<span class="icon-[boxicons--arrow-out-up-right-square] text-text/50"></span>
+				<IconContainer
+					side="right"
+					class="mb-4 sm:mb-1"
+					iconClass="text-text"
+					icon="icon-[boxicons--arrow-out-up-right-square]"
+				>
+					<h2
+						class="line-clamp-1 font-black sm:font-bold text-xl text-center sm:text-left sm:text-base"
+					>
+						{project.title}
+					</h2>
+				</IconContainer>
 			</a>
 			<span>{project.finishYear}</span>
 		</div>
@@ -32,16 +42,21 @@
 		</div>
 	</div>
 
-	<p class="leading-relaxed mb-8">{project.description}</p>
+	<p class="leading-relaxed text-center mb-8 sm:text-left">{project.description}</p>
 
 	{#if project.sourceHref}
 		<a
 			href={project.sourceHref}
 			target="__blank"
-			class="flex items-center gap-2 hover:underline hover:text-heading w-fit mb-8"
+			class="flex justify-center underline hover:text-heading mb-8 sm:justify-start"
 		>
-			Source Code
-			<span class="icon-[boxicons--arrow-out-up-right-square] text-text/50"></span>
+			<IconContainer
+				side="right"
+				iconClass="text-text"
+				icon="icon-[boxicons--arrow-out-up-right-square]"
+			>
+				Source Code
+			</IconContainer>
 		</a>
 	{/if}
 
@@ -77,17 +92,18 @@
 		<iframe
 			title={project.title}
 			src={project.href}
-			class="absolute inset-0 w-[400%] h-[400%] scale-[0.25] sm:w-[250%] sm:h-[250%] sm:scale-[0.4] origin-top-left group-hover:brightness-40 pointer-events-none transition-[filter]"
+			class="absolute inset-0 w-[400%] h-[400%] scale-[0.25] sm:w-[250%] sm:h-[250%] sm:scale-[0.4] origin-top-left group-hover:brightness-30 pointer-events-none transition-[filter]"
 			scrolling="no"
 		>
 		</iframe>
 
-		<span
-			class="opacity-0 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex gap-2 items-center font-bold group-hover:opacity-100 transition-opacity"
+		<IconContainer
+			side="right"
+			icon="icon-[boxicons--arrow-out-up-right-square]"
+			class="text-text-light opacity-0 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex gap-2 items-center font-bold group-hover:opacity-100 transition-opacity underline"
 		>
-			<span class="icon-[boxicons--arrow-out-up-right-square]"></span>
 			Visit site
-		</span>
+		</IconContainer>
 	</a>
 {/snippet}
 
