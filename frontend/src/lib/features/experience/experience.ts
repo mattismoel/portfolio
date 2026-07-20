@@ -7,7 +7,6 @@ const experienceType = z.union([
   z.literal("education"),
   z.literal("volunteer"),
   z.literal("project"),
-  z.literal("other"),
 ])
 
 export const experienceSchema = z.object({

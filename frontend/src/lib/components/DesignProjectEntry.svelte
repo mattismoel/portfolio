@@ -4,13 +4,23 @@
 		DesignProjectType
 	} from '$lib/features/design-project/design-project';
 	import GridGallery from './GridGallery.svelte';
-	import IconContainer from './IconContainer.svelte';
+	import Pill from './Pill.svelte';
+
+	type ProjectTypeProps = {
+		icon: string;
+		name: string;
+	};
 
 	type Props = {
 		project: DesignProject;
 	};
 
 	const { project }: Props = $props();
+
+	const projectTypeProps: Record<DesignProjectType, ProjectTypeProps> = {
+		graphics: { name: 'Graphics Design', icon: 'icon-[boxicons--pen-draw]' },
+		product: { name: 'Product Design', icon: 'icon-[boxicons--compass-tool]' }
+	};
 </script>
 
 <div class="py-16 first:pt-0 last:pb-0">
@@ -31,17 +41,11 @@
 </div>
 
 {#snippet typeBadges(types: DesignProjectType[])}
+	{@const props = types.map((type) => projectTypeProps[type])}
+
 	<ul class="flex flex-wrap gap-2">
-		{#each types as type}
-			<li
-				class="text-xs px-4 py-1 bg-zinc-900 border border-zinc-800 rounded-full flex items-center gap-2"
-			>
-				{#if type === 'product'}
-					<IconContainer icon="icon-[boxicons--compass-tool]">Product Design</IconContainer>
-				{:else if type === 'graphics'}
-					<IconContainer icon="icon-[boxicons--pen-draw]">Graphics Design</IconContainer>
-				{/if}
-			</li>
+		{#each props as { name, icon }}
+			<Pill {icon}>{name}</Pill>
 		{/each}
 	</ul>
 {/snippet}
