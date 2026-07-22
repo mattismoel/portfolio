@@ -1,23 +1,11 @@
 services:
-  caddy:
-    image: caddy:latest
-    restart: unless-stopped
-    ports:
-      - 80:80
-      - 443:443
-      - 443:443/udp
-    volumes:
-      - caddy_data:/data
-      - caddy_config:/config
-    configs:
-      - source: caddyfile
-        target: /etc/caddy/Caddyfile
-
   backend:
     image: ghcr.io/mattismoel/portfolio/backend:main
     volumes:
       - pb_data:/pb/pb_data
       - pb_migrations:/pb/pb_migrations
+    networks:
+      - proxy
 
   frontend:
     image: ghcr.io/mattismoel/portfolio/frontend:main
@@ -25,13 +13,13 @@ services:
     environment:
       - PUBLIC_POCKETBASE_URL=$PUBLIC_POCKETBASE_URL
       - POCKETBASE_URL=$POCKETBASE_URL
+    networks:
+      - proxy
 
 volumes:
-  caddy_data:
-  caddy_config:
   pb_data:
   pb_migrations:
 
-configs:
-  caddyfile:
-    file: ./Caddyfile
+networks:
+  proxy:
+    external: true
