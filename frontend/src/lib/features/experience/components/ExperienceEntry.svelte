@@ -70,7 +70,7 @@
 		>
 			<div class="flex flex-col items-center @md:items-start">
 				<h1
-					class="text-xl @md:text-base pointer-coarse:text-text-light font-black sm:font-base mb-2 sm:mb-1"
+					class="text-xl @md:text-base pointer-coarse:text-text-light font-black sm:font-bold mb-2 sm:mb-1"
 				>
 					{title}
 				</h1>
