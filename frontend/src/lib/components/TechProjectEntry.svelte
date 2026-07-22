@@ -88,7 +88,7 @@
 		title={project.title}
 		href={project.href}
 		target="_blank"
-		class="w-full relative group outline-0 aspect-video rounded-xl outline-text/5 overflow-hidden hover:shadow-2xl hover:outline-8 transition-[outline-width]"
+		class="w-full relative group outline-0 aspect-video rounded-default outline-text/5 overflow-hidden hover:shadow-2xl hover:outline-8 transition-[outline-width]"
 	>
 		<iframe
 			title={project.title}
