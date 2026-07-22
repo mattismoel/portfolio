@@ -32,7 +32,7 @@
 				{alt}
 				loading="lazy"
 				onclick={() => previewImage(i)}
-				class="hover:brightness-110 cursor-pointer w-fit rounded-xl"
+				class="hover:brightness-110 cursor-pointer w-fit rounded-default"
 			/>
 		{/each}
 	</div>

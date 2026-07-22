@@ -10,6 +10,6 @@
 	let props: Props = $props();
 </script>
 
-<div class={['p-6 rounded-lg bg-zinc-900 border border-zinc-800', props.class]}>
+<div class={['p-6 rounded-default bg-zinc-900 border border-zinc-800', props.class]}>
 	{@render props.children()}
 </div>

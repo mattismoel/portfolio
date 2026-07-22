@@ -27,6 +27,7 @@
   --font-mono: "JetBrains Mono", sans-serif;
 
   --animate-lean: lean 2.5s ease-in-out;
+  --radius-default: var(--radius-xl);
 
   @keyframes lean {
 
