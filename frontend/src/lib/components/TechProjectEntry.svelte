@@ -71,15 +71,19 @@
 			{@render sitePreview(project)}
 		{/if}
 
-		<div>
-			{#if project.usePreview}
-				<GridGallery srcs={project.images.map((img) => ({ src: img.src, alt: img.description }))} />
-			{:else}
-				<SlideshowGallery
-					imgsSrcs={project.images.map((img) => ({ src: img.src, alt: img.description }))}
-				/>
-			{/if}
-		</div>
+		{#if project.images && project.images.length > 0}
+			<div>
+				{#if project.usePreview}
+					<GridGallery
+						srcs={project.images.map((img) => ({ src: img.src, alt: img.description }))}
+					/>
+				{:else}
+					<SlideshowGallery
+						imgsSrcs={project.images.map((img) => ({ src: img.src, alt: img.description }))}
+					/>
+				{/if}
+			</div>
+		{/if}
 	</div>
 </div>
 
