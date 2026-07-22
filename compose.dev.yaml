@@ -1,19 +1,4 @@
 services:
-  # GENERAL SERVICES.
-  caddy:
-    image: caddy:latest
-    restart: unless-stopped
-    ports:
-      - 80:80
-      - 443:443
-      - 443:443/udp
-    volumes:
-      - caddy_data:/data
-      - caddy_config:/config
-    configs:
-      - source: caddyfile
-        target: /etc/caddy/Caddyfile
-
   backend:
     build:
       context: ./backend
@@ -21,6 +6,8 @@ services:
     volumes:
       - ./backend/pb/pb_data:/pb/pb_data
       - ./backend/pb/pb_migrations:/pb/pb_migrations
+    ports:
+      - 8080:8080
 
   frontend:
     build:
@@ -39,13 +26,6 @@ services:
             - build/
     depends_on:
       - backend
-      - caddy
 
 volumes:
-  caddy_data:
-  caddy_config:
   pb_data:
-
-configs:
-  caddyfile:
-    file: ${CADDYFILE_PATH}
