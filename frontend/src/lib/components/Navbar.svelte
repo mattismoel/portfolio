@@ -36,7 +36,7 @@
 	<li class="group" class:current={isCurrentPath}>
 		<a
 			href={path}
-			class="flex justify-center py-8 px-4 sm:py-4 sm:px-5 hover:bg-zinc-900 group-[.current]:underline group-[.current]:decoration-text transition-colors duration-100"
+			class="flex justify-center py-8 px-4 sm:py-4 sm:px-5 hover:bg-zinc-900 underline decoration-transparent underline-offset-4 group-[.current]:decoration-text-light/50 transition-colors duration-100"
 			>{name}</a
 		>
 	</li>
