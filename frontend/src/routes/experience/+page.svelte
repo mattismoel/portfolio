@@ -63,7 +63,6 @@
 		{#each large.current ? filteredExperiences : experiencesByYear as [year, experiences]}
 			{@render yearSeparator(year)}
 
-			<!-- <div class="bg-zinc-900 py-6 px-6 border border-zinc-800"> -->
 			<Card>
 				<ul class="divide-y divide-text/20">
 					{#each experiences as experience (experience.id)}
@@ -71,7 +70,6 @@
 					{/each}
 				</ul>
 			</Card>
-			<!-- </div> -->
 		{/each}
 	</div>
 </main>
