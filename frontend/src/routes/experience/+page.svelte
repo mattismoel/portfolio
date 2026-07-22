@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Card from '$lib/components/Card.svelte';
 	import TabSelector from '$lib/components/TabSelector.svelte';
 	import ExperienceEntry from '$lib/features/experience/components/ExperienceEntry.svelte';
 	import type { Experience, ExperienceType } from '$lib/features/experience/experience';
@@ -62,15 +63,15 @@
 		{#each large.current ? filteredExperiences : experiencesByYear as [year, experiences]}
 			{@render yearSeparator(year)}
 
-			<div>
-				<div class="bg-zinc-900 py-6 px-6 border border-zinc-800">
-					<ul class="divide-y divide-text/20">
-						{#each experiences as experience (experience.id)}
-							<ExperienceEntry {experience} />
-						{/each}
-					</ul>
-				</div>
-			</div>
+			<!-- <div class="bg-zinc-900 py-6 px-6 border border-zinc-800"> -->
+			<Card>
+				<ul class="divide-y divide-text/20">
+					{#each experiences as experience (experience.id)}
+						<ExperienceEntry {experience} />
+					{/each}
+				</ul>
+			</Card>
+			<!-- </div> -->
 		{/each}
 	</div>
 </main>
