@@ -19,7 +19,7 @@
 	let hasInteracted = $state(false);
 </script>
 
-<div bind:clientWidth={width} class={['isolate relative w-full flex mb-8', rest.class]}>
+<div bind:clientWidth={width} class={['isolate h-fit relative w-full flex mb-8', rest.class]}>
 	<div class="-z-20 absolute bg-zinc-900 w-full h-full rounded-full"></div>
 
 	{#if tabWidth > 0}
