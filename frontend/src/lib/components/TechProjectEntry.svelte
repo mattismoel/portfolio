@@ -4,6 +4,7 @@
 	import type { TechProject } from '$lib/features/tech-project/tech-project';
 	import GridGallery from './GridGallery.svelte';
 	import IconContainer from './IconContainer.svelte';
+	import ResponsiveLink from './ResponsiveLink.svelte';
 
 	type Props = {
 		project: TechProject;
@@ -12,10 +13,15 @@
 	let { project }: Props = $props();
 </script>
 
-<div class="@container grid py-16 first:pt-0 last:pb-0" role="presentation">
+<div class="@container py-16 first:pt-0 last:pb-0">
 	<div class="flex flex-col gap-4 md:flex-row md:justify-between mb-8">
 		<div class="flex flex-col items-center sm:items-start">
-			<a href={project.href} title={project.title} target="__blank">
+			<ResponsiveLink
+				alwaysUnderline={false}
+				href={project.href}
+				title={project.title}
+				target="__blank"
+			>
 				<IconContainer
 					side="right"
 					class="mb-4 sm:mb-1"
@@ -28,7 +34,7 @@
 						{project.title}
 					</h2>
 				</IconContainer>
-			</a>
+			</ResponsiveLink>
 			<span>{project.finishYear}</span>
 		</div>
 
@@ -40,10 +46,10 @@
 	<p class="leading-relaxed text-center mb-8 sm:text-left">{project.description}</p>
 
 	{#if project.sourceHref}
-		<a
+		<ResponsiveLink
 			href={project.sourceHref}
 			target="__blank"
-			class="flex justify-center underline hover:text-heading mb-8 sm:justify-start"
+			class="flex justify-center mb-8 sm:justify-start"
 		>
 			<IconContainer
 				side="right"
@@ -52,7 +58,7 @@
 			>
 				Source Code
 			</IconContainer>
-		</a>
+		</ResponsiveLink>
 	{/if}
 
 	<div class="flex flex-col gap-4 mb-8 @2xl:hidden">
@@ -110,7 +116,7 @@
 				<a
 					href={technology.href}
 					title={technology.name}
-					class={['group text-text/50 hover:text-text size-6', icon]}
+					class={['group text-text/50 transition-colors hover:text-text size-6', icon]}
 				>
 				</a>
 			</li>
