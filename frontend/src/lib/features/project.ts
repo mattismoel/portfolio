@@ -19,7 +19,7 @@ export const projectSchema = z.object({
   title: z.string().nonempty(),
   description: z.string().nonempty(),
   finishYear: z.union([z.number().positive(), z.undefined()]),
-  images: imageSchema.array().nonempty()
+  images: imageSchema.array().optional()
 })
 
 
@@ -28,7 +28,7 @@ export const pbProjectSchema = z.object({
   title: z.string().nonempty(),
   description: z.string().nonempty(),
   finishYear: z.union([z.number().positive(), z.undefined()]),
-  images: pbIdSchema.array(),
+  images: pbIdSchema.array().optional(),
 })
 
 

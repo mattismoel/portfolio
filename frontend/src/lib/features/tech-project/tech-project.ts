@@ -16,7 +16,7 @@ const pbTechProjectSchema = pbProjectSchema.extend({
   technologies: pbIdSchema.array(),
   usePreview: z.boolean(),
   expand: z.object({
-    images: pbImageSchema.array(),
+    images: pbImageSchema.array().optional(),
     technologies: pbTechnologySchema.array()
   })
 })
@@ -28,9 +28,9 @@ export const mapPBTechProject = (project: PBTechProject): TechProject => {
   return techProjectSchema.parse({
     ...project,
     technologies: project.expand.technologies,
-    images: project.expand.images.map(img => ({
+    images: project.images.length > 0 ? project.expand.images.map(img => ({
       ...img,
       src: createFileUrl("images", img.id, img.src),
-    }))
+    })) : undefined
   })
 }
