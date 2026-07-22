@@ -13,7 +13,7 @@
 	let { project }: Props = $props();
 </script>
 
-<div class="@container grid py-16 first:pt-0 last:pb-0" role="presentation">
+<div class="@container py-16 first:pt-0 last:pb-0">
 	<div class="flex flex-col gap-4 md:flex-row md:justify-between mb-8">
 		<div class="flex flex-col items-center sm:items-start">
 			<ResponsiveLink
