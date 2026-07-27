@@ -9,7 +9,7 @@ export const listDesignProjects = query(async () => {
 
   const records = await pb.collection("design_projects").getFullList<PBDesignProject>({
     expand: createExpandString(EXPAND_PROPERTIES),
-    sort: "-finishYear"
+    sort: "-finishYear,title"
   })
 
   return records.map(record => mapPBDesignProject(record))
