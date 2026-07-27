@@ -108,9 +108,9 @@
 			iconClass={['size-6 transition-transform', expanded && 'rotate-180']}
 		>
 			{#if expanded}
-				Show Less
+				Hide Details
 			{:else}
-				View More
+				Show Details
 			{/if}
 		</IconContainer>
 	</div>
