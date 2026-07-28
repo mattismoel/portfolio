@@ -7,14 +7,14 @@ env:
 on:
   pull_request:
     branches: ["main"]
-    # paths:
-    #   - "frontend/**"
-    #   - ".github/**"
+    paths:
+      - "frontend/**"
+      - ".github/**"
   push:
     branches: ["main"]
-    # paths:
-    #   - "frontend/**"
-    #   - ".github/**"
+    paths:
+      - "frontend/**"
+      - ".github/**"
 
 jobs:
   publish-frontend:
