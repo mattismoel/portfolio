@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { hasItems } from '$lib/array';
 	import Card from '$lib/components/Card.svelte';
 	import TabSelector from '$lib/components/TabSelector.svelte';
 	import ExperienceEntry from '$lib/features/experience/components/ExperienceEntry.svelte';
@@ -32,7 +33,7 @@
 				([year, experiences]) =>
 					[year, experiences.filter((exp) => exp.type === filterType)] as const
 			)
-			.filter(([, experiences]) => experiences.length > 0);
+			.filter(([, experiences]) => hasItems(experiences));
 	});
 
 	const large = new MediaQuery('min-width: 800px');
