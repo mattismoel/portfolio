@@ -12,7 +12,7 @@ COPY --from=install /app/node_modules node_modules
 COPY --from=install /app/package*.json ./
 COPY . .
 
-RUN npm sv check --format human-verbose --fail-on-warnings
+RUN npx sv check --format human-verbose --fail-on-warnings
 
 # Create build image.
 FROM base AS builder
