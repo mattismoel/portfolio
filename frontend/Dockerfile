@@ -5,6 +5,13 @@ FROM base AS install
 COPY package*.json ./
 RUN npm ci
 
+FROM base AS test
+COPY --from=install /app/node_modules node_modules
+COPY --from=install /app/package*.json ./
+COPY . .
+
+RUN npm sv check --format human-verbose --fail-on-warnings
+
 FROM base AS builder
 COPY --from=install /app/node_modules node_modules
 COPY --from=install /app/package*.json ./
