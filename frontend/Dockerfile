@@ -12,6 +12,7 @@ COPY --from=install /app/node_modules node_modules
 COPY --from=install /app/package*.json ./
 COPY . .
 
+RUN npx svelte-kit sync
 RUN npx sv check --output human-verbose --fail-on-warnings
 
 # Create build files.
