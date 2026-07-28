@@ -6,18 +6,10 @@ FROM base AS install
 COPY package*.json ./
 RUN npm ci
 
-# Test for errors and warnings.
-FROM base AS test
-COPY --from=install /app/node_modules node_modules
-COPY --from=install /app/package*.json ./
-COPY . .
-
-RUN npx sv check --output human-verbose --fail-on-warnings
-
 # Create build image.
 FROM base AS builder
-COPY --from=test /app/node_modules node_modules
-COPY --from=test /app/package*.json ./
+COPY --from=install /app/node_modules node_modules
+COPY --from=install /app/package*.json ./
 COPY . .
 
 # Set SvelteKit environment static variables.
@@ -27,10 +19,18 @@ ENV POCKETBASE_URL=http://portfolio_backend:8080
 RUN npm run build
 RUN npm prune --omit=dev # Remove dev dependencies, as they are not needed for the build.
 
-FROM base AS deployment
-COPY --from=builder /app/build build
+# Test for errors and warnings.
+FROM base AS testing
 COPY --from=builder /app/node_modules node_modules
-COPY --from=builder /app/package.json .
+COPY --from=builder /app/package*.json ./
+COPY . .
+
+RUN npx sv check --output human-verbose --fail-on-warnings
+
+FROM base AS deployment
+COPY --from=testing /app/build build
+COPY --from=testing /app/node_modules node_modules
+COPY --from=testing /app/package.json .
 
 ENV NODE_ENV="production"
 
