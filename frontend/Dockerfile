@@ -1,6 +1,10 @@
 FROM node:alpine AS base
 WORKDIR /app
 
+# Set SvelteKit environment static variables.
+ENV PUBLIC_POCKETBASE_URL=https://api.mattismoel.dev
+ENV POCKETBASE_URL=http://portfolio_backend:8080
+
 # Install build dependencies.
 FROM base AS install
 COPY package*.json ./
@@ -17,11 +21,6 @@ RUN npx sv check --output human-verbose --fail-on-warnings
 
 # Create build files.
 FROM testing AS builder
-
-# Set SvelteKit environment static variables.
-ENV PUBLIC_POCKETBASE_URL=https://api.mattismoel.dev
-ENV POCKETBASE_URL=http://portfolio_backend:8080
-
 RUN npm run build
 RUN npm prune --omit=dev # Remove dev dependencies, as they are not needed for the build.
 
