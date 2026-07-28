@@ -16,8 +16,8 @@ RUN npm sv check --format human-verbose --fail-on-warnings
 
 # Create build image.
 FROM base AS builder
-COPY --from=install /app/node_modules node_modules
-COPY --from=install /app/package*.json ./
+COPY --from=test /app/node_modules node_modules
+COPY --from=test /app/package*.json ./
 COPY . .
 
 # Set SvelteKit environment static variables.
