@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { hasItems } from '$lib/array';
 	import IconContainer from '$lib/components/IconContainer.svelte';
 	import Pill from '$lib/components/Pill.svelte';
 	import type { Experience, ExperienceType } from '../experience';
@@ -30,7 +31,7 @@
 		return `${from} - ${to}`;
 	};
 
-	let expandable = $derived(experience.points && experience.points?.length > 0);
+	let expandable = $derived(hasItems(experience.points));
 	let expanded = $state(false);
 </script>
 
@@ -51,7 +52,7 @@
 
 		<p class="text-center sm:text-left sm:text-xs not-last:mb-6">{experience.description}</p>
 
-		{#if experience.points && experience.points.length > 0}
+		{#if hasItems(experience.points)}
 			{@render takeaways(experience.points, expanded)}
 		{/if}
 	</button>

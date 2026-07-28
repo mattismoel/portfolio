@@ -5,6 +5,7 @@
 	import GridGallery from './GridGallery.svelte';
 	import IconContainer from './IconContainer.svelte';
 	import ResponsiveLink from './ResponsiveLink.svelte';
+	import { hasItems } from '$lib/array';
 
 	type Props = {
 		project: TechProject;
@@ -71,7 +72,7 @@
 			{@render sitePreview(project)}
 		{/if}
 
-		{#if project.images && project.images.length > 0}
+		{#if hasItems(project.images)}
 			<div>
 				{#if project.usePreview}
 					<GridGallery

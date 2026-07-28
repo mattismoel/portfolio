@@ -2,6 +2,7 @@ import z from "zod"
 import { pbImageSchema, pbProjectSchema, projectSchema } from "../project"
 import { pbTechnologySchema, technologySchema } from "$lib/technology"
 import { createFileUrl, pbIdSchema } from "$lib/pocketbase"
+import { hasItems } from "$lib/array"
 
 const techProjectSchema = projectSchema.extend({
   href: z.url().optional(),
@@ -25,10 +26,11 @@ export type TechProject = z.infer<typeof techProjectSchema>
 export type PBTechProject = z.infer<typeof pbTechProjectSchema>
 
 export const mapPBTechProject = (project: PBTechProject): TechProject => {
+
   return techProjectSchema.parse({
     ...project,
     technologies: project.expand.technologies,
-    images: project.images.length > 0 ? project.expand.images.map(img => ({
+    images: hasItems(project.expand.images) ? project.expand.images.map(img => ({
       ...img,
       src: createFileUrl("images", img.id, img.src),
     })) : undefined
