@@ -37,7 +37,9 @@
 		<p class="leading-relaxed mb-8 text-center sm:text-left">{project.description}</p>
 	{/if}
 
-	<GridGallery srcs={project.images} class="sm:min-h-80" />
+	{#if project.images}
+		<GridGallery srcs={project.images} class="sm:min-h-80" />
+	{/if}
 </div>
 
 {#snippet typeBadges(types: DesignProjectType[])}
