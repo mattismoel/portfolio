@@ -15,7 +15,7 @@ export const iconMap = new Map<string, string>([
   ["Aseprite", "icon-[simple-icons--aseprite]"],
   ["Unity", "icon-[simple-icons--unity]"],
   ["C#", "icon-[bxl--c-sharp]"],
-  ["CSS", "icon-[simple-icons--css"],
+  ["CSS", "icon-[simple-icons--css]"],
 ])
 
 export const technologySchema = z.object({
