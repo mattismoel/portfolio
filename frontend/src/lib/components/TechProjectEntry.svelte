@@ -5,7 +5,7 @@
 	import GridGallery from './GridGallery.svelte';
 	import IconContainer from './IconContainer.svelte';
 	import ResponsiveLink from './ResponsiveLink.svelte';
-	import { hasItems } from '$lib/array';
+	import { hasItems, sortAlphabeticallyByProperty } from '$lib/array';
 
 	type Props = {
 		project: TechProject;
@@ -114,8 +114,10 @@
 {/snippet}
 
 {#snippet techList(technologies: Technology[])}
+	{@const sorted = sortAlphabeticallyByProperty(technologies, 'name')}
+
 	<ul class="flex flex-wrap items-center gap-6 justify-center">
-		{#each technologies as technology}
+		{#each sorted as technology}
 			{@const icon = iconMap.get(technology.name)}
 			<li>
 				<a
