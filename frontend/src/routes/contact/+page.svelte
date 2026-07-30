@@ -9,7 +9,7 @@
 	<meta name="description" content="The contact page of Mattis Møl Kristensen" />
 </svelte:head>
 
-<main class="grid">
+<main class="grid min-h-svh">
 	<div class="flex-1 flex flex-col justify-center items-center">
 		<div>
 			<h1 class="font-bold text-text-light mb-4">Catch me here:</h1>
