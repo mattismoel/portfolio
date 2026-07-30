@@ -70,9 +70,7 @@
 			class="flex items-center justify-between flex-col @md:flex-row gap-4 sm:gap-2 @md:items-start"
 		>
 			<div class="flex flex-col items-center @md:items-start">
-				<h1
-					class="text-xl text-center @md:text-base pointer-coarse:text-text-light font-black sm:font-bold mb-2 sm:mb-1"
-				>
+				<h1 class="text-center pointer-coarse:text-text-light font-black sm:font-bold mb-2 sm:mb-1">
 					{title}
 				</h1>
 				<IconContainer icon="icon-[boxicons--location]" class="sm:text-xs">

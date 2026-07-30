@@ -25,7 +25,7 @@
 
 <div class="py-16 first:pt-0 last:pb-0">
 	<header class="mb-8 flex flex-col items-center sm:items-start">
-		<h2 class="font-black sm:font-bold mb-1 text-heading text-xl sm:text-base">{project.title}</h2>
+		<h2 class="font-black sm:font-bold mb-1 text-heading">{project.title}</h2>
 		{#if project.finishYear}
 			<span class="mb-4">{project.finishYear}</span>
 		{/if}
