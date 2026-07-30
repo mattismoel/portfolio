@@ -11,11 +11,6 @@
   --content-width: min(var(--max-content-width), 100% - (var(--content-padding) * 2));
 }
 
-@font-face {
-  font-family: "JetBrains Mono";
-  src: url("/JetBrainsMono[wght].ttf") format("truetype");
-}
-
 @theme {
   --color-background: var(--color-zinc-950);
   --color-primary: var(--color-zinc-100);
