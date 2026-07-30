@@ -6,12 +6,31 @@
 	import { listTechProjects } from '$lib/features/tech-project/tech-project.remote';
 	import { listDesignProjects } from '$lib/features/design-project/design-project.remote';
 	import DesignProjectList from '$lib/components/DesignProjectList.svelte';
+	import { page } from '$app/state';
+	import { goto } from '$app/navigation';
+	import { onMount } from 'svelte';
+	import { fitsStringUnion } from '$lib/type';
 
 	const tabNames = ['Tech', 'Design'] as const;
 	type TabType = (typeof tabNames)[number];
 
 	const tabs: TabType[] = ['Tech', 'Design'];
-	let selectedTab = $state<TabType>('Tech');
+	let selectedTab = $state<TabType>();
+
+	onMount(() => {
+		const tabParam = page.url.searchParams.get('tab');
+
+		if (!tabParam || !fitsStringUnion(tabParam, tabNames)) {
+			selectedTab = 'Tech';
+			return;
+		}
+
+		selectedTab = tabParam;
+	});
+
+	$effect(() => {
+		goto(`/?tab=${selectedTab}`);
+	});
 </script>
 
 <svelte:head>
@@ -35,12 +54,18 @@
 	</section>
 
 	<section class="grid flex-1 gap-8">
-		<TabSelector bind:selected={selectedTab} tabs={tabs.map((t) => ({ name: t, value: t }))} />
+		<TabSelector
+			title="What are you interested in?"
+			animate={selectedTab === tabNames[0]}
+			bind:selected={selectedTab}
+			tabs={tabs.map((t) => ({ name: t, value: t }))}
+		/>
 
 		{#await Promise.all( [listTechProjects(), listDesignProjects()] ) then [techProjects, designProjects]}
-			{#if selectedTab === 'Tech'}
+			{@const tab = page.url.searchParams.get('tab')}
+			{#if tab === 'Tech'}
 				<TechProjectList projects={techProjects} />
-			{:else if selectedTab === 'Design'}
+			{:else if tab === 'Design'}
 				<DesignProjectList projects={designProjects} />
 			{/if}
 		{/await}

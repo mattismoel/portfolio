@@ -2,12 +2,9 @@ import { baseFields } from "$lib/base";
 import { pbBaseFields } from "$lib/pocketbase";
 import z from "zod";
 
-const experienceType = z.union([
-  z.literal("workplace"),
-  z.literal("education"),
-  z.literal("volunteer"),
-  z.literal("project"),
-])
+export const experienceTypes = ["workplace", "education", "volunteer", "project"] as const
+
+const experienceType = z.union(experienceTypes.map(type => z.literal(type)))
 
 export const experienceSchema = z.object({
   ...baseFields.shape,
