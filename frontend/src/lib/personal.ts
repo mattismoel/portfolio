@@ -36,6 +36,16 @@ export const socials: Social[] = [
     iconName: "icon-[simple-icons--github]",
   },
   {
+    name: "Instagram",
+    url: "https://instagram.com/mattismoel",
+    iconName: "icon-[simple-icons--instagram]",
+  },
+  {
+    name: "Phone",
+    url: "tel:+4542157066",
+    iconName: "icon-[boxicons--phone-filled]",
+  },
+  {
     name: "Mail",
     url: "mailto:mattismoel@gmail.com",
     iconName: "icon-[boxicons--envelope-filled]",
