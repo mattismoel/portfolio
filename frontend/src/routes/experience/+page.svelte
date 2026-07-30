@@ -1,11 +1,28 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
+	import { page } from '$app/state';
 	import { hasItems } from '$lib/array';
 	import Card from '$lib/components/Card.svelte';
 	import TabSelector from '$lib/components/TabSelector.svelte';
 	import ExperienceEntry from '$lib/features/experience/components/ExperienceEntry.svelte';
-	import type { Experience, ExperienceType } from '$lib/features/experience/experience';
+	import {
+		experienceTypes,
+		type Experience,
+		type ExperienceType
+	} from '$lib/features/experience/experience';
 	import { listExperiences } from '$lib/features/experience/experience.remote';
+	import { fitsStringUnion } from '$lib/type';
+	import { onMount } from 'svelte';
 	import { MediaQuery } from 'svelte/reactivity';
+
+	let selectedExperience = $state<ExperienceType>();
+
+	const experienceToTabName: Record<ExperienceType, string> = {
+		project: 'Projects',
+		education: 'Education',
+		volunteer: 'Volunteering',
+		workplace: 'Workplaces'
+	};
 
 	let experiences = $derived(await listExperiences());
 
@@ -23,20 +40,33 @@
 
 	let experiencesByYear = $derived([...experiencesByYearMap.entries()].sort(([a], [b]) => b - a));
 
-	let filterType = $state<ExperienceType>('workplace');
-
 	let filteredExperiences = $derived.by(() => {
-		if (filterType === undefined) return experiencesByYear;
+		if (!selectedExperience) return experiencesByYear;
 
 		return experiencesByYear
 			.map(
 				([year, experiences]) =>
-					[year, experiences.filter((exp) => exp.type === filterType)] as const
+					[year, experiences.filter((exp) => exp.type === selectedExperience)] as const
 			)
 			.filter(([, experiences]) => hasItems(experiences));
 	});
 
 	const large = new MediaQuery('min-width: 800px');
+
+	onMount(() => {
+		const tabParam = page.url.searchParams.get('tab');
+
+		if (!tabParam || !fitsStringUnion(tabParam, experienceTypes)) {
+			selectedExperience = 'workplace';
+			return;
+		}
+
+		selectedExperience = tabParam;
+	});
+
+	$effect(() => {
+		goto(`/experience?tab=${selectedExperience}`);
+	});
 </script>
 
 <main class="mx-responsive">
@@ -48,15 +78,12 @@
 		</p>
 	</header>
 
-	{#if large.current}
+	{#if large.current && selectedExperience}
 		<TabSelector
-			bind:selected={filterType}
-			tabs={[
-				{ name: 'Workplaces', value: 'workplace' },
-				{ name: 'Education', value: 'education' },
-				{ name: 'Projects', value: 'project' },
-				{ name: 'Volunteering', value: 'volunteer' }
-			]}
+			title="What do you want to know about?"
+			animate={selectedExperience === experienceTypes[0]}
+			bind:selected={selectedExperience}
+			tabs={experienceTypes.map((type) => ({ name: experienceToTabName[type], value: type }))}
 		/>
 	{/if}
 
