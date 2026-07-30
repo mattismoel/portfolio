@@ -30,7 +30,7 @@
 					icon="icon-[boxicons--arrow-out-up-right-square]"
 				>
 					<h2
-						class="line-clamp-1 font-black sm:font-bold text-xl text-center sm:text-left sm:text-base hover:underline text-text-light"
+						class="line-clamp-1 font-black sm:font-bold text-center sm:text-left hover:underline text-text-light"
 					>
 						{project.title}
 					</h2>
