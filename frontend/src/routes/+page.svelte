@@ -54,12 +54,14 @@
 	</section>
 
 	<section class="grid flex-1 gap-8">
-		<TabSelector
-			title="What are you interested in?"
-			animate={selectedTab === tabNames[0]}
-			bind:selected={selectedTab}
-			tabs={tabs.map((t) => ({ name: t, value: t }))}
-		/>
+		{#if selectedTab}
+			<TabSelector
+				title="What are you interested in?"
+				animate={selectedTab === tabNames[0]}
+				bind:selected={selectedTab}
+				tabs={tabs.map((t) => ({ name: t, value: t }))}
+			/>
+		{/if}
 
 		{#await Promise.all( [listTechProjects(), listDesignProjects()] ) then [techProjects, designProjects]}
 			{@const tab = page.url.searchParams.get('tab')}
