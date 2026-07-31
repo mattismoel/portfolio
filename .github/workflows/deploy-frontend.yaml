@@ -30,6 +30,7 @@ jobs:
         with:
           context: ./frontend
           package_name: frontend
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           build-args: |
             PUBLIC_POCKETBASE_URL=${{ secrets.PUBLIC_POCKETBASE_URL }}
             POCKETBASE_URL=${{ secrets.POCKETBASE_URL }}
