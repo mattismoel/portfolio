@@ -1,8 +1,8 @@
 name: Publish Web Server Image
 
-env:
-  REGISTRY: ghcr.io
-  PACKAGE_NAME: frontend
+# env:
+#   REGISTRY: ghcr.io
+#   PACKAGE_NAME: frontend
 
 on:
   pull_request:
@@ -25,28 +25,37 @@ jobs:
       id-token: write
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v7
-
-      - name: Docker Metadata
-        id: meta
-        uses: docker/metadata-action@v6
-        with:
-          images: ${{ env.REGISTRY}}/${{ github.actor }}/${{ github.event.repository.name }}/${{ env.PACKAGE_NAME }}
-
-      - name: Log into registry ${{ env.REGISTRY }}
-        uses: docker/login-action@v4
-        with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v7
+      - name: Publish Frontend
+        uses: mattismoel/actions/deploy@v0.1-alpha
         with:
           context: ./frontend
-          push: true
+          package_name: frontend
           build-args: |
             PUBLIC_POCKETBASE_URL=${{ secrets.PUBLIC_POCKETBASE_URL }}
             POCKETBASE_URL=${{ secrets.POCKETBASE_URL }}
-          tags: ${{ steps.meta.outputs.tags }}
+
+      # - name: Checkout repository
+      #   uses: actions/checkout@v7
+      #
+      # - name: Docker Metadata
+      #   id: meta
+      #   uses: docker/metadata-action@v6
+      #   with:
+      #     images: ${{ env.REGISTRY}}/${{ github.actor }}/${{ github.event.repository.name }}/${{ env.PACKAGE_NAME }}
+      #
+      # - name: Log into registry ${{ env.REGISTRY }}
+      #   uses: docker/login-action@v4
+      #   with:
+      #     registry: ${{ env.REGISTRY }}
+      #     username: ${{ github.actor }}
+      #     password: ${{ secrets.GITHUB_TOKEN }}
+      #
+      # - name: Build and push Docker image
+      #   uses: docker/build-push-action@v7
+      #   with:
+      #     context: ./frontend
+      #     push: true
+      #     build-args: |
+      #       PUBLIC_POCKETBASE_URL=${{ secrets.PUBLIC_POCKETBASE_URL }}
+      #       POCKETBASE_URL=${{ secrets.POCKETBASE_URL }}
+      #     tags: ${{ steps.meta.outputs.tags }}
