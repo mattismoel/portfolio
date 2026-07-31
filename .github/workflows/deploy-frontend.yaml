@@ -6,12 +6,12 @@ name: Publish Web Server Image
 
 on:
   pull_request:
-    branches: ["main"]
+    branches: ["main", "dev", "edge"]
     paths:
       - "frontend/**"
       - ".github/**"
   push:
-    branches: ["main"]
+    branches: ["main", "dev", "edge"]
     paths:
       - "frontend/**"
       - ".github/**"
