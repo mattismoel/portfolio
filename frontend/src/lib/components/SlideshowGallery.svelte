@@ -1,12 +1,12 @@
 <script lang="ts">
-	import BorderedImage from './BorderedImage.svelte';
-	import GalleryButton from './GalleryButton.svelte';
-	import ImagePreview from './ImagePreview.svelte';
-	import type { HTMLImgAttributes } from 'svelte/elements';
+	import BorderedImage from "./BorderedImage.svelte";
+	import GalleryButton from "./GalleryButton.svelte";
+	import ImagePreview from "./ImagePreview.svelte";
+	import type { HTMLImgAttributes } from "svelte/elements";
 
 	type Props = {
 		imgsSrcs: {
-			src: HTMLImgAttributes['src'];
+			src: HTMLImgAttributes["src"];
 			alt: string;
 		}[];
 	};
@@ -48,18 +48,18 @@
 		if (!el) return;
 
 		if (idx >= imgsSrcs.length) {
-			el.scrollTo({ left: 0, behavior: 'smooth' });
+			el.scrollTo({ left: 0, behavior: "smooth" });
 			return;
 		}
 
 		let newScrollPos = idx * scrollSize;
-		el.scrollTo({ left: newScrollPos, behavior: 'smooth' });
+		el.scrollTo({ left: newScrollPos, behavior: "smooth" });
 	};
 </script>
 
 <div class="grid">
 	{#if imgsSrcs.length > 1}
-		<div class="flex justify-between mb-4">
+		<div class="mb-4 flex justify-between">
 			<GalleryButton
 				direction="left"
 				disabled={scrollIdx === 0}
@@ -75,7 +75,7 @@
 	{/if}
 
 	<div
-		class="flex gap-4 overflow-x-scroll snap-x snap-mandatory scrollbar-none mb-4"
+		class="mb-4 scrollbar-none flex snap-x snap-mandatory gap-4 overflow-x-scroll"
 		bind:this={el}
 		onscroll={(e) => (scrollLeft = e.currentTarget.scrollLeft)}
 	>
@@ -85,7 +85,7 @@
 				{alt}
 				loading="lazy"
 				onclick={() => previewImage(i)}
-				class="snap-center shrink-0 w-full aspect-video rounded-sm brightness-100 hover:brightness-110 transition-[filter] cursor-pointer"
+				class="aspect-video w-full shrink-0 cursor-pointer snap-center rounded-sm brightness-100 transition-[filter] hover:brightness-110"
 			/>
 		{/each}
 	</div>
@@ -95,14 +95,14 @@
 			{@render dots(imgsSrcs.length, scrollIdx)}
 		</div>
 
-		<ul class="grid grid-cols-4 sm:grid-cols-6 mb-4 gap-4">
+		<ul class="mb-4 grid grid-cols-4 gap-4 sm:grid-cols-6">
 			{#each imgsSrcs as { src, alt }, i}
 				<li>
 					<button type="button" onclick={() => scrollTo(i)}>
 						<BorderedImage
 							{src}
 							{alt}
-							class={['aspect-video h-12', i === scrollIdx ? 'brightness-100' : 'brightness-50']}
+							class={["aspect-video h-12", i === scrollIdx ? "brightness-100" : "brightness-50"]}
 						/>
 					</button>
 				</li>
@@ -114,11 +114,11 @@
 <ImagePreview imgProps={previewImgProps} onclose={() => (showPreview = false)} show={showPreview} />
 
 {#snippet dots(amount: number, activeIdx: number)}
-	<div class="w-full flex items-center min-h-2 gap-1.5 justify-center">
+	<div class="flex min-h-2 w-full items-center justify-center gap-1.5">
 		{#each { length: amount } as _, i}
 			<div
 				class:active={i === activeIdx}
-				class="h-1.5 w-1.5 bg-zinc-800 rounded-full transition-[width,margin] [.active]:bg-heading [.active]:w-4 [.active]:mx-1 [.active]:first:ml-0 [.active]:last:mr-0 ease-out"
+				class="h-1.5 w-1.5 rounded-full bg-zinc-800 transition-[width,margin] ease-out [.active]:mx-1 [.active]:w-4 [.active]:bg-heading [.active]:first:ml-0 [.active]:last:mr-0"
 			></div>
 		{/each}
 	</div>

@@ -1,27 +1,27 @@
 <script lang="ts">
-	import { goto } from '$app/navigation';
-	import { page } from '$app/state';
-	import { hasItems } from '$lib/array';
-	import Card from '$lib/components/Card.svelte';
-	import TabSelector from '$lib/components/TabSelector.svelte';
-	import ExperienceEntry from '$lib/features/experience/components/ExperienceEntry.svelte';
+	import { goto } from "$app/navigation";
+	import { page } from "$app/state";
+	import { hasItems } from "$lib/array";
+	import Card from "$lib/components/Card.svelte";
+	import TabSelector from "$lib/components/TabSelector.svelte";
+	import ExperienceEntry from "$lib/features/experience/components/ExperienceEntry.svelte";
 	import {
 		experienceTypes,
 		type Experience,
-		type ExperienceType
-	} from '$lib/features/experience/experience';
-	import { listExperiences } from '$lib/features/experience/experience.remote';
-	import { fitsStringUnion } from '$lib/type';
-	import { onMount } from 'svelte';
-	import { MediaQuery } from 'svelte/reactivity';
+		type ExperienceType,
+	} from "$lib/features/experience/experience";
+	import { listExperiences } from "$lib/features/experience/experience.remote";
+	import { fitsStringUnion } from "$lib/type";
+	import { onMount } from "svelte";
+	import { MediaQuery } from "svelte/reactivity";
 
 	let selectedExperience = $state<ExperienceType>();
 
 	const experienceToTabName: Record<ExperienceType, string> = {
-		project: 'Projects',
-		education: 'Education',
-		volunteer: 'Volunteering',
-		workplace: 'Workplaces'
+		project: "Projects",
+		education: "Education",
+		volunteer: "Volunteering",
+		workplace: "Workplaces",
 	};
 
 	let experiences = $derived(await listExperiences());
@@ -46,18 +46,18 @@
 		return experiencesByYear
 			.map(
 				([year, experiences]) =>
-					[year, experiences.filter((exp) => exp.type === selectedExperience)] as const
+					[year, experiences.filter((exp) => exp.type === selectedExperience)] as const,
 			)
 			.filter(([, experiences]) => hasItems(experiences));
 	});
 
-	const large = new MediaQuery('min-width: 800px');
+	const large = new MediaQuery("min-width: 800px");
 
 	onMount(() => {
-		const tabParam = page.url.searchParams.get('tab');
+		const tabParam = page.url.searchParams.get("tab");
 
 		if (!tabParam || !fitsStringUnion(tabParam, experienceTypes)) {
-			selectedExperience = 'workplace';
+			selectedExperience = "workplace";
 			return;
 		}
 
@@ -71,7 +71,7 @@
 
 <main class="mx-responsive">
 	<header class="mb-16">
-		<h1 class="font-bold text-2xl mb-4 text-text-light">Previous Experience</h1>
+		<h1 class="mb-4 text-2xl font-bold text-text-light">Previous Experience</h1>
 		<p>
 			This is an overview of all of my previous experiences&nbsp;&mdash;&nbsp;both work and
 			education.
@@ -104,8 +104,8 @@
 
 {#snippet yearSeparator(year: number)}
 	<div class="flex items-center gap-4 pt-20 pb-8 first-of-type:pt-0">
-		<div class="sm:hidden w-full h-px bg-zinc-800"></div>
-		<h1 class="text-text text-xs">{year}</h1>
-		<div class="w-full h-px bg-zinc-800"></div>
+		<div class="h-px w-full bg-zinc-800 sm:hidden"></div>
+		<h1 class="text-xs text-text">{year}</h1>
+		<div class="h-px w-full bg-zinc-800"></div>
 	</div>
 {/snippet}

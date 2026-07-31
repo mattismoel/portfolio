@@ -20,7 +20,7 @@
 	{onclose}
 	bind:this={dialogElement}
 	class:open={show}
-	class="z-50 dialog hidden fixed flex-col gap-8 items-center justify-center w-screen h-screen top-0 left-0 cursor-pointer bg-black/75 [.open]:flex"
+	class="dialog fixed top-0 left-0 z-50 hidden h-screen w-screen cursor-pointer flex-col items-center justify-center gap-8 bg-black/75 [.open]:flex"
 >
 	<span class="text-heading">{imgProps?.alt}</span>
 
@@ -30,7 +30,7 @@
 			alt={imgProps?.alt}
 			use:clickOutside
 			onclickoutside={onclose}
-			class="max-w-[85vw] max-h-[75svh] cursor-default"
+			class="max-h-[75svh] max-w-[85vw] cursor-default"
 		/>
 	{/if}
 </div>

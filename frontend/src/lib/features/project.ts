@@ -1,44 +1,39 @@
-import { baseFields } from "$lib/base"
-import { createFileUrl, pbBaseFields, pbIdSchema } from "$lib/pocketbase"
-import z from "zod"
+import { baseFields } from "$lib/base";
+import { createFileUrl, pbBaseFields, pbIdSchema } from "$lib/pocketbase";
+import z from "zod";
 
 export const imageSchema = z.object({
-  ...baseFields.shape,
-  src: z.string().nonempty(),
-  description: z.string().nonempty(),
-})
+	...baseFields.shape,
+	src: z.string().nonempty(),
+	description: z.string().nonempty(),
+});
 
 export const pbImageSchema = z.object({
-  ...pbBaseFields.shape,
-  src: z.string().nonempty(),
-  description: z.string().nonempty(),
-})
+	...pbBaseFields.shape,
+	src: z.string().nonempty(),
+	description: z.string().nonempty(),
+});
 
 export const projectSchema = z.object({
-  ...baseFields.shape,
-  title: z.string().nonempty(),
-  description: z.string().nonempty(),
-  finishYear: z.union([z.number().positive(), z.undefined()]),
-  images: imageSchema.array().optional()
-})
-
+	...baseFields.shape,
+	title: z.string().nonempty(),
+	description: z.string().nonempty(),
+	finishYear: z.union([z.number().positive(), z.undefined()]),
+	images: imageSchema.array().optional(),
+});
 
 export const pbProjectSchema = z.object({
-  ...pbBaseFields.shape,
-  title: z.string().nonempty(),
-  description: z.string().nonempty(),
-  finishYear: z.union([z.number().positive(), z.undefined()]),
-  images: pbIdSchema.array().optional(),
-})
+	...pbBaseFields.shape,
+	title: z.string().nonempty(),
+	description: z.string().nonempty(),
+	finishYear: z.union([z.number().positive(), z.undefined()]),
+	images: pbIdSchema.array().optional(),
+});
 
+type Project = z.infer<typeof projectSchema>;
 
-type Project = z.infer<typeof projectSchema>
-
-export type PBImage = z.infer<typeof pbImageSchema>
-export type Image = z.infer<typeof imageSchema>
-
-
-
+export type PBImage = z.infer<typeof pbImageSchema>;
+export type Image = z.infer<typeof imageSchema>;
 
 // export const techProjects: TechProject[] = [
 //   {
@@ -130,19 +125,17 @@ export type Image = z.infer<typeof imageSchema>
 // ]
 
 export const sortProjectsByFinishDate = <T extends Project>(projects: T[]): T[] => {
-  return projects
-    .sort((a, b) => {
-      if (a.finishYear === undefined && b.finishYear === undefined) return 0;
-      if (a.finishYear === undefined) return -1;
-      if (b.finishYear === undefined) return 1;
-      return b.finishYear - a.finishYear;
-    })
-}
-
+	return projects.sort((a, b) => {
+		if (a.finishYear === undefined && b.finishYear === undefined) return 0;
+		if (a.finishYear === undefined) return -1;
+		if (b.finishYear === undefined) return 1;
+		return b.finishYear - a.finishYear;
+	});
+};
 
 export const mapPBImage = (image: PBImage): Image => {
-  return imageSchema.parse({
-    ...image,
-    src: createFileUrl("images", image.id, image.src)
-  })
-}
+	return imageSchema.parse({
+		...image,
+		src: createFileUrl("images", image.id, image.src),
+	});
+};

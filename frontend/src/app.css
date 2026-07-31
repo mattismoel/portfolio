@@ -1,53 +1,52 @@
 @plugin "@iconify/tailwind4";
 
 @import "tailwindcss";
-@plugin '@tailwindcss/forms';
-@plugin '@tailwindcss/typography';
+@plugin "@tailwindcss/forms";
+@plugin "@tailwindcss/typography";
 
 :root {
-  --max-content-width: 50em;
-  --content-padding: 1rem;
+	--max-content-width: 50em;
+	--content-padding: 1rem;
 
-  --content-width: min(var(--max-content-width), 100% - (var(--content-padding) * 2));
+	--content-width: min(var(--max-content-width), 100% - (var(--content-padding) * 2));
 }
 
 @theme {
-  --color-background: var(--color-zinc-950);
-  --color-primary: var(--color-zinc-100);
+	--color-background: var(--color-zinc-950);
+	--color-primary: var(--color-zinc-100);
 
-  --color-text: var(--color-zinc-400);
-  --color-text-light: var(--color-zinc-100);
+	--color-text: var(--color-zinc-400);
+	--color-text-light: var(--color-zinc-100);
 
-  --color-heading: var(--color-zinc-100);
-  --font-mono: "JetBrains Mono", sans-serif;
+	--color-heading: var(--color-zinc-100);
+	--font-mono: "JetBrains Mono", sans-serif;
 
-  --animate-lean: lean 2.5s ease-in-out;
-  --radius-default: var(--radius-xl);
+	--animate-lean: lean 2.5s ease-in-out;
+	--radius-default: var(--radius-xl);
 
-  @keyframes lean {
+	@keyframes lean {
+		0%,
+		100% {
+			transform: translateX(0px);
+			opacity: 100%;
+		}
 
-    0%,
-    100% {
-      transform: translateX(0px);
-      opacity: 100%;
-    }
-
-    90% {
-      opacity: 40%;
-      transform: translateX(16px);
-    }
-  }
+		90% {
+			opacity: 40%;
+			transform: translateX(16px);
+		}
+	}
 }
 
 @utility mx-responsive {
-  width: var(--content-width);
-  margin-inline: auto;
+	width: var(--content-width);
+	margin-inline: auto;
 }
 
 @utility scrollbar-none {
-  @apply [scrollbar-width:none] [&::-webkit-scrollbar]:hidden;
+	@apply [scrollbar-width:none] [&::-webkit-scrollbar]:hidden;
 }
 
 body:has(.dialog.open) {
-  overflow: hidden;
+	overflow: hidden;
 }

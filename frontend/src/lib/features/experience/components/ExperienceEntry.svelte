@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { hasItems } from '$lib/array';
-	import IconContainer from '$lib/components/IconContainer.svelte';
-	import Pill from '$lib/components/Pill.svelte';
-	import type { Experience, ExperienceType } from '../experience';
+	import { hasItems } from "$lib/array";
+	import IconContainer from "$lib/components/IconContainer.svelte";
+	import Pill from "$lib/components/Pill.svelte";
+	import type { Experience, ExperienceType } from "../experience";
 
 	type ExperienceTypeProps = {
 		name: string;
@@ -10,10 +10,10 @@
 	};
 
 	const experienceTypes: Record<ExperienceType, ExperienceTypeProps> = {
-		workplace: { name: 'Workplace', icon: 'icon-[boxicons--briefcase-alt-2]' },
-		education: { name: 'Education', icon: 'icon-[boxicons--backpack]' },
-		volunteer: { name: 'Volunteer', icon: 'icon-[boxicons--people-diversity]' },
-		project: { name: 'Project', icon: 'icon-[boxicons--brush]' }
+		workplace: { name: "Workplace", icon: "icon-[boxicons--briefcase-alt-2]" },
+		education: { name: "Education", icon: "icon-[boxicons--backpack]" },
+		volunteer: { name: "Volunteer", icon: "icon-[boxicons--people-diversity]" },
+		project: { name: "Project", icon: "icon-[boxicons--brush]" },
 	};
 
 	type Props = {
@@ -40,17 +40,17 @@
 		disabled={!expandable}
 		type="button"
 		onclick={() => (expanded = !expanded)}
-		class={['relative w-full text-left grid', expandable && 'cursor-pointer']}
+		class={["relative grid w-full text-left", expandable && "cursor-pointer"]}
 	>
 		{@render header(
 			experience.name,
 			experience.location,
 			experience.type,
 			experience.fromYear,
-			experience.toYear
+			experience.toYear,
 		)}
 
-		<p class="text-center sm:text-left sm:text-xs not-last:mb-6">{experience.description}</p>
+		<p class="text-center not-last:mb-6 sm:text-left sm:text-xs">{experience.description}</p>
 
 		{#if hasItems(experience.points)}
 			{@render takeaways(experience.points, expanded)}
@@ -63,14 +63,14 @@
 	location: string,
 	type: ExperienceType,
 	fromYear: number,
-	toYear: number
+	toYear: number,
 )}
-	<header class="mb-8 sm:mb-4 @container">
+	<header class="@container mb-8 sm:mb-4">
 		<div
-			class="flex items-center justify-between flex-col @md:flex-row gap-4 sm:gap-2 @md:items-start"
+			class="flex flex-col items-center justify-between gap-4 sm:gap-2 @md:flex-row @md:items-start"
 		>
 			<div class="flex flex-col items-center @md:items-start">
-				<h1 class="text-center pointer-coarse:text-text-light font-black sm:font-bold mb-2 sm:mb-1">
+				<h1 class="mb-2 text-center font-black sm:mb-1 sm:font-bold pointer-coarse:text-text-light">
 					{title}
 				</h1>
 				<IconContainer icon="icon-[boxicons--location]" class="sm:text-xs">
@@ -87,13 +87,13 @@
 	<div class="@container">
 		<div
 			class={[
-				'grid transition-[grid-template-rows,margin-bottom]',
-				expanded ? 'grid-rows-[1fr] mb-8' : 'grid-rows-[0fr] mb-0'
+				"grid transition-[grid-template-rows,margin-bottom]",
+				expanded ? "mb-8 grid-rows-[1fr]" : "mb-0 grid-rows-[0fr]",
 			]}
 		>
 			<div class="overflow-hidden sm:text-xs">
-				<p class="mb-2 sm:text-xs font-bold text-text-light">Key Takeaways</p>
-				<ul class="list-disc list-inside">
+				<p class="mb-2 font-bold text-text-light sm:text-xs">Key Takeaways</p>
+				<ul class="list-inside list-disc">
 					{#each points as point}
 						<li>{point}</li>
 					{/each}
@@ -103,8 +103,8 @@
 
 		<IconContainer
 			icon="icon-[boxicons--chevron-down]"
-			class="pointer-coarse:text-text-light group-hover:text-text-light transition-colors sm:text-xs justify-center @md:justify-start"
-			iconClass={['size-6 transition-transform', expanded && 'rotate-180']}
+			class="justify-center transition-colors group-hover:text-text-light sm:text-xs @md:justify-start pointer-coarse:text-text-light"
+			iconClass={["size-6 transition-transform", expanded && "rotate-180"]}
 		>
 			{#if expanded}
 				Hide Details

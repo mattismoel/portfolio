@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { DesignProject } from '$lib/features/design-project/design-project';
-	import DesignProjectEntry from './DesignProjectEntry.svelte';
+	import type { DesignProject } from "$lib/features/design-project/design-project";
+	import DesignProjectEntry from "./DesignProjectEntry.svelte";
 
 	type Props = {
 		projects: DesignProject[];

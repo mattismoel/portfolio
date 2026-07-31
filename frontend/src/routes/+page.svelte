@@ -1,27 +1,27 @@
 <script lang="ts">
-	import PersonalInfoCard from '$lib/components/PersonalInfoCard.svelte';
-	import { info, socials } from '$lib/personal';
-	import TechProjectList from '$lib/components/TechProjectList.svelte';
-	import TabSelector from '$lib/components/TabSelector.svelte';
-	import { listTechProjects } from '$lib/features/tech-project/tech-project.remote';
-	import { listDesignProjects } from '$lib/features/design-project/design-project.remote';
-	import DesignProjectList from '$lib/components/DesignProjectList.svelte';
-	import { page } from '$app/state';
-	import { goto } from '$app/navigation';
-	import { onMount } from 'svelte';
-	import { fitsStringUnion } from '$lib/type';
+	import PersonalInfoCard from "$lib/components/PersonalInfoCard.svelte";
+	import { info, socials } from "$lib/personal";
+	import TechProjectList from "$lib/components/TechProjectList.svelte";
+	import TabSelector from "$lib/components/TabSelector.svelte";
+	import { listTechProjects } from "$lib/features/tech-project/tech-project.remote";
+	import { listDesignProjects } from "$lib/features/design-project/design-project.remote";
+	import DesignProjectList from "$lib/components/DesignProjectList.svelte";
+	import { page } from "$app/state";
+	import { goto } from "$app/navigation";
+	import { onMount } from "svelte";
+	import { fitsStringUnion } from "$lib/type";
 
-	const tabNames = ['Tech', 'Design'] as const;
+	const tabNames = ["Tech", "Design"] as const;
 	type TabType = (typeof tabNames)[number];
 
-	const tabs: TabType[] = ['Tech', 'Design'];
+	const tabs: TabType[] = ["Tech", "Design"];
 	let selectedTab = $state<TabType>();
 
 	onMount(() => {
-		const tabParam = page.url.searchParams.get('tab');
+		const tabParam = page.url.searchParams.get("tab");
 
 		if (!tabParam || !fitsStringUnion(tabParam, tabNames)) {
-			selectedTab = 'Tech';
+			selectedTab = "Tech";
 			return;
 		}
 
@@ -38,11 +38,11 @@
 	<meta name="description" content="The home page of Mattis Møl Kristensen" />
 </svelte:head>
 
-<main class="min-h-svh mx-responsive grid gap-20">
+<main class="mx-responsive grid min-h-svh gap-20">
 	<section class="grid gap-16">
 		<PersonalInfoCard {info} {socials} />
 
-		<p class="leading-relaxed text-center sm:text-left">
+		<p class="text-center leading-relaxed sm:text-left">
 			<span class="font-semibold text-heading">
 				Hi, I'm {info.firstName}
 				{info.lastName}.
@@ -64,10 +64,10 @@
 		{/if}
 
 		{#await Promise.all( [listTechProjects(), listDesignProjects()] ) then [techProjects, designProjects]}
-			{@const tab = page.url.searchParams.get('tab')}
-			{#if tab === 'Tech'}
+			{@const tab = page.url.searchParams.get("tab")}
+			{#if tab === "Tech"}
 				<TechProjectList projects={techProjects} />
-			{:else if tab === 'Design'}
+			{:else if tab === "Design"}
 				<DesignProjectList projects={designProjects} />
 			{/if}
 		{/await}

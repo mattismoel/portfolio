@@ -1,8 +1,8 @@
 <script lang="ts">
-	import type { HTMLButtonAttributes } from 'svelte/elements';
+	import type { HTMLButtonAttributes } from "svelte/elements";
 
 	type Props = HTMLButtonAttributes & {
-		direction: 'left' | 'right';
+		direction: "left" | "right";
 	};
 
 	let { children, direction, ...rest }: Props = $props();
@@ -11,26 +11,26 @@
 <button
 	{...rest}
 	class={[
-		'group rounded-full flex items-center gap-4 py-2 px-5 justify-center bg-background border border-zinc-800 text-text-light cursor-pointer transition-colors w-full sm:w-fit',
-		'disabled:text-text/50 disabled:cursor-default disabled:border-transparent',
-		rest.class
+		"group flex w-full cursor-pointer items-center justify-center gap-4 rounded-full border border-zinc-800 bg-background px-5 py-2 text-text-light transition-colors sm:w-fit",
+		"disabled:cursor-default disabled:border-transparent disabled:text-text/50",
+		rest.class,
 	]}
 >
-	{#if direction === 'right'}
+	{#if direction === "right"}
 		Next
 	{/if}
 	<span
 		class={[
-			'transition-transform size-4 group-disabled:group-hover:translate-x-0',
-			direction === 'left' &&
-				'group-disabled:icon-[boxicons--arrow-big-left] icon-[boxicons--arrow-big-left-filled] group-hover:-translate-x-1',
-			direction === 'right' &&
-				'group-disabled:icon-[boxicons--arrow-big-right] icon-[boxicons--arrow-big-right-filled] group-hover:translate-x-1'
+			"size-4 transition-transform group-disabled:group-hover:translate-x-0",
+			direction === "left" &&
+				"icon-[boxicons--arrow-big-left-filled] group-hover:-translate-x-1 group-disabled:icon-[boxicons--arrow-big-left]",
+			direction === "right" &&
+				"icon-[boxicons--arrow-big-right-filled] group-hover:translate-x-1 group-disabled:icon-[boxicons--arrow-big-right]",
 		]}
 	>
 	</span>
 
-	{#if direction === 'left'}
+	{#if direction === "left"}
 		Previous
 	{/if}
 </button>

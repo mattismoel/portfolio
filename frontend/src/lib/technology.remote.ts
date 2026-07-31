@@ -3,9 +3,9 @@ import { getLocalsPocketBase } from "./pocketbase";
 import { mapPBTechnology, type PBTechnology } from "./technology";
 
 export const listTechnologies = query(async () => {
-  const pb = getLocalsPocketBase()
+	const pb = getLocalsPocketBase();
 
-  const records = await pb.collection("technologies").getFullList<PBTechnology>()
+	const records = await pb.collection("technologies").getFullList<PBTechnology>();
 
-  return records.map(record => mapPBTechnology(record))
-})
+	return records.map((record) => mapPBTechnology(record));
+});
