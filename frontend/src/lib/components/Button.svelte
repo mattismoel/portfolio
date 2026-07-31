@@ -1,10 +1,10 @@
 <script lang="ts">
-	import type { HTMLButtonAttributes } from 'svelte/elements';
+	import type { HTMLButtonAttributes } from "svelte/elements";
 
 	type Props = HTMLButtonAttributes;
 	let props: Props = $props();
 </script>
 
-<button {...props} class="bg-primary text-background py-2 px-4 rounded-sm font-medium">
+<button {...props} class="rounded-sm bg-primary px-4 py-2 font-medium text-background">
 	{@render props.children?.()}
 </button>

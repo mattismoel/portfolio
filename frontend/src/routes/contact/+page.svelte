@@ -1,7 +1,7 @@
 <script lang="ts">
-	import IconContainer from '$lib/components/IconContainer.svelte';
-	import ResponsiveLink from '$lib/components/ResponsiveLink.svelte';
-	import { socials, type Social } from '$lib/personal';
+	import IconContainer from "$lib/components/IconContainer.svelte";
+	import ResponsiveLink from "$lib/components/ResponsiveLink.svelte";
+	import { socials, type Social } from "$lib/personal";
 </script>
 
 <svelte:head>
@@ -10,9 +10,9 @@
 </svelte:head>
 
 <main class="grid">
-	<div class="flex-1 flex flex-col justify-center items-center">
+	<div class="flex flex-1 flex-col items-center justify-center">
 		<div>
-			<h1 class="font-bold text-text-light mb-4">Catch me here:</h1>
+			<h1 class="mb-4 font-bold text-text-light">Catch me here:</h1>
 			<ul class="grid gap-2">
 				{#each socials as social}
 					{@render socialEntry(social)}
@@ -34,7 +34,7 @@
 			icon="icon-[boxicons--arrow-right]"
 			spacing="tight"
 			iconClass="size-6"
-			class="absolute text-text-light/30 opacity-0 right-0 group-hover:-right-2 top-1/2 translate-x-full -translate-y-1/2 group-hover:opacity-100 transition-[right,opacity]"
+			class="absolute top-1/2 right-0 translate-x-full -translate-y-1/2 text-text-light/30 opacity-0 transition-[right,opacity] group-hover:-right-2 group-hover:opacity-100"
 		>
 			<p class="whitespace-nowrap">{text}</p>
 		</IconContainer>

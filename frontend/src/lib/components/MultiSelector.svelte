@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { HTMLSelectAttributes } from 'svelte/elements';
+	import type { HTMLSelectAttributes } from "svelte/elements";
 
 	type Option = {
 		icon?: string;
@@ -49,8 +49,8 @@
 				onmouseenter={() => handleMouseEnterPill(value)}
 				onmousedown={() => toggle(value)}
 				class={[
-					'flex gap-2 items-center border border-primary/10 px-2 py-1',
-					isSelected ? 'bg-primary/10 font-medium' : 'bg-background'
+					"flex items-center gap-2 border border-primary/10 px-2 py-1",
+					isSelected ? "bg-primary/10 font-medium" : "bg-background",
 				]}
 			>
 				{#if icon}

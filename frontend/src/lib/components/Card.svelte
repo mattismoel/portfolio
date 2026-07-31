@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { Snippet } from 'svelte';
-	import type { ClassValue } from 'svelte/elements';
+	import type { Snippet } from "svelte";
+	import type { ClassValue } from "svelte/elements";
 
 	type Props = {
 		children: Snippet<[]>;
@@ -10,6 +10,6 @@
 	let props: Props = $props();
 </script>
 
-<div class={['p-6 rounded-default bg-zinc-900 border border-zinc-800', props.class]}>
+<div class={["rounded-default border border-zinc-800 bg-zinc-900 p-6", props.class]}>
 	{@render props.children()}
 </div>

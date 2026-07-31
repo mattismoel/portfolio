@@ -1,10 +1,10 @@
 <script lang="ts">
 	import type {
 		DesignProject,
-		DesignProjectType
-	} from '$lib/features/design-project/design-project';
-	import GridGallery from './GridGallery.svelte';
-	import Pill from './Pill.svelte';
+		DesignProjectType,
+	} from "$lib/features/design-project/design-project";
+	import GridGallery from "./GridGallery.svelte";
+	import Pill from "./Pill.svelte";
 
 	type ProjectTypeProps = {
 		icon: string;
@@ -18,14 +18,14 @@
 	const { project }: Props = $props();
 
 	const projectTypeProps: Record<DesignProjectType, ProjectTypeProps> = {
-		graphics: { name: 'Graphics Design', icon: 'icon-[boxicons--pen-draw]' },
-		product: { name: 'Product Design', icon: 'icon-[boxicons--compass-tool]' }
+		graphics: { name: "Graphics Design", icon: "icon-[boxicons--pen-draw]" },
+		product: { name: "Product Design", icon: "icon-[boxicons--compass-tool]" },
 	};
 </script>
 
 <div class="py-16 first:pt-0 last:pb-0">
 	<header class="mb-8 flex flex-col items-center sm:items-start">
-		<h2 class="font-black sm:font-bold mb-1 text-heading">{project.title}</h2>
+		<h2 class="mb-1 font-black text-heading sm:font-bold">{project.title}</h2>
 		{#if project.finishYear}
 			<span class="mb-4">{project.finishYear}</span>
 		{/if}
@@ -34,7 +34,7 @@
 	</header>
 
 	{#if project.description}
-		<p class="leading-relaxed mb-8 text-center sm:text-left">{project.description}</p>
+		<p class="mb-8 text-center leading-relaxed sm:text-left">{project.description}</p>
 	{/if}
 
 	{#if project.images}
