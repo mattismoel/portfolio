@@ -25,4 +25,5 @@ jobs:
         uses: mattismoel/actions/deploy@main
         with:
           context: ./backend
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           package_name: backend
