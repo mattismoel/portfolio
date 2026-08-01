@@ -1,8 +1,7 @@
 <script lang="ts">
-	import SlideshowGallery from "./SlideshowGallery.svelte";
+	import SlideshowGallery, { type SlideshowSrc } from "./SlideshowGallery.svelte";
 	import { iconMap, type Technology } from "$lib/technology";
 	import type { TechProject } from "$lib/features/tech-project/tech-project";
-	import GridGallery from "./GridGallery.svelte";
 	import IconContainer from "./IconContainer.svelte";
 	import ResponsiveLink from "./ResponsiveLink.svelte";
 	import { hasItems, sortAlphabeticallyByProperty } from "$lib/array";
@@ -12,6 +11,39 @@
 	};
 
 	let { project }: Props = $props();
+
+	let preview = $derived<SlideshowSrc | undefined>(
+		project.usePreview
+			? { type: "preview", href: project.href ?? "", title: project.title }
+			: undefined,
+	);
+
+	let imageSrcs = $derived<SlideshowSrc[]>(
+		project.images?.length
+			? project.images.map((img) => ({ type: "image", src: img.src, alt: img.description }))
+			: [],
+	);
+
+	let srcs = $derived([...(preview ? [preview] : []), ...imageSrcs]);
+
+	// let srcs: SlideshowSrc[] = $derived([
+	// 	...(project.usePreview
+	// 		? [
+	// 				{
+	// 					type: "preview",
+	// 					href: project.href ?? "",
+	// 					title: project.title,
+	// 				},
+	// 			]
+	// 		: []),
+	// 	...(project.images?.length
+	// 		? project.images.map((img) => ({
+	// 				type: "image",
+	// 				src: img.src,
+	// 				alt: img.description,
+	// 			}))
+	// 		: []),
+	// ]);
 </script>
 
 <div class="@container py-16 first:pt-0 last:pb-0">
@@ -68,50 +100,9 @@
 	</div>
 
 	<div class="grid gap-8">
-		{#if project.href && project.usePreview}
-			{@render sitePreview(project)}
-		{/if}
-
-		{#if hasItems(project.images)}
-			<div>
-				{#if project.usePreview}
-					<GridGallery
-						srcs={project.images.map((img) => ({ src: img.src, alt: img.description }))}
-					/>
-				{:else}
-					<SlideshowGallery
-						imgsSrcs={project.images.map((img) => ({ src: img.src, alt: img.description }))}
-					/>
-				{/if}
-			</div>
-		{/if}
+		<SlideshowGallery {srcs} />
 	</div>
 </div>
-
-{#snippet sitePreview(project: TechProject)}
-	<a
-		title={project.title}
-		href={project.href}
-		target="_blank"
-		class="group relative aspect-video w-full overflow-hidden rounded-default outline-0 outline-text/5 transition-[outline-width] hover:shadow-2xl hover:outline-8"
-	>
-		<iframe
-			title={project.title}
-			src={project.href}
-			class="pointer-events-none absolute inset-0 h-[400%] w-[400%] origin-top-left scale-[0.25] transition-[filter] group-hover:brightness-30 sm:h-[250%] sm:w-[250%] sm:scale-[0.4]"
-			scrolling="no"
-		>
-		</iframe>
-
-		<IconContainer
-			side="right"
-			icon="icon-[boxicons--arrow-out-up-right-square]"
-			class="absolute top-1/2 left-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center gap-2 font-bold text-text-light underline opacity-0 transition-opacity group-hover:opacity-100"
-		>
-			Visit site
-		</IconContainer>
-	</a>
-{/snippet}
 
 {#snippet techList(technologies: Technology[])}
 	{@const sorted = sortAlphabeticallyByProperty(technologies, "name")}
