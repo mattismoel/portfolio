@@ -105,7 +105,7 @@
 		{#each { length: amount } as _, i}
 			<div
 				class:active={i === activeIdx}
-				class="h-1.5 w-1.5 rounded-full bg-zinc-800 transition-[width,margin] ease-out [.active]:mx-1 [.active]:w-4 [.active]:bg-heading [.active]:first:ml-0 [.active]:last:mr-0"
+				class="h-1.5 w-1.5 rounded-full bg-zinc-800 transition-[width,height,margin] duration-100 ease-out [.active]:mx-1 [.active]:h-2 [.active]:w-4 [.active]:bg-heading [.active]:first:ml-0 [.active]:last:mr-0"
 			></div>
 		{/each}
 	</div>
