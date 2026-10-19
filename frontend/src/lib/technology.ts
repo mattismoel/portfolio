@@ -1,5 +1,4 @@
 import z from "zod";
-import { pbBaseFields } from "./pocketbase";
 
 export const iconMap = new Map<string, string>([
 	["Golang", "icon-[simple-icons--go]"],
@@ -19,20 +18,9 @@ export const iconMap = new Map<string, string>([
 ]);
 
 export const technologySchema = z.object({
-	...pbBaseFields.shape,
-	name: z.string().nonempty(),
-	href: z.url().nonempty(),
-});
-
-export const pbTechnologySchema = z.object({
-	...pbBaseFields.shape,
+	// ...pbBaseFields.shape,
 	name: z.string().nonempty(),
 	href: z.url().nonempty(),
 });
 
 export type Technology = z.infer<typeof technologySchema>;
-export type PBTechnology = z.infer<typeof pbTechnologySchema>;
-
-export const mapPBTechnology = (record: PBTechnology): Technology => {
-	return technologySchema.parse(record);
-};

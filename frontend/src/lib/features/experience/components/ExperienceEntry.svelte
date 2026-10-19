@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { hasItems } from "$lib/array";
-	import IconContainer from "$lib/components/IconContainer.svelte";
-	import Pill from "$lib/components/Pill.svelte";
+	import { hasItems } from "#lib/array.ts";
+	import IconContainer from "#lib/components/IconContainer.svelte";
+	import Pill from "#lib/components/Pill.svelte";
 	import type { Experience, ExperienceType } from "../experience";
 
 	type ExperienceTypeProps = {

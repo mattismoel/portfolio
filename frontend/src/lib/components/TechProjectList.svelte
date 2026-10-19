@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { TechProject } from "$lib/features/tech-project/tech-project";
+	import type { TechProject } from "#lib/features/tech-project/tech-project.ts";
 	import TechProjectEntry from "./TechProjectEntry.svelte";
 
 	type Props = {

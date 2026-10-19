@@ -2,7 +2,7 @@
 	import type {
 		DesignProject,
 		DesignProjectType,
-	} from "$lib/features/design-project/design-project";
+	} from "#lib/features/design-project/design-project.ts";
 	import GridGallery from "./GridGallery.svelte";
 	import Pill from "./Pill.svelte";
 

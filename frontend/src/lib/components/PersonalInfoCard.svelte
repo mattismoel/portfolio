@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { PersonalInformation, Social } from "$lib/personal";
+	import type { PersonalInformation, Social } from "#lib/personal.ts";
 	import { differenceInYears } from "date-fns";
 	import BorderedImage from "./BorderedImage.svelte";
 

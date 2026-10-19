@@ -1,10 +1,10 @@
 <script lang="ts">
 	import SlideshowGallery, { type SlideshowSrc } from "./SlideshowGallery.svelte";
-	import { iconMap, type Technology } from "$lib/technology";
-	import type { TechProject } from "$lib/features/tech-project/tech-project";
+	import { iconMap, type Technology } from "#lib/technology.ts";
+	import type { TechProject } from "#lib/features/tech-project/tech-project.ts";
 	import IconContainer from "./IconContainer.svelte";
 	import ResponsiveLink from "./ResponsiveLink.svelte";
-	import { hasItems, sortAlphabeticallyByProperty } from "$lib/array";
+	import { hasItems, sortAlphabeticallyByProperty } from "#lib/array.ts";
 
 	type Props = {
 		project: TechProject;

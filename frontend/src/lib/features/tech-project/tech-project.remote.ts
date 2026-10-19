@@ -1,8 +1,8 @@
 import { form, query } from "$app/server";
-import { createExpandString, getLocalsPocketBase } from "$lib/pocketbase";
+import { createExpandString, getLocalsPocketBase } from "#lib/pocketbase.ts";
 import z from "zod";
-import { mapPBTechProject, type PBTechProject } from "./tech-project";
-import { idSchema } from "$lib/base";
+import { idSchema } from "#lib/base.ts";
+import { mapPBTechProject, type PBTechProject } from "./tech-project.server";
 
 const TECH_PROJECT_EXPAND_PROPERTIES = ["images", "technologies"];
 

@@ -1,15 +1,15 @@
 <script lang="ts">
-	import PersonalInfoCard from "$lib/components/PersonalInfoCard.svelte";
-	import { info, socials } from "$lib/personal";
-	import TechProjectList from "$lib/components/TechProjectList.svelte";
-	import TabSelector from "$lib/components/TabSelector.svelte";
-	import { listTechProjects } from "$lib/features/tech-project/tech-project.remote";
-	import { listDesignProjects } from "$lib/features/design-project/design-project.remote";
-	import DesignProjectList from "$lib/components/DesignProjectList.svelte";
+	import PersonalInfoCard from "#lib/components/PersonalInfoCard.svelte";
+	import { info, socials } from "#lib/personal.ts";
+	import TechProjectList from "#lib/components/TechProjectList.svelte";
+	import TabSelector from "#lib/components/TabSelector.svelte";
+	import { listTechProjects } from "#lib/features/tech-project/tech-project.remote.ts";
+	import { listDesignProjects } from "#lib/features/design-project/design-project.remote.ts";
+	import DesignProjectList from "#lib/components/DesignProjectList.svelte";
 	import { page } from "$app/state";
 	import { goto } from "$app/navigation";
 	import { onMount } from "svelte";
-	import { fitsStringUnion } from "$lib/type";
+	import { fitsStringUnion } from "#lib/type.ts";
 
 	const tabNames = ["Tech", "Design"] as const;
 	type TabType = (typeof tabNames)[number];

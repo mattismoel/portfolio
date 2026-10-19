@@ -1,6 +1,6 @@
 import { query } from "$app/server";
-import { getLocalsPocketBase } from "$lib/pocketbase";
-import { mapPBExperience, type PBExperience } from "./experience";
+import { getLocalsPocketBase } from "#lib/pocketbase.ts";
+import { mapPBExperience, type PBExperience } from "./experience.server";
 
 export const listExperiences = query(async () => {
 	const pb = getLocalsPocketBase();

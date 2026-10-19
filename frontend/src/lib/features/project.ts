@@ -1,5 +1,5 @@
-import { baseFields } from "$lib/base";
-import { createFileUrl, pbBaseFields, pbIdSchema } from "$lib/pocketbase";
+import { baseFields } from "#lib/base.ts";
+import { createFileUrl, pbBaseFields, pbIdSchema } from "#lib/pocketbase.ts";
 import z from "zod";
 
 export const imageSchema = z.object({

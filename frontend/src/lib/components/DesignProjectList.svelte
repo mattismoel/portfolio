@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { DesignProject } from "$lib/features/design-project/design-project";
+	import type { DesignProject } from "#lib/features/design-project/design-project.ts";
 	import DesignProjectEntry from "./DesignProjectEntry.svelte";
 
 	type Props = {

@@ -1,5 +1,5 @@
 import { query } from "$app/server";
-import { createExpandString, getLocalsPocketBase } from "$lib/pocketbase";
+import { createExpandString, getLocalsPocketBase } from "#lib/pocketbase.ts";
 import { mapPBDesignProject, type PBDesignProject } from "./design-project";
 
 const EXPAND_PROPERTIES = ["images"];
