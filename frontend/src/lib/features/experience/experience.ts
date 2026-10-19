@@ -13,7 +13,7 @@ export const experienceSchema = z.object({
 	points: z.union([z.string().array().optional(), z.null()]),
 	type: experienceTypeSchema,
 	fromYear: z.number().positive(),
-	toYear: z.number().positive(),
+	toYear: z.number().positive().or(z.literal(0)),
 });
 
 export type Experience = z.infer<typeof experienceSchema>;
