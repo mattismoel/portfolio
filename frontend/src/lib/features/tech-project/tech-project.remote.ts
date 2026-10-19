@@ -12,6 +12,7 @@ export const listTechProjects = query(async () => {
 	const records = await pb.collection("tech_projects").getFullList<PBTechProject>({
 		expand: createExpandString(TECH_PROJECT_EXPAND_PROPERTIES),
 		sort: "-finishYear,title",
+		filter: "archived=false",
 	});
 
 	return records.map((record) => mapPBTechProject(record));

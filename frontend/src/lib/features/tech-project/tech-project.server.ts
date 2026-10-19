@@ -10,6 +10,7 @@ const pbTechProjectSchema = pbProjectSchema.extend({
 	sourceHref: z.union([z.url(), z.literal("")]),
 	technologies: pbIdSchema.array(),
 	usePreview: z.boolean(),
+	archived: z.boolean(),
 	expand: z.object({
 		images: pbImageSchema.array().optional(),
 		technologies: pbTechnologySchema.array(),

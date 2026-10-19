@@ -6,6 +6,7 @@ export const techProjectSchema = projectSchema.extend({
 	href: z.url().optional(),
 	sourceHref: z.union([z.url(), z.literal("")]),
 	technologies: technologySchema.array().min(1),
+	archived: z.boolean(),
 	usePreview: z.boolean(),
 });
 
