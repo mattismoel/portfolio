@@ -23,7 +23,13 @@
 	let props: Props = $props();
 	let { experience } = $derived(props);
 
+	let isCurrent = $derived(experience.toYear === 0);
+
 	const formatYears = (from: number, to: number) => {
+		if (isCurrent) {
+			return `${from} - Now`;
+		}
+
 		if (from === to) {
 			return `${from}`;
 		}
@@ -119,7 +125,10 @@
 	{@const { name, icon } = experienceTypes[type]}
 	{@const yearText = formatYears(fromYear, toYear)}
 
-	<Pill {icon} shade="lighter" class="w-fit">
+	<Pill icon={isCurrent ? undefined : icon} shade="lighter" class="w-fit">
+		{#if isCurrent}
+			<div class="size-2 animate-pulse rounded-full bg-green-600"></div>
+		{/if}
 		<span>
 			{name}<span>,&nbsp;</span>{yearText}
 		</span>
