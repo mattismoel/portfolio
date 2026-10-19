@@ -1,6 +1,6 @@
 import z from "zod";
 import { pbImageSchema, pbProjectSchema, projectSchema } from "../project";
-import { createFileUrl } from "$lib/pocketbase";
+import { createFileUrl } from "#lib/pocketbase.ts";
 
 const designProjectType = z.union([z.literal("product"), z.literal("graphics")]);
 

@@ -1,8 +1,8 @@
 import { form } from "$app/server";
 import z from "zod";
-import { getLocalsPocketBase } from "$lib/pocketbase";
+import { getLocalsPocketBase } from "#lib/pocketbase.ts";
 import { mapPBImage, type PBImage } from "./project";
-import { idSchema } from "$lib/base";
+import { idSchema } from "#lib/base.ts";
 
 const uploadImageFormSchema = z.object({
 	file: z.file(),

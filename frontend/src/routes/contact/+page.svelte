@@ -1,7 +1,7 @@
 <script lang="ts">
-	import IconContainer from "$lib/components/IconContainer.svelte";
-	import ResponsiveLink from "$lib/components/ResponsiveLink.svelte";
-	import { socials, type Social } from "$lib/personal";
+	import IconContainer from "#lib/components/IconContainer.svelte";
+	import ResponsiveLink from "#lib/components/ResponsiveLink.svelte";
+	import { socials, type Social } from "#lib/personal.ts";
 </script>
 
 <svelte:head>

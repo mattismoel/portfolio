@@ -1,5 +1,5 @@
 import { getRequestEvent } from "$app/server";
-import { PUBLIC_POCKETBASE_URL } from "$env/static/public";
+import { PUBLIC_POCKETBASE_URL } from "$app/env/public";
 import z from "zod";
 
 export const pbIdSchema = z.string().nonempty();

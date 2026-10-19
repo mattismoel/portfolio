@@ -1,17 +1,17 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { page } from "$app/state";
-	import { hasItems } from "$lib/array";
-	import Card from "$lib/components/Card.svelte";
-	import TabSelector from "$lib/components/TabSelector.svelte";
-	import ExperienceEntry from "$lib/features/experience/components/ExperienceEntry.svelte";
+	import { hasItems } from "#lib/array.ts";
+	import Card from "#lib/components/Card.svelte";
+	import TabSelector from "#lib/components/TabSelector.svelte";
+	import ExperienceEntry from "#lib/features/experience/components/ExperienceEntry.svelte";
 	import {
 		experienceTypes,
 		type Experience,
 		type ExperienceType,
-	} from "$lib/features/experience/experience";
-	import { listExperiences } from "$lib/features/experience/experience.remote";
-	import { fitsStringUnion } from "$lib/type";
+	} from "#lib/features/experience/experience.ts";
+	import { listExperiences } from "#lib/features/experience/experience.remote.ts";
+	import { fitsStringUnion } from "#lib/type.ts";
 	import { onMount } from "svelte";
 	import { MediaQuery } from "svelte/reactivity";
 

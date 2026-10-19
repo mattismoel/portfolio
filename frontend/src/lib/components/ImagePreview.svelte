@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { clickOutside } from "$lib/actions/click-outside.svelte";
+	import { clickOutside } from "#lib/actions/click-outside.svelte.ts";
 	import type { HTMLImgAttributes } from "svelte/elements";
 
 	type Props = {
