@@ -71,7 +71,7 @@
 	fromYear: number,
 	toYear: number,
 )}
-	<header class="@container mb-8 sm:mb-4">
+	<header class={["@container h-max ", type !== "project" && "mb-8 sm:mb-4"]}>
 		<div
 			class="flex flex-col items-center justify-between gap-4 sm:gap-2 @md:flex-row @md:items-start"
 		>
@@ -79,9 +79,11 @@
 				<h1 class="mb-2 text-center font-black sm:mb-1 sm:font-bold pointer-coarse:text-text-light">
 					{title}
 				</h1>
-				<IconContainer icon="icon-[boxicons--location]" class="sm:text-xs">
-					{location}
-				</IconContainer>
+				{#if type !== "project"}
+					<IconContainer icon="icon-[boxicons--location]" class="sm:text-xs">
+						{location}
+					</IconContainer>
+				{/if}
 			</div>
 
 			{@render typeBadge(type, fromYear, toYear)}
