@@ -4,8 +4,6 @@ services:
     volumes:
       - pb_data:/pb/pb_data
       - pb_migrations:/pb/pb_migrations
-    networks:
-      - proxy
 
   frontend:
     image: ghcr.io/mattismoel/portfolio/frontend:main
@@ -13,13 +11,7 @@ services:
     environment:
       - PUBLIC_POCKETBASE_URL=$PUBLIC_POCKETBASE_URL
       - POCKETBASE_URL=$POCKETBASE_URL
-    networks:
-      - proxy
 
 volumes:
   pb_data:
   pb_migrations:
-
-networks:
-  proxy:
-    external: true
