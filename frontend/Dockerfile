@@ -31,7 +31,8 @@ COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./
 
 ENV NODE_ENV="production"
+ENV PORT="5173"
 
-EXPOSE 3000
+EXPOSE 5173
 
 ENTRYPOINT [ "node", "build" ]
