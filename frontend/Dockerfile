@@ -3,7 +3,7 @@ WORKDIR /app
 
 # Set SvelteKit environment static variables.
 ENV PUBLIC_POCKETBASE_URL=https://api.mattismoel.dev
-ENV POCKETBASE_URL=http://portfolio-site-backend:8080
+ENV POCKETBASE_URL=http://backend:8080
 
 # Install build dependencies.
 FROM base AS install
